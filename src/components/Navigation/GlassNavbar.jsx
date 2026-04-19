@@ -26,7 +26,7 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
         WebkitBackdropFilter: 'blur(24px)',
         border: '1px solid rgba(255, 255, 255, 0.1)',
         borderRadius: '50px',
-        zIndex: 1000
+        zIndex: 99999
       }}
     >
       {/* Logotipo a la izquierda */}

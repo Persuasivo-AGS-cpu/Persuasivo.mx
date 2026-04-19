@@ -217,7 +217,6 @@ const showcaseData = {
 
 function ShowcaseCarousel() {
   const scrollRef = React.useRef(null);
-  const [isDragging, setIsDragging] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState('ecosistemas');
 
   const tabs = [
@@ -293,7 +292,7 @@ function ShowcaseCarousel() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
-        <motion.div 
+          <motion.div 
           ref={scrollRef}
           className={`netflix-carousel ${showcaseData[activeTab].length <= 3 ? 'carousel-centered' : ''}`}
           style={{
@@ -301,12 +300,9 @@ function ShowcaseCarousel() {
             gap: '2rem', 
             padding: '2rem 2rem 0 2rem', 
             overflowX: 'auto',
-            cursor: isDragging ? 'grabbing' : 'grab'
+            WebkitOverflowScrolling: 'touch',
+            scrollSnapType: 'x mandatory'
           }}
-          drag="x"
-          dragConstraints={{ left: -1500, right: 0 }}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
         >
           {showcaseData[activeTab].map((proj) => (
             <motion.div 
@@ -321,12 +317,13 @@ function ShowcaseCarousel() {
                 border: '1px solid rgba(255,255,255,0.05)',
                 background: '#050505',
                 boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
-                cursor: proj.href ? 'pointer' : 'default'
+                cursor: proj.href ? 'pointer' : 'default',
+                scrollSnapAlign: 'center'
               }}
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               onClick={() => {
-                if (proj.href && !isDragging) window.open(proj.href, '_blank');
+                if (proj.href) window.open(proj.href, '_blank');
               }}
             >
                {/* Imagen de Fondo de Socket */}
