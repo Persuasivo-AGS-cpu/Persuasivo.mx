@@ -331,12 +331,12 @@ function ShowcaseCarousel() {
             >
                {/* Imagen de Fondo de Socket */}
                <div style={{
-                 position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
                  backgroundImage: `url(${proj.img})`,
                  backgroundSize: 'cover',
-                 backgroundPosition: 'center',
-                 opacity: 0.4,
+                 backgroundPosition: 'top center',
                  transition: 'all 0.5s ease',
+                 opacity: 0.6
                }} className="showcase-bg" />
                
                {/* Gradiente Oscuro para lectura */}
