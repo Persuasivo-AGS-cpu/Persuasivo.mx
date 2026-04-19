@@ -199,7 +199,7 @@ const showcaseData = {
   ecosistemas: [
     { id: 'monterrey', title: 'Monterrey Jurídico', type: 'Legal / High-Conversion', img: '/showcase/monterrey.jpg', tags: ['React', 'Framer', 'Human-Centered'], href: 'https://monterreyjuridico.com/' },
     { id: 'elypse', title: 'Edificio Elypse', type: 'Real Estate / Ultra-Luxury', img: '/showcase/elypse.jpg', tags: ['Next.js', 'WebGL', 'Premium'], href: 'https://edificio-elypse.vercel.app/' },
-    { id: 'renters', title: 'Renters CRM', type: 'Finance / SaaS Dashboard', img: '/showcase/renters.jpg', tags: ['React', 'Vite', 'Corporate SaaS'] },
+    { id: 'renters', title: 'Renters.mx', type: 'Real Estate / Legal', img: '/showcase/renters.jpg', tags: ['React', 'Vite', 'Corporate SaaS'], href: 'https://renters.mx/' },
     { id: 'onebell', title: 'OneBell AI', type: 'Fitness AI / Native App', img: '/showcase/onebell.jpg', tags: ['IA', 'Apple-Native', 'Mobile'] },
     { id: 'contratos', title: 'Contratos B2B', type: 'Legal Ecommerce', img: '/showcase/contratos.jpg', tags: ['Ecommerce', 'Stripe API', 'Monopoly'] }
   ],
