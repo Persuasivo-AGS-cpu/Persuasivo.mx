@@ -5,33 +5,36 @@ import Footer from '../Navigation/Footer';
 
 export default function ContactFlow({ setView }) {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({ email: '', url: '', scope: '', budget: '' });
+  const [formData, setFormData] = useState({ email: '', url: '', scope: [], budget: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success
   const [isFocused, setIsFocused] = useState(false);
 
   const scopes = [
-    { id: 'traffic', label: 'Tráfico Meta Ads', desc: 'Sistemas de adquisición predictiva.' },
-    { id: 'branding', label: 'Identidad y Copy', desc: 'Narrativa para escalar precios.' },
-    { id: 'ecosystem', label: 'Desarrollo Web React', desc: 'Ecosistemas de ultra conversión.' },
-    { id: 'dominance', label: 'Dominación Integral', desc: 'Operación completa 360º.' }
+    { id: 'meta_ads', label: 'Campañas Meta Ads', desc: 'Adquisición de prospectos calificados en frío. (Desde $2,700/mes)' },
+    { id: 'redes', label: 'Gestión de Redes Sociales', desc: 'Posicionamiento y fidelización de marca. ($4,500/mes)' },
+    { id: 'landing', label: 'Landing Page de Alta Conversión', desc: 'Activo digital estático estructurado para venta. ($6,500 único)' },
+    { id: 'web_copy', label: 'Ecosistema Web 360 & Copywriting', desc: 'Desarrollo web corporativo completo. (Cotización a la medida)' }
   ];
 
   const budgets = [
-    { id: 'base', label: '$15,000 - $30,000 MXN', desc: 'Arranque Sólido y Posicionamiento' },
-    { id: 'pro', label: '$30,000 - $60,000 MXN', desc: 'Sistemas de Tráfico y Escalamiento' },
-    { id: 'elite', label: '+$60,000 MXN', desc: 'Dominio de Mercado Completo' }
+    { id: 'base', label: 'Inversión de Arranque', desc: 'Para activar campañas, redes sociales o landing pages base. (< $10,000)' },
+    { id: 'pro', label: 'Fase de Escalamiento', desc: 'Operación paralela de distintos servicios para dominar tu nicho. ($10k - $25k)' },
+    { id: 'elite', label: 'Dominio de Mercado Completamente Custom', desc: 'Sistemas complejos Web3/SaaS con alto nivel de carga ingenieril. (Flexible)' }
   ];
 
   const handleNext = (e) => {
     e.preventDefault();
     if (step === 1 && !formData.email) return;
-    if (step === 3 && !formData.scope) return;
+    if (step === 3 && formData.scope.length === 0) return;
     
     setStep(prev => prev + 1);
   };
 
   const handleScopeSelect = (scopeId) => {
-    setFormData({ ...formData, scope: scopeId });
+    setFormData(prev => ({
+      ...prev,
+      scope: prev.scope.includes(scopeId) ? prev.scope.filter(s => s !== scopeId) : [...prev.scope, scopeId]
+    }));
   };
 
   const handleBudgetSelect = (budgetId) => {
@@ -52,11 +55,28 @@ export default function ContactFlow({ setView }) {
         body: JSON.stringify({
             Email: formData.email,
             URL_Empresa: formData.url,
-            Vector_Elegido: formData.scope,
+            Vector_Elegido: formData.scope.join(', '),
             Filtro_Inversion: formData.budget,
             _subject: "NUEVO LEAD CALIFICADO - The Factory Persuasivo"
         })
       });
+      
+      // Parallel Silent Injection to Local Hub's CRM Kanban (if Hub is running)
+      try {
+        await fetch("http://localhost:3000/api/webhooks/contact", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            Email: formData.email,
+            URL_Empresa: formData.url,
+            Vector_Elegido: formData.scope.join(', '),
+            Filtro_Inversion: formData.budget
+          })
+        });
+      } catch (crmError) {
+        console.log("Local CRM Hub estatus: Offline o inalcanzable. Proceeding with standard mail.");
+      }
+      
       setStatus('success');
     } catch (error) {
       console.error("Error al enviar formulario:", error);
@@ -190,9 +210,9 @@ export default function ContactFlow({ setView }) {
                 </h1>
                 <p style={{ marginTop: '1rem', color: '#888', fontSize: '1.05rem', lineHeight: 1.5 }}>
                   {step === 1 && "Solo tratamos con tomadores de decisiones. Tu correo principal."}
-                  {step === 2 && "Ingresa la URL de tu empresa. Si vienes a construir desde cero, sáltate este paso."}
-                  {step === 3 && "¿Cómo vamos a escalar tu infraestructura? Selecciona el scope."}
-                  {step === 4 && "Filtro final. Selecciona el rango de capital asignado para escalar tu proyecto de forma seria."}
+                  {step === 2 && "Ingresa la URL de tu corporativo (si existe). Si vienes a construir desde cero, sáltate este paso."}
+                  {step === 3 && "¿En qué vectores necesitas fuerza operativa bruta? Puedes seleccionar múltiples opciones."}
+                  {step === 4 && "Filtro comercial final. Requerimos ubicarnos en un espectro de inversión para ensamblar la propuesta."}
                 </p>
               </div>
 
@@ -233,21 +253,21 @@ export default function ContactFlow({ setView }) {
                     <motion.div
                       key={s.id}
                       onClick={() => handleScopeSelect(s.id)}
-                      whileHover={{ scale: formData.scope === s.id ? 1.02 : 1.01 }}
+                      whileHover={{ scale: formData.scope.includes(s.id) ? 1.02 : 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       style={{
                         padding: '1.2rem 1.5rem',
                         borderRadius: '16px',
                         cursor: 'pointer',
-                        background: formData.scope === s.id ? 'rgba(224, 255, 49, 0.1)' : 'rgba(255,255,255,0.03)',
-                        border: formData.scope === s.id ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid rgba(255,255,255,0.1)',
-                        boxShadow: formData.scope === s.id ? '0 0 20px rgba(224, 255, 49, 0.15)' : 'none',
+                        background: formData.scope.includes(s.id) ? 'rgba(224, 255, 49, 0.1)' : 'rgba(255,255,255,0.03)',
+                        border: formData.scope.includes(s.id) ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid rgba(255,255,255,0.1)',
+                        boxShadow: formData.scope.includes(s.id) ? '0 0 20px rgba(224, 255, 49, 0.15)' : 'none',
                         transition: 'all 0.2s ease',
                         display: 'flex', flexDirection: 'column'
                       }}
                     >
-                      <h4 style={{ margin: 0, color: formData.scope === s.id ? '#E0FF31' : '#fff', fontSize: '1.1rem', fontWeight: 800 }}>{s.label}</h4>
-                      <p style={{ margin: '0.3rem 0 0 0', color: formData.scope === s.id ? '#ddd' : '#888', fontSize: '0.9rem' }}>{s.desc}</p>
+                      <h4 style={{ margin: 0, color: formData.scope.includes(s.id) ? '#E0FF31' : '#fff', fontSize: '1.1rem', fontWeight: 800 }}>{s.label}</h4>
+                      <p style={{ margin: '0.3rem 0 0 0', color: formData.scope.includes(s.id) ? '#ddd' : '#888', fontSize: '0.9rem' }}>{s.desc}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -290,15 +310,15 @@ export default function ContactFlow({ setView }) {
                 
                 <motion.button
                   type="submit"
-                  disabled={(step === 3 && !formData.scope) || (step === 4 && !formData.budget)}
-                  whileHover={{ scale: ((step === 3 && !formData.scope) || (step === 4 && !formData.budget)) ? 1 : 1.02 }}
-                  whileTap={{ scale: ((step === 3 && !formData.scope) || (step === 4 && !formData.budget)) ? 1 : 0.98 }}
+                  disabled={(step === 3 && formData.scope.length === 0) || (step === 4 && !formData.budget)}
+                  whileHover={{ scale: ((step === 3 && formData.scope.length === 0) || (step === 4 && !formData.budget)) ? 1 : 1.02 }}
+                  whileTap={{ scale: ((step === 3 && formData.scope.length === 0) || (step === 4 && !formData.budget)) ? 1 : 0.98 }}
                   style={{
                     flex: 1, background: 'linear-gradient(180deg, #E0FF31 0%, #B8D900 100%)',
                     boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.5), 0 10px 30px rgba(224, 255, 49, 0.3)',
                     color: '#000', border: 'none', padding: '1.2rem', borderRadius: '9999px', fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px',
-                    cursor: ((step === 3 && !formData.scope) || (step === 4 && !formData.budget)) ? 'not-allowed' : 'pointer',
-                    opacity: ((step === 3 && !formData.scope) || (step === 4 && !formData.budget)) ? 0.5 : 1,
+                    cursor: ((step === 3 && formData.scope.length === 0) || (step === 4 && !formData.budget)) ? 'not-allowed' : 'pointer',
+                    opacity: ((step === 3 && formData.scope.length === 0) || (step === 4 && !formData.budget)) ? 0.5 : 1,
                     display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60px'
                   }}
                 >
