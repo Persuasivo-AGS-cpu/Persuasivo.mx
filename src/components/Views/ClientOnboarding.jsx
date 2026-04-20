@@ -196,7 +196,7 @@ export default function ClientOnboarding({ setView }) {
 
         .onboarding-safe-wrapper {
           width: 100%;
-          min-height: 100dvh;
+          height: 100vh;
           background: #000;
           display: flex;
           flex-direction: column;
@@ -204,8 +204,10 @@ export default function ClientOnboarding({ setView }) {
           justify-content: flex-start;
           position: relative;
           overflow-x: hidden;
-          padding: max(100px, 10vh) 0 80px 0;
+          overflow-y: auto;
+          padding: max(100px, 12vh) 0 100px 0;
           box-sizing: border-box;
+          -webkit-overflow-scrolling: touch;
         }
 
         .onboarding-card {

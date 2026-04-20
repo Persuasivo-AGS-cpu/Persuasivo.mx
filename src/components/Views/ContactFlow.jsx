@@ -100,12 +100,14 @@ export default function ContactFlow({ setView }) {
       transition={{ duration: 0.6 }}
       style={{
         width: '100%',
-        minHeight: '100dvh',
+        height: '100vh',
         background: '#050505',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
+        overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch'
       }}
     >
       <style>{`
@@ -119,9 +121,9 @@ export default function ContactFlow({ setView }) {
           justify-content: flex-start;
           align-items: center;
           width: 100%;
-          min-height: 100dvh;
+          min-height: 100vh;
           position: relative;
-          padding: max(100px, 12vh) 20px 80px 20px;
+          padding: max(100px, 12vh) 20px 100px 20px;
           box-sizing: border-box;
         }
 
