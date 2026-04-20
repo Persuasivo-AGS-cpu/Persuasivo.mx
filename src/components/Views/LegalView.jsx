@@ -18,7 +18,7 @@ const legalDocs = {
         <p>Todos nuestros servidores operan con tecnología Vercel, Firebase y AWS, manteniendo estándares de encriptación de grado bancario. Cualquier filtración es mitigada a nivel de clúster preventivo.</p>
         
         <h3>4. Derechos ARCO</h3>
-        <p>Tienes en todo momento el control absoluto. Puedes solicitar el acceso, rectificación, cancelación u oposición al tratamiento de tus datos escribiendo directamente a nuestro enlace de seguridad: privacy@persuasivo.com.</p>
+        <p>Tienes en todo momento el control absoluto. Puedes solicitar el acceso, rectificación, cancelación u oposición al tratamiento de tus datos escribiendo directamente a nuestro enlace de seguridad: hola@persuasivo.mx.</p>
       </>
     )
   },

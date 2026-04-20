@@ -46,7 +46,7 @@ export default function ContactFlow({ setView }) {
     setStatus('loading');
     
     try {
-      await fetch("https://formsubmit.co/ajax/persuasivo.mx@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/hola@persuasivo.mx", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
