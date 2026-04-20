@@ -173,15 +173,15 @@ export default function ClientOnboarding({ setView }) {
   };
 
   const stepAnimations = {
-    initial: { opacity: 0, y: 40, filter: 'blur(10px)' },
-    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-    exit: { opacity: 0, y: -40, filter: 'blur(10px)', transition: { duration: 0.4 } }
+    initial: { opacity: 0, y: 20, filter: 'blur(5px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.35, ease: 'easeOut' } },
+    exit: { opacity: 0, y: -20, filter: 'blur(5px)', transition: { duration: 0.15, ease: 'easeIn' } }
   };
 
   const TOTAL_STEPS = 13; // Form Steps (14 is success)
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', background: '#000', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+    <div className="onboarding-safe-wrapper">
       <Helmet>
         <title>Inicio de Proyecto | Persuasivo</title>
         {/* Anti-Bot Google Indexing Protection */}
@@ -191,7 +191,33 @@ export default function ClientOnboarding({ setView }) {
       {/* Background cinematic lights */}
       <div style={{ position: 'absolute', top: '20%', left: '30%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(224,255,49,0.05) 0%, transparent 60%)', filter: 'blur(60px)', zIndex: 0 }} />
 
-      <div style={{ zIndex: 10, width: '100%', maxWidth: '700px', padding: '0 2rem' }}>
+      <style>{`
+        ::-webkit-scrollbar { width: 0px; } 
+
+        .onboarding-safe-wrapper {
+          width: 100%;
+          min-height: 100dvh;
+          background: #000;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          position: relative;
+          overflow-x: hidden;
+          padding: max(100px, 10vh) 0 80px 0;
+          box-sizing: border-box;
+        }
+
+        .onboarding-card {
+          z-index: 10;
+          width: 100%;
+          max-width: 700px;
+          padding: 0 clamp(1rem, 5vw, 2rem);
+          margin: auto;
+        }
+      `}</style>
+
+      <div className="onboarding-card">
         
         {/* Magic Progress Indicator */}
         <div style={{ display: 'flex', gap: '5px', marginBottom: '3rem', justifyContent: 'center' }}>
