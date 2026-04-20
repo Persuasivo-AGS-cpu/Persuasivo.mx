@@ -172,6 +172,14 @@ export default function ClientOnboarding({ setView }) {
       ]);
 
     if (!error) {
+       // --- INYECCIÓN A CRM KANBAN PARA ACTIVAR CAMPANA ---
+       await supabase.from('crm_tasks').insert([{
+          title: `ONBOARDING V2: ${formData.companyName}`,
+          column_state: 'Backlog',
+          priority: 'Alta',
+          description: `**NUEVO CLIENTE CERRADO VÍA ONBOARDING**\n\n- **Empresa:** ${formData.companyName}\n- **Contacto:** ${formData.salesPhone}\n- **Servicio:** ${formData.projectType}\n\n*El cliente ha completado la ingesta de datos y está listo para fase de Kickoff.*`
+       }]);
+
        setIsDone(true);
        setStep(14); // Final Step
        localStorage.removeItem('persuasivo_onboarding_v2'); // Clean memory
