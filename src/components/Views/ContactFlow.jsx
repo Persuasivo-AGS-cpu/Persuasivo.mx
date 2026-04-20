@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function ContactFlow({ setView }) {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({ email: '', url: '', scope: [], budget: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '', url: '', scope: [], budget: '' });
   const [status, setStatus] = useState('idle'); // idle, loading, success
   const [isFocused, setIsFocused] = useState(false);
 
@@ -30,7 +30,7 @@ export default function ContactFlow({ setView }) {
 
   const handleNext = (e) => {
     e.preventDefault();
-    if (step === 1 && !formData.email) return;
+    if (step === 1 && (!formData.email || !formData.name || !formData.phone)) return;
     if (step === 3 && formData.scope.length === 0) return;
     
     setStep(prev => prev + 1);
@@ -59,6 +59,8 @@ export default function ContactFlow({ setView }) {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
+            Nombre: formData.name,
+            Whatsapp: formData.phone,
             Email: formData.email,
             URL_Empresa: formData.url,
             Vector_Elegido: formData.scope.join(', '),
@@ -72,13 +74,13 @@ export default function ContactFlow({ setView }) {
            title: `${formData.url || formData.email.split('@')[0]} - ${formData.scope.map(s => s === 'meta_ads' ? 'Ads' : s === 'redes' ? 'Social' : s === 'landing' ? 'Landing' : 'Web').join('+')}`,
            column_state: 'Backlog',
            priority: 'Alta',
-           description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
+           description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Nombre:** ${formData.name}\n- **Teléfono:** ${formData.phone}\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
         }]);
 
         // Inyectar simultáneamente al INBOX de Aterrizajes (onboarding_queue) para que suene la campana de notificaciones de la UI
         await supabase.from('onboarding_queue').insert([{
-           company_name: formData.url || formData.email.split('@')[0] || 'Lead Web',
-           sales_phone: formData.email,
+           company_name: formData.url || formData.name || formData.email.split('@')[0] || 'Lead Web',
+           sales_phone: formData.phone || formData.email,
            project_type: 'Contacto Express',
            pain_point: `Este prospecto llegó por el formulario rápido. \nPresupuesto asignado: ${formData.budget}`,
            hook: `Servicios solicitados: ${formData.scope.join(', ')}`,
@@ -249,7 +251,7 @@ export default function ContactFlow({ setView }) {
                   {step === 4 && "Filtro de Inversión"}
                 </h1>
                 <p style={{ marginTop: '1rem', color: '#888', fontSize: 'clamp(0.9rem, 3vw, 1.05rem)', lineHeight: 1.5 }}>
-                  {step === 1 && "Solo tratamos con tomadores de decisiones. Tu correo principal."}
+                  {step === 1 && "Solo tratamos con tomadores de decisiones. Ingresa tus datos de contacto directo."}
                   {step === 2 && "Ingresa la URL de tu corporativo (si existe). Si vienes a construir desde cero, sáltate este paso."}
                   {step === 3 && "¿En qué vectores necesitas fuerza operativa bruta? Puedes seleccionar múltiples opciones."}
                   {step === 4 && "Filtro comercial final. Requerimos ubicarnos en un espectro de inversión para ensamblar la propuesta."}
@@ -258,12 +260,26 @@ export default function ContactFlow({ setView }) {
 
               {/* CONTENIDO DEL PASO */}
               {step === 1 && (
-                <motion.div 
-                  animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
-                  style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '9999px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
-                >
-                  <input type="email" placeholder="ej. director@apple.com" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required autoFocus />
-                </motion.div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <motion.div 
+                    animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
+                    style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
+                  >
+                    <input type="text" placeholder="Tu Nombre Completo" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required autoFocus />
+                  </motion.div>
+                  <motion.div 
+                    animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
+                    style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
+                  >
+                    <input type="tel" placeholder="WhatsApp Comercial" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
+                  </motion.div>
+                  <motion.div 
+                    animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
+                    style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
+                  >
+                    <input type="email" placeholder="Correo Corporativo (ej. ceo@apple.com)" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
+                  </motion.div>
+                </div>
               )}
 
               {step === 2 && (
