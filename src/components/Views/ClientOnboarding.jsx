@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { createClient } from '@supabase/supabase-js';
+import ABVoiceInput from './ABVoiceInput';
 
 // Initialize Supabase Client
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
@@ -35,6 +36,7 @@ const defaultData = {
 
 export default function ClientOnboarding({ setView }) {
   const [step, setStep] = useState(1);
+  const autoAdvanceTimeout = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [formData, setFormData] = useState(defaultData);
@@ -63,8 +65,14 @@ export default function ClientOnboarding({ setView }) {
     }
   }, [formData]);
 
-  const nextStep = () => setStep(s => s + 1);
-  const prevStep = () => setStep(s => s - 1);
+  const nextStep = () => {
+    if (autoAdvanceTimeout.current) clearTimeout(autoAdvanceTimeout.current);
+    setStep(s => s + 1);
+  };
+  const prevStep = () => {
+    if (autoAdvanceTimeout.current) clearTimeout(autoAdvanceTimeout.current);
+    setStep(s => s - 1);
+  };
 
   const handleTextChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -82,7 +90,8 @@ export default function ClientOnboarding({ setView }) {
   const handleSingularSelection = (field, value, doAutoAdvance = true) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (doAutoAdvance) {
-      setTimeout(() => nextStep(), 1500); // 1.5s delay to engrave the visual neon confirmation
+      if (autoAdvanceTimeout.current) clearTimeout(autoAdvanceTimeout.current);
+      autoAdvanceTimeout.current = setTimeout(() => nextStep(), 1500); // 1.5s delay to engrave the visual neon confirmation
     }
   };
 
@@ -338,7 +347,11 @@ export default function ClientOnboarding({ setView }) {
                   <div style={{ color: '#fff', fontWeight: 600 }}>Sí, tenemos local</div>
                 </button>
                 <button
-                  onClick={() => { setFormData({ ...formData, isPhysical: false, address: '' }); setTimeout(() => nextStep(), 1500); }}
+                  onClick={() => { 
+                    setFormData({ ...formData, isPhysical: false, address: '' }); 
+                    if (autoAdvanceTimeout.current) clearTimeout(autoAdvanceTimeout.current);
+                    autoAdvanceTimeout.current = setTimeout(() => nextStep(), 1500); 
+                  }}
                   style={{ background: formData.isPhysical === false ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.isPhysical === false ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.isPhysical === false ? '0 0 20px rgba(224,255,49,0.4)' : 'none', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }}
                 >
                   <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.5rem' }}>🌐</span>
@@ -419,12 +432,9 @@ export default function ClientOnboarding({ setView }) {
               <p style={{ color: '#888', marginBottom: '1rem' }}>¿Qué problema tienen las personas que los obliga a buscar tu negocio?</p>
               <p style={{ color: '#555', fontSize: '0.9rem', marginBottom: '3rem' }}>No te preocupes si no suena perfecto, nuestros Copywriters expertos lo pulirán en la redacción final.</p>
               
-              <textarea 
-                autoFocus
-                rows="3"
+              <ABVoiceInput 
                 name="painPoint" value={formData.painPoint} onChange={handleTextChange}
-                placeholder="Ej. Mis clientes sufren porque su contador actual no les responde a tiempo y pagan demasiados impuestos por errores." 
-                style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none', resize: 'none' }}
+                placeholder="Ej. Mis clientes sufren porque su contador actual no les responde a tiempo..." 
               />
             </motion.div>
           )}
@@ -437,18 +447,15 @@ export default function ClientOnboarding({ setView }) {
               <p style={{ color: '#888', marginBottom: '3rem' }}>¿Por qué tus clientes deberían comprarte a ti y no a tu competencia?</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <textarea 
-                  autoFocus
-                  rows="2"
-                  name="hook" value={formData.hook} onChange={handleTextChange}
+                <ABVoiceInput 
+                  name="hook" value={formData.hook} onChange={handleTextChange} rows={2}
                   placeholder="Tu gran promesa (Ej. Ordenamos tu contabilidad en 5 días o te devolvemos tu dinero)" 
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none', resize: 'none' }}
+                  stepIndicator="1 de 2"
                 />
-                <textarea 
-                  rows="2"
-                  name="authority" value={formData.authority} onChange={handleTextChange}
-                  placeholder="Tu respaldo (Ej. Tenemos +10 años de experiencia y hemos salvado de multas a 500 empresas)" 
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none', resize: 'none' }}
+                <ABVoiceInput 
+                  name="authority" value={formData.authority} onChange={handleTextChange} rows={2}
+                  placeholder="Tu respaldo (Ej. Tenemos +10 años de experiencia...)" 
+                  stepIndicator="2 de 2"
                 />
               </div>
             </motion.div>
@@ -522,12 +529,9 @@ export default function ClientOnboarding({ setView }) {
               <p style={{ color: '#888', marginBottom: '3rem' }}>Lista tus productos y elige qué quieres que hagan en tu página.</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <textarea 
-                  autoFocus
-                  rows="3"
-                  name="servicesList" value={formData.servicesList} onChange={handleTextChange}
-                  placeholder="Lista tus servicios estrella (uno por línea)...&#10;Ej.&#10;1. Auditoría Fiscal&#10;2. Declaración Mensual" 
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none', resize: 'none' }}
+                <ABVoiceInput 
+                  name="servicesList" value={formData.servicesList} onChange={handleTextChange} rows={4}
+                  placeholder="Lista o dicta tus servicios estrella..." 
                 />
                 
                 <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginTop: '1rem' }}>Acción de Conversión experta que detonaremos:</h3>
@@ -635,42 +639,15 @@ export default function ClientOnboarding({ setView }) {
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Tu Material Visual
               </h2>
-              <p style={{ color: '#888', marginBottom: '2rem' }}>Sube el logo de tu empresa y compártenos tus fotos de producto.</p>
               
-              <div 
-                onDragOver={e => { e.preventDefault(); setIsDragging(true); }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={e => { e.preventDefault(); setIsDragging(false); if(e.dataTransfer.files && e.dataTransfer.files.length > 0) setLogoFile(e.dataTransfer.files[0]); }}
-                style={{
-                  width: '100%', minHeight: '150px', border: `2px dashed ${isDragging ? '#E0FF31' : 'rgba(255,255,255,0.2)'}`,
-                  borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                  background: isDragging ? 'rgba(224,255,49,0.05)' : 'rgba(255,255,255,0.02)', transition: 'all 0.3s', padding: '1rem'
-                }}
-              >
-                {logoFile ? (
-                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                     <img 
-                       src={URL.createObjectURL(logoFile)} 
-                       alt="Logo Preview" 
-                       style={{ maxWidth: '180px', maxHeight: '110px', borderRadius: '16px', objectFit: 'contain', marginBottom: '1rem', background: 'rgba(255,255,255,0.05)', padding: '0.5rem', border: '1px solid rgba(255,255,255,0.1)' }} 
-                     />
-                     <span style={{ color: '#E0FF31', fontSize: '0.9rem', fontWeight: 600 }}>✅ {logoFile.name} cargado</span>
-                   </div>
-                ) : (
-                   <p style={{ color: '#fff', fontSize: '1rem', margin: 0 }}>Arrastra tu Logo aquí (PNG/JPG)</p>
-                )}
-                <input type="file" accept="image/*" style={{ display: 'none' }} id="logo-upload" onChange={e => { if(e.target.files && e.target.files.length > 0) { setLogoFile(e.target.files[0]); } }} />
-                {!logoFile && <label htmlFor="logo-upload" style={{ color: '#E0FF31', marginTop: '0.5rem', cursor: 'pointer', textDecoration: 'underline', fontSize: '0.9rem' }}>O explora tus archivos</label>}
-              </div>
-
-              <div style={{ marginTop: '2rem' }}>
-                <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginBottom: '0.5rem' }}>Fotos de Producto o Servicio:</h3>
-                <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '1rem' }}>Evitemos subir 100 fotos desde el celular. Pega aquí el link a tu Google Drive, Instagram o sitio web para que nuestro equipo extraiga tus mejores fotos.</p>
-                <input 
-                  name="assetsLink" value={formData.assetsLink} onChange={handleTextChange}
-                  placeholder="Link a Drive, Dropbox, Instagram..." 
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none' }}
-                />
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '24px', padding: '3rem 2rem', textAlign: 'center', marginTop: '2rem' }}>
+                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📸</div>
+                 <h3 style={{ color: '#E0FF31', fontSize: '1.3rem', fontWeight: 600, marginBottom: '1rem' }}>Compártenos todo por WhatsApp</h3>
+                 <p style={{ color: '#bbb', fontSize: '1rem', lineHeight: '1.6', margin: 0, maxWidth: '100%' }}>
+                   Sabemos que no tienes tu logo y fotos a la mano en este momento. 
+                   <br /><br />
+                   Para no detener tu progreso, avanza y finaliza. En el siguiente paso te indicaremos cómo enviar todo tu material directo a nuestro canal de WhatsApp Business o por correo. Así mantenemos un flujo impecable.
+                 </p>
               </div>
 
               <div style={{ marginTop: '3rem', textAlign: 'center' }}>
