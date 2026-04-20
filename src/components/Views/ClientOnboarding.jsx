@@ -180,6 +180,28 @@ export default function ClientOnboarding({ setView }) {
           description: `**NUEVO CLIENTE CERRADO VÍA ONBOARDING**\n\n- **Empresa:** ${formData.companyName}\n- **Contacto:** ${formData.salesPhone}\n- **Servicio:** ${formData.projectType}\n\n*El cliente ha completado la ingesta de datos y está listo para fase de Kickoff.*`
        }]);
 
+       // --- RESPALDO: ENVIAR POR CORREO (FormSubmit) ---
+       try {
+         await fetch("https://formsubmit.co/ajax/hola@persuasivo.mx", {
+           method: "POST",
+           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+           body: JSON.stringify({
+             Proyecto: formData.projectType,
+             Empresa: formData.companyName,
+             Whatsapp: formData.salesPhone,
+             PuntoDeDolor: formData.painPoint,
+             SalsaSecreta_Hook: formData.hook,
+             Autoridad: formData.authority,
+             Servicios: strategicMatrix,
+             Llamado_Accion: formData.cta,
+             Assets: formData.assetsLink,
+             _subject: `💎 ONBOARDING COMPLETADO - ${formData.companyName}`
+           })
+         });
+       } catch(e) {
+         console.error("Fallo el envio de correo de respaldo");
+       }
+
        setIsDone(true);
        setStep(14); // Final Step
        localStorage.removeItem('persuasivo_onboarding_v2'); // Clean memory

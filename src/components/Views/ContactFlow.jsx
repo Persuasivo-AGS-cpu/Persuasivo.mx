@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { createClient } from '@supabase/supabase-js';
 import Footer from '../Navigation/Footer';
+
+// Initialize Supabase Client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function ContactFlow({ setView }) {
   const [step, setStep] = useState(1);
@@ -60,23 +66,17 @@ export default function ContactFlow({ setView }) {
             _subject: "NUEVO LEAD CALIFICADO - The Factory Persuasivo"
         })
       });
-      
-      // Parallel Silent Injection to Local Hub's CRM Kanban (if Hub is running)
+      // Inyección NATIVA a Supabase para sonar la campana en cualquier servidor
       try {
-        await fetch("http://localhost:3000/api/webhooks/contact", {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            Email: formData.email,
-            URL_Empresa: formData.url,
-            Vector_Elegido: formData.scope.join(', '),
-            Filtro_Inversion: formData.budget
-          })
-        });
+        await supabase.from('crm_tasks').insert([{
+           title: `PROSPECTO WEB: ${formData.url || formData.email}`,
+           column_state: 'Backlog',
+           priority: 'Alta',
+           description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
+        }]);
       } catch (crmError) {
-        console.log("Local CRM Hub estatus: Offline o inalcanzable. Proceeding with standard mail.");
+        console.log("Error de inyección supabase CRM", crmError);
       }
-      
       setStatus('success');
     } catch (error) {
       console.error("Error al enviar formulario:", error);
