@@ -112,6 +112,34 @@ export default function ContactFlow({ setView }) {
       <style>{`
         ::-webkit-scrollbar { width: 0px; } 
         @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        /* Mobile fixes for tall forms */
+        .form-safe-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          min-height: 100vh;
+          position: relative;
+          padding: 120px 20px 80px 20px;
+          box-sizing: border-box;
+        }
+
+        .form-card {
+          margin: auto;
+          z-index: 1;
+          width: 100%;
+          max-width: 600px;
+          padding: clamp(1.5rem, 5vw, 3rem);
+          background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 32px;
+          backdrop-filter: blur(40px);
+          -webkit-backdrop-filter: blur(40px);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
       `}</style>
       
       <Helmet>
@@ -119,7 +147,7 @@ export default function ContactFlow({ setView }) {
         <meta name="description" content="Inicia el diagnóstico de facturación y auditoría de identidad magnética." />
       </Helmet>
 
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', minHeight: '100vh', position: 'relative' }}>
+      <div className="form-safe-wrapper">
 
       {/* Luz Ambiental / Foco Holográfico detrás del formulario */}
       <motion.div 
@@ -134,17 +162,10 @@ export default function ContactFlow({ setView }) {
       />
 
       <motion.div
+        className="form-card"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.8, type: 'spring', bounce: 0.4 }}
-        style={{
-          zIndex: 1, width: '100%', maxWidth: '600px', padding: '3rem',
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.15)', borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-          borderRadius: '32px', backdropFilter: 'blur(40px)', WebkitBackdropFilter: 'blur(40px)',
-          boxShadow: '0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1)'
-        }}
       >
         {status !== 'success' && status !== 'loading' && (
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', justifyContent: 'center' }}>
@@ -202,13 +223,13 @@ export default function ContactFlow({ setView }) {
             >
               {/* HEADER DINÁMICO */}
               <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <h1 style={{ margin: 0, fontSize: '2.5rem', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
+                <h1 style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
                   {step === 1 && "Identidad Quirúrgica"}
                   {step === 2 && "Trazar el Blanco"}
                   {step === 3 && "Vector de Ataque"}
                   {step === 4 && "Filtro de Inversión"}
                 </h1>
-                <p style={{ marginTop: '1rem', color: '#888', fontSize: '1.05rem', lineHeight: 1.5 }}>
+                <p style={{ marginTop: '1rem', color: '#888', fontSize: 'clamp(0.9rem, 3vw, 1.05rem)', lineHeight: 1.5 }}>
                   {step === 1 && "Solo tratamos con tomadores de decisiones. Tu correo principal."}
                   {step === 2 && "Ingresa la URL de tu corporativo (si existe). Si vienes a construir desde cero, sáltate este paso."}
                   {step === 3 && "¿En qué vectores necesitas fuerza operativa bruta? Puedes seleccionar múltiples opciones."}
