@@ -12,6 +12,8 @@ const defaultData = {
   projectType: '',
   companyName: '',
   salesPhone: '',
+  currentWebsite: '',
+  socialMedia: '',
   isPhysical: null,
   address: '',
   competitors: '',
@@ -138,7 +140,9 @@ export default function ClientOnboarding({ setView }) {
       lead_email: formData.leadEmail,
       lead_fields: finalLeadFields,
       traffic_source: formData.trafficSource,
-      assets_link: formData.assetsLink
+      assets_link: formData.assetsLink,
+      current_website: formData.currentWebsite,
+      social_media: formData.socialMedia
     };
 
     // 3. Submit Data
@@ -250,20 +254,42 @@ export default function ClientOnboarding({ setView }) {
               <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Sobre tu Negocio
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>Queremos conocerte. ¿Cómo se llama tu empresa o proyecto?</p>
+              <p style={{ color: '#888', marginBottom: '2rem' }}>Queremos conocerte para generar confianza en tus prospectos.</p>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <input 
-                  autoFocus
-                  name="companyName" value={formData.companyName} onChange={handleTextChange}
-                  placeholder="Nombre de tu Empresa o Marca" 
-                  style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '2rem', padding: '1rem 0', outline: 'none' }}
-                />
-                <input 
-                  name="salesPhone" value={formData.salesPhone} onChange={handleTextChange}
-                  placeholder="Tu WhatsApp (Para contactarte rápido)" 
-                  style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
-                />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div>
+                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Nombre de Empresa o Proyecto</p>
+                  <input 
+                    autoFocus
+                    name="companyName" value={formData.companyName} onChange={handleTextChange}
+                    placeholder="Ej. Tacos El Paisa" 
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.8rem', padding: '0.5rem 0', outline: 'none' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu WhatsApp (Para contactarte rápido)</p>
+                  <input 
+                    name="salesPhone" value={formData.salesPhone} onChange={handleTextChange}
+                    placeholder="+52..." 
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '0.5rem 0', outline: 'none' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu Página Web Actual <span style={{opacity:0.5}}>(Opcional)</span></p>
+                  <input 
+                    name="currentWebsite" value={formData.currentWebsite} onChange={handleTextChange}
+                    placeholder="www.tusitio.com" 
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
+                  />
+                </div>
+                <div>
+                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tus Redes Sociales <span style={{opacity:0.5}}>(Opcional)</span></p>
+                  <input 
+                    name="socialMedia" value={formData.socialMedia} onChange={handleTextChange}
+                    placeholder="Instagram / Facebook link" 
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
+                  />
+                </div>
               </div>
             </motion.div>
           )}
