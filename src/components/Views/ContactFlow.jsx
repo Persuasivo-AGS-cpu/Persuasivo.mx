@@ -69,7 +69,7 @@ export default function ContactFlow({ setView }) {
       // Inyección NATIVA a Supabase para sonar la campana en cualquier servidor
       try {
         await supabase.from('crm_tasks').insert([{
-           title: `PROSPECTO WEB: ${formData.url || formData.email}`,
+           title: `${formData.url || formData.email.split('@')[0]} - ${formData.scope.map(s => s === 'meta_ads' ? 'Ads' : s === 'redes' ? 'Social' : s === 'landing' ? 'Landing' : 'Web').join('+')}`,
            column_state: 'Backlog',
            priority: 'Alta',
            description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
