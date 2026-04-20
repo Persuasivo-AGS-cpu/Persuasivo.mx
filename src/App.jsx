@@ -12,6 +12,7 @@ import LegalView from './components/Views/LegalView';
 import ServiceTraffic from './components/Views/ServiceTraffic';
 import ServiceAuthority from './components/Views/ServiceAuthority';
 import ServiceEcosystems from './components/Views/ServiceEcosystems';
+import ClientOnboarding from './components/Views/ClientOnboarding';
 
 function AppContent() {
   const location = useLocation();
@@ -68,10 +69,22 @@ function AppContent() {
 
           <Route path="/servicios/ecosistemas" element={<ServiceEcosystems setView={setView} />} />
 
-          {/* Legal Pages */}
           <Route path="/legal/privacidad" element={<LegalView setView={setView} docType="privacy" />} />
           <Route path="/legal/terminos" element={<LegalView setView={setView} docType="terms" />} />
           <Route path="/legal/cookies" element={<LegalView setView={setView} docType="cookies" />} />
+
+          {/* Core App / Agency Flow (Zero Friction Onboarding) */}
+          <Route path="/onboarding" element={
+            <motion.div 
+               key="onboarding"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0, filter: 'blur(5px)' }}
+               transition={{ duration: 0.8 }}
+            >
+              <ClientOnboarding setView={setView} />
+            </motion.div>
+          } />
 
           {/* Special Arcade Route */}
           <Route path="/arcade" element={
