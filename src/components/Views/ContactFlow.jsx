@@ -74,6 +74,23 @@ export default function ContactFlow({ setView }) {
            priority: 'Alta',
            description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
         }]);
+
+        // Inyectar simultáneamente al INBOX de Aterrizajes (onboarding_queue) para que suene la campana de notificaciones de la UI
+        await supabase.from('onboarding_queue').insert([{
+           company_name: formData.url || formData.email.split('@')[0] || 'Lead Web',
+           sales_phone: formData.email,
+           project_type: 'Contacto Express',
+           pain_point: `Este prospecto llegó por el formulario rápido. \nPresupuesto asignado: ${formData.budget}`,
+           hook: `Servicios solicitados: ${formData.scope.join(', ')}`,
+           authority: 'N/A',
+           cta: 'Validar y Contactar',
+           status: 'pending',
+           services: {
+              ticket_range: formData.budget,
+              current_website: formData.url || null,
+              traffic_source: 'Landing Page'
+           }
+        }]);
       } catch (crmError) {
         console.log("Error de inyección supabase CRM", crmError);
       }
