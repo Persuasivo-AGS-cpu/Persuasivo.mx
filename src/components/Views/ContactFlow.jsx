@@ -86,9 +86,9 @@ export default function ContactFlow({ setView }) {
   };
 
   const formVariants = {
-    enter: { opacity: 0, x: 50, filter: 'blur(10px)' },
-    center: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-    exit: { opacity: 0, x: -50, filter: 'blur(10px)', transition: { duration: 0.3 } }
+    enter: { opacity: 0, x: 20, filter: 'blur(5px)' },
+    center: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.35, ease: 'easeOut' } },
+    exit: { opacity: 0, x: -20, filter: 'blur(5px)', transition: { duration: 0.15, ease: 'easeIn' } }
   };
 
   return (
@@ -99,14 +99,13 @@ export default function ContactFlow({ setView }) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.6 }}
       style={{
-        width: '100vw',
-        height: '100vh',
-        overflowY: 'auto',
-        overflowX: 'hidden',
+        width: '100%',
+        minHeight: '100dvh',
         background: '#050505',
         display: 'flex',
         flexDirection: 'column',
-        position: 'relative'
+        position: 'relative',
+        overflowX: 'hidden'
       }}
     >
       <style>{`
@@ -117,16 +116,17 @@ export default function ContactFlow({ setView }) {
         .form-safe-wrapper {
           display: flex;
           flex-direction: column;
+          justify-content: flex-start;
           align-items: center;
           width: 100%;
-          min-height: 100vh;
+          min-height: 100dvh;
           position: relative;
-          padding: 120px 20px 80px 20px;
+          padding: max(100px, 12vh) 20px 80px 20px;
           box-sizing: border-box;
         }
 
         .form-card {
-          margin: auto;
+          margin: 0 auto auto auto;
           z-index: 1;
           width: 100%;
           max-width: 600px;
