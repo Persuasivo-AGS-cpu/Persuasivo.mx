@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacman Vanilla Backend</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Extra font for Game Over overlay from original */
+            color: white;
+            font-family: monospace;
+        }
+        canvas {
+            display: block;
+        }
+        #gameOver {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            color: #FF0000;
+            text-align: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            font-weight: 900;
+            letter-spacing: 2px;
+            white-space: nowrap; /* PREVENT TEXT WRAPPING WHICH CAUSES OVERLAP */
+        }
+        
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #E0FF31;
+            text-align: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+            border-radius: 8px;
+            border: 2px solid #E0FF31;
+            cursor: pointer;
+            font-family: monospace;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(224, 255, 49, 0.2);
+            transition: all 0.2s;
+        }
+        
+        #startButton:hover {
+            background: #E0FF31;
+            color: #000;
+            box-shadow: 0 0 30px rgba(224, 255, 49, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="420" height="500"></canvas>
+    <p id="gameOver" style="display:none; text-shadow: 0 0 10px red; color: red;">Game Over</p>
+    <button id="startButton">Start Game</button>
+    <div style="display:none;">
+        <img id="animation" src="assets/gif/animations.gif">
+        <img id="ghosts" src="assets/img/ghost.png">
+    </div>
+    
+    <script src="src/ghost/ghost.js?v=2"></script>
+    <script src="src/pacman/pacman.js?v=2"></script>
+    <script src="src/game/game.js?v=2"></script>
+</body>
+
+</html>

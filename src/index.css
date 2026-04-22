@@ -16,7 +16,6 @@ body {
   background-color: var(--bg-void);
   color: #fff;
   font-family: 'Inter', sans-serif;
-  overflow: hidden; /* Lock viewport for pure arcade immersion */
 }
 
 /* CRT Scanline Overlay Effect */

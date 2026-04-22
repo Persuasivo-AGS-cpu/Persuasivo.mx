@@ -418,9 +418,7 @@ export default function AgencyHome({ setView }) {
       transition={{ duration: 0.8 }}
       style={{
         width: '100%',
-        height: '100vh',
-        overflowY: 'auto',
-        overflowX: 'hidden',
+        minHeight: '100vh',
         background: '#050505',
         scrollBehavior: 'smooth'
       }}

@@ -94,7 +94,7 @@ export default function ContactFlow({ setView }) {
            }
         }]);
       } catch (crmError) {
-        console.log("Error de inyección supabase CRM", crmError);
+        // Silently handle CRM injection error to avoid breaking the UX
       }
       setStatus('success');
     } catch (error) {

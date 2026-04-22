@@ -32,7 +32,7 @@ function AppContent() {
       service_authority: '/servicios/autoridad',
       service_ecosystems: '/servicios/ecosistemas'
     };
-    navigate(routeMap[viewName] || '/');
+    navigate({ pathname: routeMap[viewName] || '/', search: location.search });
   };
 
   // Reverse mapping for Navbar active state indicator
@@ -43,13 +43,59 @@ function AppContent() {
   else if (pathParts.includes('servicios') || location.pathname === '/arcade') activeViewId = 'agency'; // Keep agency active when deep in services
 
   return (
-    <div style={{ width: '100%', height: '100vh', overflow: 'hidden', background: '#050505', color: 'white', fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+    <main style={{ width: '100%', minHeight: '100vh', overflowX: 'hidden', background: '#050505', color: 'white' }}>
       
       {/* Global Meta Data base */}
-      <Helmet>
-        <title>Persuasivo | Arquitectura Digital de Alto Rendimiento</title>
-        <meta name="description" content="Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads." />
-      </Helmet>
+        <Helmet>
+          <title>Persuasivo | Arquitectura Digital de Alto Rendimiento</title>
+          <meta name="description" content="Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads." />
+          <script type="application/ld+json">
+            {`
+              {
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "ProfessionalService",
+                    "name": "Persuasivo",
+                    "url": "https://persuasivo.com.mx",
+                    "logo": "https://persuasivo.com.mx/favicon.svg",
+                    "description": "Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads.",
+                    "knowsAbout": ["Desarrollo Web", "React", "Meta Ads", "Copywriting", "SEO"]
+                  },
+                  {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                      {
+                        "@type": "Question",
+                        "name": "¿Qué servicios ofrece la agencia Persuasivo?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Persuasivo ofrece tres servicios principales: 1) Desarrollo de Sitios Web de alto rendimiento y alta conversión. 2) Meta Ads para pauta publicitaria estructurada. 3) Gestión de Redes y Copywriting para construir autoridad de marca."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "¿Qué tecnología utiliza Persuasivo para el desarrollo web?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Utilizamos arquitecturas modernas como ReactJS, ecosistemas nativos de vanguardia y estéticas de Silicon Valley para garantizar tiempos de carga cero y máxima accesibilidad (AEO/SEO)."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "¿Por qué elegir a Persuasivo como agencia creativa?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "No reciclamos plantillas viejas. Fusionamos diseño de élite con tecnología para crear ecosistemas que posicionan a tu marca como líder, ahuyentando clientes que compiten por precio."
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            `}
+          </script>
+        </Helmet>
 
       {/* Persistent Global Navigation */}
       <GlassNavbar currentView={activeViewId} setCurrentView={setView} />
@@ -113,7 +159,7 @@ function AppContent() {
           } />
         </Routes>
       </AnimatePresence>
-    </div>
+    </main>
   );
 }
 

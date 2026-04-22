@@ -26,9 +26,9 @@ export default function Footer({ setView }) {
       <div>
          <h4 style={{ color: '#fff', fontSize: '0.8rem', fontWeight: 800, marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Agencia</h4>
          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('landing'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem' }}>Inicio</a></li>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('agency'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem' }}>Nuestra Agencia</a></li>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('contact'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#E0FF31'} style={{ color: '#E0FF31', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', fontWeight: 'bold' }}>Contacto</a></li>
+           <li><button onClick={() => setView('landing')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ background: 'none', border: 'none', padding: 0, color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit' }}>Inicio</button></li>
+           <li><button onClick={() => setView('agency')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ background: 'none', border: 'none', padding: 0, color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit' }}>Nuestra Agencia</button></li>
+           <li><button onClick={() => setView('contact')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#E0FF31'} style={{ background: 'none', border: 'none', padding: 0, color: '#E0FF31', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', fontWeight: 'bold', cursor: 'pointer', fontFamily: 'inherit' }}>Contacto</button></li>
          </ul>
       </div>
 
@@ -36,9 +36,9 @@ export default function Footer({ setView }) {
       <div>
          <h4 style={{ color: '#fff', fontSize: '0.8rem', fontWeight: 800, marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Legal</h4>
          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('privacy'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem' }}>Aviso de Privacidad</a></li>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('terms'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem' }}>Términos de Servicio</a></li>
-           <li><a href="#" onClick={(e) => { e.preventDefault(); setView('cookies'); }} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem' }}>Política de Cookies</a></li>
+           <li><button onClick={() => setView('privacy')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ background: 'none', border: 'none', padding: 0, color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit' }}>Aviso de Privacidad</button></li>
+           <li><button onClick={() => setView('terms')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ background: 'none', border: 'none', padding: 0, color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit' }}>Términos de Servicio</button></li>
+           <li><button onClick={() => setView('cookies')} onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ background: 'none', border: 'none', padding: 0, color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit' }}>Política de Cookies</button></li>
          </ul>
       </div>
       
@@ -50,10 +50,7 @@ export default function Footer({ setView }) {
              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E0FF31', display: 'inline-block', boxShadow: '0 0 10px #E0FF31' }} />
              Sistemas Operativos
            </p>
-           <div style={{ display: 'flex', gap: '1rem' }}>
-             <a href="#" onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600 }}>𝕏 (Twitter)</a>
-             <a href="#" onMouseOver={(e)=>e.target.style.color='#fff'} onMouseOut={(e)=>e.target.style.color='#888'} style={{ color: '#888', textDecoration: 'none', transition: 'color 0.2s', fontWeight: 600 }}>LinkedIn</a>
-           </div>
+
         </div>
       </div>
     </footer>
