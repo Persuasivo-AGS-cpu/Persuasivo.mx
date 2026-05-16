@@ -38,9 +38,9 @@ Keep existing site. Problems are content + UX, not architecture. What already wo
 **Required changes:**
 
 1. **H1 rewrite** — concrete value prop:
-   - "Más leads calificados para tu negocio en Monterrey."
-   - Contains keyword "leads" + "Monterrey" — local SEO + conversion intent
-   - Keep italic on last word as existing style: *"Monterrey."*
+   - "Agencia de Marketing Digital en Monterrey que genera resultados reales."
+   - Contains exact keyword "agencia de marketing digital Monterrey" (highest-volume local term)
+   - Keep italic on last word as existing style: *"reales."*
 
 2. **Subtitle** — eliminate abstraction:
    - "Generamos leads calificados con Meta Ads, desarrollo web con React y estrategia de contenido. Primera consulta gratis."
@@ -127,9 +127,10 @@ All three: `ServiceTraffic.jsx`, `ServiceAuthority.jsx`, `ServiceEcosystems.jsx`
 1. **What's included** — 6-item grid with icon + text
 2. **Who it's for** — 3 ideal client profiles (ICP)
 3. **Pricing anchor** — "Desde $X MXN/mes · Sin contratos anuales"
-   - Tráfico: desde $15,000/mes
-   - Autoridad: desde $12,000/mes  
-   - Ecosistemas: desde $35,000 único
+   - Tráfico: "Desde $15,000 MXN/mes · Sin contratos anuales"
+   - Autoridad: "Desde $12,000 MXN/mes · Sin contratos anuales"
+   - Ecosistemas: "Desde $35,000 MXN · Proyecto único · Entrega en 3 semanas"
+   - Show anchors only — not full pricing tables. Filters unqualified leads, builds trust, eligible for Google rich snippets.
 4. **3-step process** — "Así trabajamos" timeline
 5. **FAQ section** — 5 questions minimum per page (critical for SEO)
 6. **Related case studies** — 2 cards from `caseStudiesData.js` filtered by category
@@ -170,7 +171,15 @@ Add new entry:
 }
 ```
 
-**Note:** Abraham must provide: actual image, real metrics, quote from client, and service delivered before this can be published.
+**Data extracted from https://elite-seguridad.vercel.app/:**
+- Industry: Seguridad privada / CCTV / Smart Home — Monterrey, N.L.
+- Service Persuasivo delivered: Desarrollo web (landing page completa con catálogo)
+- Client stats: 100+ instalaciones en N.L., 10+ años experiencia, 4.9/5 de +100 clientes
+- challenge: "Empresa con más de 10 años de experiencia en seguridad privada sin presencia digital que reflejara su nivel técnico y profesional. Sus clientes llegaban por referidos, sin sistema de captación digital."
+- solution: "Desarrollamos una landing page de alto rendimiento con catálogo de productos Hikvision/EZVIZ, CTAs de WhatsApp contextuales por producto, proceso de auditoría en 3 pasos y sección FAQ optimizada para SEO local."
+- results: [{ label: 'Clientes protegidos', value: '100+' }, { label: 'Calificación', value: '4.9/5' }, { label: 'Operatividad', value: '100%' }]
+- quote: "Diseño profesional con alto impacto en digital — exactamente lo que necesitamos para proyectar confianza a nuestros clientes."
+- img: '/showcase/elite.jpg' — Abraham must provide screenshot of the site saved as this filename
 
 ---
 
@@ -343,7 +352,7 @@ Minimum 3 posts in `src/data/blogData.jsx` targeting priority keywords:
 These cannot be coded without content from Abraham:
 
 - [ ] **Elite Seguridad:** image + real metrics + client quote + service delivered
-- [ ] **Founder photo:** headshot for `/nosotros`
+- [ ] **Founder photo:** headshot for `/nosotros` — if unavailable, fallback to initials avatar with strong quote. Does not block launch.
 - [ ] **OG image:** branded 1200×630 asset
 - [ ] **Meta Pixel ID:** for analytics setup
 - [ ] **Blog post content:** or approval of AI-drafted content
