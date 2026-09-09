@@ -611,7 +611,7 @@ export default function AgencyHome({ setView }) {
                 boxShadow: '4px 4px 0 rgba(26,24,21,0.2)'
               }}
             >
-              Iniciar Proyecto
+              Iniciar Operación
             </motion.button>
           </div>
         </motion.div>

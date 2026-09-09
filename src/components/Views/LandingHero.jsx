@@ -155,7 +155,7 @@ export default function LandingHero({ setView }) {
               boxShadow: '3px 3px 0 rgba(26,24,21,0.25)'
             }}
           >
-            Activar Modo Persuasivo
+            Iniciar Operación
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'translateY(1px)' }}>
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>

@@ -344,7 +344,7 @@ export default function ContactFlow({ setView }) {
                     display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60px'
                   }}
                 >
-                  {step < 4 ? 'Avanzar →' : 'Ejecutar Solicitud'}
+                  {step < 4 ? 'Avanzar →' : 'Iniciar Operación'}
                 </motion.button>
               </div>
 
