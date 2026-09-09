@@ -57,12 +57,17 @@ export default function ServiceAuthority({ setView }) {
             Si suenas igual que todos, te cobrarán como a todos. Rediseñamos tu identidad comercial y redactamos textos persuasivos que posicionan a tu empresa en la categoría de lujo, eliminando la necesidad de competir por precio.
           </p>
 
-          <img 
-            src="/showcase/placeholder-authority.png" 
-            alt="Análisis Comparativo de Identidad de Marca y Tasas de Cierre" 
-            style={{ width: '100%', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '5rem', background: '#111', height: '400px', objectFit: 'cover' }} 
-            onError={(e) => { e.target.style.display = 'none'; }}
-          />
+          <div style={{
+            position: 'relative', overflow: 'hidden', borderRadius: '24px',
+            border: '1px solid rgba(255,255,255,0.08)', marginBottom: '5rem',
+            background: 'linear-gradient(135deg, rgba(224,255,49,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            padding: 'clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 4rem)'
+          }}>
+            <div aria-hidden="true" style={{ position: 'absolute', top: '-30px', left: '10px', fontSize: '9rem', fontWeight: 900, color: 'rgba(224,255,49,0.08)', lineHeight: 1, fontFamily: 'Georgia, serif' }}>&ldquo;</div>
+            <p style={{ position: 'relative', color: '#fff', fontSize: 'clamp(1.4rem, 3vw, 2.1rem)', fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.02em', maxWidth: '650px', margin: 0 }}>
+              Generamos <span style={{ color: '#E0FF31' }}>confianza real</span>, sin arrogancia y sin juzgar a tu prospecto.
+            </p>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', marginBottom: '6rem' }}>
             <div>

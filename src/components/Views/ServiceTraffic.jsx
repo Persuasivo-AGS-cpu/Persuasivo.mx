@@ -57,12 +57,17 @@ export default function ServiceTraffic({ setView }) {
             Tener el mejor producto del mundo es irrelevante si eres invisible. Olvídate de los "likes" y el alcance vacío. Construimos sistemas de pauta digital que inyectan clientes con capital directamente en tu ecosistema.
           </p>
 
-          <img 
-            src="/showcase/placeholder-charts.png" 
-            alt="Métricas de Retorno de Inversión y Escalamiento de Pauta" 
-            style={{ width: '100%', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '5rem', background: '#111', height: '400px', objectFit: 'cover' }} 
-            onError={(e) => { e.target.style.display = 'none'; }}
-          />
+          <div style={{
+            position: 'relative', overflow: 'hidden', borderRadius: '24px',
+            border: '1px solid rgba(255,255,255,0.08)', marginBottom: '5rem',
+            background: 'linear-gradient(135deg, rgba(224,255,49,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            padding: 'clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 4rem)'
+          }}>
+            <div aria-hidden="true" style={{ position: 'absolute', top: '-30px', left: '10px', fontSize: '9rem', fontWeight: 900, color: 'rgba(224,255,49,0.08)', lineHeight: 1, fontFamily: 'Georgia, serif' }}>&ldquo;</div>
+            <p style={{ position: 'relative', color: '#fff', fontSize: 'clamp(1.4rem, 3vw, 2.1rem)', fontWeight: 800, lineHeight: 1.3, letterSpacing: '-0.02em', maxWidth: '650px', margin: 0 }}>
+              Dirigimos tu mensaje al <span style={{ color: '#E0FF31' }}>cliente que ya te está buscando</span>, en lugar de quemar presupuesto tratando de llegar a todos.
+            </p>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', marginBottom: '6rem' }}>
             <div>

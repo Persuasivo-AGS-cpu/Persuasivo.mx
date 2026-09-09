@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
-import ArcadeCabinet from './components/ArcadeCabinet';
 import GlassNavbar from './components/Navigation/GlassNavbar';
 import LandingHero from './components/Views/LandingHero';
-import AgencyHome from './components/Views/AgencyHome';
-import ContactFlow from './components/Views/ContactFlow';
-import LegalView from './components/Views/LegalView';
-import ServiceTraffic from './components/Views/ServiceTraffic';
-import ServiceAuthority from './components/Views/ServiceAuthority';
-import ServiceEcosystems from './components/Views/ServiceEcosystems';
-import ClientOnboarding from './components/Views/ClientOnboarding';
+
+// Rutas fuera del landing se cargan on-demand para reducir el bundle inicial
+const ArcadeCabinet = lazy(() => import('./components/ArcadeCabinet'));
+const AgencyHome = lazy(() => import('./components/Views/AgencyHome'));
+const ContactFlow = lazy(() => import('./components/Views/ContactFlow'));
+const LegalView = lazy(() => import('./components/Views/LegalView'));
+const ServiceTraffic = lazy(() => import('./components/Views/ServiceTraffic'));
+const ServiceAuthority = lazy(() => import('./components/Views/ServiceAuthority'));
+const ServiceEcosystems = lazy(() => import('./components/Views/ServiceEcosystems'));
+const ClientOnboarding = lazy(() => import('./components/Views/ClientOnboarding'));
+
+function RouteFallback() {
+  return (
+    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#050505' }}>
+      <div style={{ width: '32px', height: '32px', border: '3px solid rgba(255,255,255,0.1)', borderTop: '3px solid #E0FF31', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+      <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
 
 function AppContent() {
   const location = useLocation();
@@ -49,6 +60,23 @@ function AppContent() {
         <Helmet>
           <title>Persuasivo | Arquitectura Digital de Alto Rendimiento</title>
           <meta name="description" content="Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads." />
+          <link rel="canonical" href={`https://www.persuasivo.mx${location.pathname}`} />
+
+          {/* Open Graph / Social Share */}
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Persuasivo" />
+          <meta property="og:title" content="Persuasivo | Arquitectura Digital de Alto Rendimiento" />
+          <meta property="og:description" content="Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads." />
+          <meta property="og:url" content={`https://www.persuasivo.mx${location.pathname}`} />
+          <meta property="og:image" content="https://www.persuasivo.mx/og-cover.png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:locale" content="es_MX" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Persuasivo | Arquitectura Digital de Alto Rendimiento" />
+          <meta name="twitter:description" content="Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads." />
+          <meta name="twitter:image" content="https://www.persuasivo.mx/og-cover.png" />
+
           <script type="application/ld+json">
             {`
               {
@@ -57,9 +85,10 @@ function AppContent() {
                   {
                     "@type": "ProfessionalService",
                     "name": "Persuasivo",
-                    "url": "https://persuasivo.com.mx",
-                    "logo": "https://persuasivo.com.mx/favicon.svg",
+                    "url": "https://www.persuasivo.mx",
+                    "logo": "https://www.persuasivo.mx/favicon.svg",
                     "description": "Agencia creativa especializada en desarrollo de Sitios Web de alta conversión, Copywriting y Meta Ads.",
+                    "areaServed": "MX",
                     "knowsAbout": ["Desarrollo Web", "React", "Meta Ads", "Copywriting", "SEO"]
                   },
                   {
@@ -101,6 +130,7 @@ function AppContent() {
       <GlassNavbar currentView={activeViewId} setCurrentView={setView} />
 
       <AnimatePresence mode='wait'>
+        <Suspense fallback={<RouteFallback />}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingHero setView={setView} />} />
           
@@ -158,6 +188,7 @@ function AppContent() {
             </motion.div>
           } />
         </Routes>
+        </Suspense>
       </AnimatePresence>
     </main>
   );

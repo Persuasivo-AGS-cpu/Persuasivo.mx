@@ -132,7 +132,7 @@ export default function LandingHero({ setView }) {
           color: '#FFFFFF'
         }}>
           Deja de competir por precio.<br />
-          Empieza a vender por <span style={{ color: '#E0FF31', textShadow: '0 0 40px rgba(224, 255, 49, 0.4)', position: 'relative' }}>
+          Empieza a vender por <span style={{ color: '#E0FF31', textShadow: '0 0 40px rgba(224, 255, 49, 0.4)', position: 'relative', display: 'inline-block', minWidth: '8.5ch', textAlign: 'left' }}>
             {text}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
