@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import CornerMarks from '../CornerMarks';
 
 export default function LandingHero({ setView }) {
-  const neonWords = [
-    "estatus.", 
-    "prestigio.", 
-    "autoridad.", 
+  const words = [
+    "estatus.",
+    "prestigio.",
+    "autoridad.",
     "exclusividad."
   ];
   const [text, setText] = useState("");
@@ -15,8 +16,8 @@ export default function LandingHero({ setView }) {
 
   useEffect(() => {
     let timer;
-    const i = loopNum % neonWords.length;
-    const fullText = neonWords[i];
+    const i = loopNum % words.length;
+    const fullText = words[i];
 
     if (isDeleting) {
       if (text === "") {
@@ -43,96 +44,71 @@ export default function LandingHero({ setView }) {
   }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
-    <motion.div 
+    <motion.div
       key="landing"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        width: '100%', 
-        minHeight: '100vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
+        width: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         justifyContent: 'center',
         padding: '2rem',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        background: '#EDE7D8'
       }}
     >
-      {/* Crazy Neon Background Glow */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.25, 0.1],
-          rotate: [0, 90, 0]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '900px',
-          height: '900px',
-          background: 'radial-gradient(ellipse at center, rgba(224, 255, 49, 0.15) 0%, rgba(0,0,0,0) 60%)',
-          pointerEvents: 'none',
-          zIndex: 0,
-          filter: 'blur(50px)'
-        }}
-      />
-
-      {/* Grid Overlay for Texture */}
+      {/* Grid de plano tecnico */}
       <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          backgroundImage: 'linear-gradient(rgba(224, 255, 49, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(224, 255, 49, 0.03) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          backgroundPosition: 'center center',
+          backgroundImage: 'linear-gradient(rgba(26, 24, 21, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 24, 21, 0.05) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
           pointerEvents: 'none',
-          zIndex: 0,
-          opacity: 0.5
+          zIndex: 0
       }} />
 
+      <CornerMarks color="#1A1815" inset={24} size={22} />
+
       <motion.div
-        initial={{ y: 30, opacity: 0 }}
+        initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         style={{ zIndex: 1, textAlign: 'center', width: '100%', maxWidth: '1200px' }}
       >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+        <div
           style={{
             display: 'inline-block',
-            padding: '0.6rem 2rem',
-            border: '1px solid rgba(224, 255, 49, 0.5)',
-            borderRadius: '50px',
-            color: '#E0FF31',
-            fontWeight: 800,
-            letterSpacing: '0.15em',
+            padding: '0.55rem 1.6rem',
+            border: '1.5px solid #1A1815',
+            color: '#1A1815',
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontWeight: 600,
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            fontSize: '0.75rem',
-            marginBottom: '2.5rem',
-            background: 'rgba(224, 255, 49, 0.05)',
-            boxShadow: '0 0 20px rgba(224, 255, 49, 0.1)'
+            fontSize: '0.72rem',
+            marginBottom: '2.5rem'
           }}
         >
-          ARQUITECTURA DIGITAL DE ALTO RENDIMIENTO
-        </motion.div>
+          Arquitectura Digital de Alto Rendimiento
+        </div>
 
         <h1 style={{
-          fontSize: 'clamp(2rem, 4vw, 4.5rem)',
-          fontWeight: 900,
-          letterSpacing: '-0.04em',
-          lineHeight: '1.2',
+          fontFamily: "'Oswald', sans-serif",
+          fontSize: 'clamp(2rem, 4.2vw, 4.3rem)',
+          fontWeight: 700,
+          letterSpacing: '-0.01em',
+          lineHeight: '1.18',
           marginBottom: '2rem',
-          color: '#FFFFFF'
+          color: '#1A1815'
         }}>
           Deja de competir por precio.<br />
-          Empieza a vender por <span style={{ color: '#E0FF31', textShadow: '0 0 40px rgba(224, 255, 49, 0.4)', position: 'relative', display: 'inline-block', minWidth: '8.5ch', textAlign: 'left' }}>
+          Empieza a vender por <span style={{ color: '#D6531D', position: 'relative', display: 'inline-block', minWidth: '8.5ch', textAlign: 'left' }}>
             {text}
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
@@ -143,13 +119,13 @@ export default function LandingHero({ setView }) {
             </motion.span>
           </span>
         </h1>
-        
-        <p style={{ 
-          color: '#A1A1AA', 
-          fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', 
-          marginBottom: '4rem', 
-          fontWeight: 400, 
-          letterSpacing: '-0.02em',
+
+        <p style={{
+          color: '#6B6459',
+          fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+          marginBottom: '4rem',
+          fontWeight: 400,
+          letterSpacing: '-0.01em',
           maxWidth: '800px',
           margin: '0 auto 4rem auto',
           lineHeight: '1.6'
@@ -158,26 +134,25 @@ export default function LandingHero({ setView }) {
         </p>
 
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {/* Welcome Mat - Single CTA Hypothesis 2 */}
-          <motion.button 
-            whileHover={{ scale: 1.02, boxShadow: "0px 0px 30px rgba(224, 255, 49, 0.4)" }}
-            whileTap={{ scale: 0.96 }}
+          <motion.button
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => setView('agency')}
             style={{
-              background: '#E0FF31', 
-              color: '#050505', 
-              border: 'none', 
-              padding: '1.1rem 3rem', 
-              borderRadius: '9999px', 
-              fontSize: '1.05rem', 
-              fontWeight: 700, 
+              background: '#D6531D',
+              color: '#FBF7ED',
+              border: '1.5px solid #1A1815',
+              padding: '1.05rem 2.8rem',
+              borderRadius: '4px',
+              fontSize: '1.02rem',
+              fontWeight: 600,
               cursor: 'pointer',
-              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', 
-              letterSpacing: '0.01em', 
-              display: 'flex', 
-              alignItems: 'center', 
+              transition: 'box-shadow 0.3s ease',
+              letterSpacing: '0.01em',
+              display: 'flex',
+              alignItems: 'center',
               gap: '0.6rem',
-              boxShadow: 'inset 0 2px 4px rgba(255, 255, 255, 0.5), 0 8px 20px rgba(0,0,0,0.2)'
+              boxShadow: '3px 3px 0 rgba(26,24,21,0.25)'
             }}
           >
             Activar Modo Persuasivo

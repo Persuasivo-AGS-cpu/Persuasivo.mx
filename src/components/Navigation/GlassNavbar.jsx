@@ -10,68 +10,74 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
 
   return (
     <motion.nav
-      className="glass-nav"
-      initial={{ y: -100, x: '-50%', opacity: 0 }}
-      animate={{ y: 20, x: '-50%', opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      className="top-nav"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: 'fixed',
         top: 0,
-        left: '50%',
+        left: 0,
+        right: 0,
+        height: '64px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'rgba(5, 5, 5, 0.65)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        borderRadius: '50px',
+        background: 'rgba(247, 244, 236, 0.92)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderBottom: '1px solid #D9D2C2',
         zIndex: 99999
       }}
     >
       {/* Logotipo a la izquierda */}
-      <div 
-        className="glass-nav-logo"
+      <div
+        className="top-nav-logo"
         onClick={() => setCurrentView('landing')}
-        style={{ color: '#fff', fontWeight: 900, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        style={{ color: '#1A1815', fontFamily: "'Oswald', sans-serif", fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', textTransform: 'uppercase' }}
       >
-        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#E0FF31', display: 'inline-block', boxShadow: '0 0 10px #E0FF31' }} />
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M1 5V1H5" stroke="#D6531D" strokeWidth="1.6" fill="none" />
+          <path d="M11 1H15V5" stroke="#D6531D" strokeWidth="1.6" fill="none" />
+          <path d="M15 11V15H11" stroke="#D6531D" strokeWidth="1.6" fill="none" />
+          <path d="M5 15H1V11" stroke="#D6531D" strokeWidth="1.6" fill="none" />
+        </svg>
         PERSUASIVO
       </div>
 
       {/* Enlaces de Navegación a la derecha */}
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+      <div className="top-nav-links" style={{ display: 'flex', alignItems: 'center' }}>
         {navItems.map((item) => (
           <button
             key={item.id}
-            className="glass-nav-btn"
+            className="top-nav-btn"
             onClick={() => setCurrentView(item.id)}
             style={{
               position: 'relative',
               background: 'transparent',
               border: 'none',
-              color: currentView === item.id ? '#fff' : '#888',
+              color: currentView === item.id ? '#1A1815' : '#6B6459',
+              fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 600,
               cursor: 'pointer',
-              borderRadius: '9999px',
               transition: 'color 0.2s ease',
-              zIndex: 1,
             }}
           >
+            {item.label}
             {currentView === item.id && (
               <motion.div
                 layoutId="nav-indicator"
                 style={{
                   position: 'absolute',
-                  inset: 0,
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  borderRadius: '9999px',
-                  zIndex: -1
+                  left: '10%',
+                  right: '10%',
+                  bottom: '-1px',
+                  height: '2px',
+                  background: '#D6531D'
                 }}
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
-            {item.label}
           </button>
         ))}
       </div>

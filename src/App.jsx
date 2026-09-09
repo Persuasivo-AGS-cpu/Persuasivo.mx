@@ -18,8 +18,8 @@ const ClientOnboarding = lazy(() => import('./components/Views/ClientOnboarding'
 
 function RouteFallback() {
   return (
-    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#050505' }}>
-      <div style={{ width: '32px', height: '32px', border: '3px solid rgba(255,255,255,0.1)', borderTop: '3px solid #E0FF31', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#EDE7D8' }}>
+      <div style={{ width: '32px', height: '32px', border: '3px solid #D9D2C2', borderTop: '3px solid #D6531D', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
       <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
     </div>
   );
@@ -54,7 +54,7 @@ function AppContent() {
   else if (pathParts.includes('servicios') || location.pathname === '/arcade') activeViewId = 'agency'; // Keep agency active when deep in services
 
   return (
-    <main style={{ width: '100%', minHeight: '100vh', overflowX: 'hidden', background: '#050505', color: 'white' }}>
+    <main style={{ width: '100%', minHeight: '100vh', overflowX: 'hidden', background: '#EDE7D8', color: '#1A1815' }}>
       
       {/* Global Meta Data base */}
         <Helmet>

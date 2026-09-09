@@ -71,41 +71,42 @@ export default function LegalView({ setView, docType }) {
         height: '100vh',
         overflowY: 'auto',
         overflowX: 'hidden',
-        background: '#050505',
+        background: '#EDE7D8',
         display: 'flex',
         flexDirection: 'column'
       }}
     >
       <style>{`
-        ::-webkit-scrollbar { width: 0px; } 
+        ::-webkit-scrollbar { width: 0px; }
         .legal-content h3 {
-          color: #fff;
-          font-size: 1.4rem;
-          font-weight: 800;
+          color: #1A1815;
+          font-family: 'Oswald', sans-serif;
+          font-size: 1.3rem;
+          font-weight: 600;
           margin: 3rem 0 1rem 0;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.01em;
         }
         .legal-content p {
-          color: #888;
-          font-size: 1.1rem;
+          color: #6B6459;
+          font-size: 1.05rem;
           line-height: 1.8;
           margin-bottom: 1.5rem;
         }
       `}</style>
-      
+
       <div style={{ flex: 1, padding: '15vh 5vw 10vh 5vw', display: 'flex', justifyContent: 'center' }}>
-        <motion.div 
+        <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ width: '100%', maxWidth: '800px' }}
         >
           {/* Header del Documento */}
-          <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '2rem', marginBottom: '3rem' }}>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', margin: 0 }}>
+          <div style={{ borderBottom: '1px solid #D9D2C2', paddingBottom: '2rem', marginBottom: '3rem' }}>
+            <h1 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.2rem, 5vw, 3.4rem)', fontWeight: 700, color: '#1A1815', letterSpacing: '-0.01em', margin: 0 }}>
               {doc.title}
             </h1>
-            <p style={{ color: '#E0FF31', marginTop: '1rem', fontWeight: 600, fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            <p style={{ color: '#D6531D', marginTop: '1rem', fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               {doc.lastUpdated}
             </p>
           </div>
