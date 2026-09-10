@@ -96,9 +96,13 @@ export default function ServiceEcosystems({ setView }) {
 
           <div style={{ background: '#F7F4EC', border: '1px solid #D9D2C2', padding: 'clamp(2rem, 6vw, 4rem)', borderRadius: '8px', textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{ color: '#1A1815', fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 600, marginBottom: '1.5rem', letterSpacing: '-0.01em' }}>Tu imperio necesita cimientos de titanio.</h2>
-            <p style={{ color: '#6B6459', fontSize: '1.15rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>
+            <p style={{ color: '#6B6459', fontSize: '1.15rem', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
               Los negocios del futuro no corren en plantillas de WordPress. Eleva tu infraestructura al estándar de Silicon Valley.
             </p>
+            <div style={{ display: 'inline-block', marginBottom: '2rem', padding: '0.5rem 1.2rem', border: '1.5px solid #1A1815', color: '#1A1815', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.78rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              Landing $6,500 MXN único · Ecosistema 360 a cotización
+            </div>
+            <br />
             <motion.button
               onClick={() => setView('contact')}
               whileHover={{ y: -2 }}

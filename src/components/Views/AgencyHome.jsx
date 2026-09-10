@@ -134,21 +134,15 @@ function MagneticCard({ item, isPrimary = false, setView }) {
             {item.title}
           </h3>
 
-          <div style={{ position: 'relative', flex: 1, width: '100%' }}>
-             {/* Technical Spec */}
-             <motion.p
-               animate={{ opacity: isHovered ? 0 : 1, y: isHovered ? -15 : 0, filter: isHovered ? 'blur(10px)' : 'blur(0px)' }}
-               transition={{ duration: 0.4 }}
-               style={{ color: '#6B6459', lineHeight: 1.6, fontWeight: 500, position: isHovered ? 'absolute' : 'relative', width: '100%', pointerEvents: isHovered ? 'none' : 'auto' }}
-             >
+          {/* Ambos textos siempre visibles: en touch (mobile) no hay hover, y la traducción a
+              valor de negocio es la copy con más peso persuasivo — no puede depender de mouseover. */}
+          <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+             <p style={{ color: '#6B6459', lineHeight: 1.6, fontWeight: 500, margin: 0 }}>
                {item.desc}
-             </motion.p>
-
-             {/* Business Translation (X-Ray Value) */}
+             </p>
              <motion.p
-               animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 15, filter: isHovered ? 'blur(0px)' : 'blur(10px)' }}
-               transition={{ duration: 0.5, delay: 0.1 }}
-               style={{ color: '#1A1815', lineHeight: 1.6, fontWeight: 600, position: isHovered ? 'relative' : 'absolute', top: 0, left: 0, width: '100%', pointerEvents: isHovered ? 'auto' : 'none' }}
+               animate={{ color: isHovered ? accentColor : '#1A1815' }}
+               style={{ lineHeight: 1.6, fontWeight: 600, margin: 0 }}
              >
                {item.businessTrans}
              </motion.p>
@@ -208,7 +202,7 @@ const showcaseData = {
     { id: 'auth3', title: 'Sistema de Liderazgo', type: 'Adquisición LinkedIn', img: '/showcase/auth3.jpg', tags: ['Autoridad Niche', 'Métricas'] }
   ],
   trafico: [
-    { id: 'ads1', title: 'Motor Inmobiliario', type: 'ROE Documentado: 12X', img: '/showcase/ads1.jpg', tags: ['Embudos', 'Lead Qualificado'] },
+    { id: 'ads1', title: 'Motor Inmobiliario', type: 'ROAS Estimado: 12X', img: '/showcase/ads1.jpg', tags: ['Embudos', 'Lead Qualificado'] },
     { id: 'ads2', title: 'Infraestructura SaaS', type: 'Costos Reducidos: 40%', img: '/showcase/ads2.jpg', tags: ['Retargeting', 'Algoritmo Meta'] },
     { id: 'ads3', title: 'Escala Clínica', type: 'Volumen: 150 Citas/Mes', img: '/showcase/ads3.jpg', tags: ['Datos Duros', 'Predecibilidad'] }
   ]
@@ -496,7 +490,7 @@ export default function AgencyHome({ setView }) {
                 navTarget: 'service_ecosystems'
               }
             ].map((item, i) => (
-              <MagneticCard key={i} item={item} isPrimary={i === 1} setView={setView} />
+              <MagneticCard key={i} item={item} isPrimary={i === 0} setView={setView} />
             ))}
           </div>
         </motion.div>

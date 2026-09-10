@@ -15,15 +15,15 @@ export default function ContactFlow({ setView }) {
   const [status, setStatus] = useState('idle'); // idle, loading, success
 
   const scopes = [
-    { id: 'meta_ads', label: 'Campañas Meta Ads', desc: 'Adquisición de prospectos calificados en frío. (Desde $2,700/mes)' },
-    { id: 'redes', label: 'Gestión de Redes Sociales', desc: 'Posicionamiento y fidelización de marca. ($4,500/mes)' },
-    { id: 'landing', label: 'Landing Page de Alta Conversión', desc: 'Activo digital estático estructurado para venta. ($6,500 único)' },
+    { id: 'meta_ads', label: 'Campañas Meta Ads', desc: 'Adquisición de prospectos calificados en frío. (Desde $2,700 MXN/mes)' },
+    { id: 'redes', label: 'Gestión de Redes Sociales', desc: 'Posicionamiento y fidelización de marca. ($4,500 MXN/mes)' },
+    { id: 'landing', label: 'Landing Page de Alta Conversión', desc: 'Activo digital estático estructurado para venta. ($6,500 MXN único)' },
     { id: 'web_copy', label: 'Ecosistema Web 360 & Copywriting', desc: 'Desarrollo web corporativo completo. (Cotización a la medida)' }
   ];
 
   const budgets = [
-    { id: 'base', label: 'Inversión de Arranque', desc: 'Para activar campañas, redes sociales o landing pages base. (< $10,000)' },
-    { id: 'pro', label: 'Fase de Escalamiento', desc: 'Operación paralela de distintos servicios para dominar tu nicho. ($10k - $25k)' },
+    { id: 'base', label: 'Inversión de Arranque', desc: 'Para activar campañas, redes sociales o landing pages base. (< $10,000 MXN)' },
+    { id: 'pro', label: 'Fase de Escalamiento', desc: 'Operación paralela de distintos servicios para dominar tu nicho. ($10k - $25k MXN)' },
     { id: 'elite', label: 'Dominio de Mercado Completamente Custom', desc: 'Sistemas complejos Web3/SaaS con alto nivel de carga ingenieril. (Flexible)' }
   ];
 

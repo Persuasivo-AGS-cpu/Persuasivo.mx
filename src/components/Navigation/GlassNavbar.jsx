@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-export default function GlassNavbar({ currentView, setCurrentView }) {
+const routeFor = { landing: '/', agency: '/agencia', contact: '/contacto' };
+
+export default function GlassNavbar({ currentView }) {
   const navItems = [
     { id: 'landing', label: 'Bienvenida' },
     { id: 'agency', label: 'Agencia' },
@@ -31,10 +34,10 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
       }}
     >
       {/* Logotipo a la izquierda */}
-      <div
+      <Link
+        to="/"
         className="top-nav-logo"
-        onClick={() => setCurrentView('landing')}
-        style={{ color: '#1A1815', fontFamily: "'Oswald', sans-serif", fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', textTransform: 'uppercase' }}
+        style={{ color: '#1A1815', fontFamily: "'Oswald', sans-serif", fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', textTransform: 'uppercase', textDecoration: 'none' }}
       >
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
           <path d="M1 5V1H5" stroke="#D6531D" strokeWidth="1.6" fill="none" />
@@ -43,15 +46,15 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
           <path d="M5 15H1V11" stroke="#D6531D" strokeWidth="1.6" fill="none" />
         </svg>
         PERSUASIVO
-      </div>
+      </Link>
 
       {/* Enlaces de Navegación a la derecha */}
       <div className="top-nav-links" style={{ display: 'flex', alignItems: 'center' }}>
         {navItems.map((item) => (
-          <button
+          <Link
             key={item.id}
+            to={routeFor[item.id]}
             className="top-nav-btn"
-            onClick={() => setCurrentView(item.id)}
             style={{
               position: 'relative',
               background: 'transparent',
@@ -60,6 +63,7 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: 600,
               cursor: 'pointer',
+              textDecoration: 'none',
               transition: 'color 0.2s ease',
             }}
           >
@@ -78,7 +82,7 @@ export default function GlassNavbar({ currentView, setCurrentView }) {
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
-          </button>
+          </Link>
         ))}
       </div>
     </motion.nav>
