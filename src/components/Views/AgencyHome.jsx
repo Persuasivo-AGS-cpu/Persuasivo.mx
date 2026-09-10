@@ -190,8 +190,9 @@ function MagneticCard({ item, isPrimary = false, setView }) {
 
 const verifiedCases = [
   { id: 'monterrey', title: 'Monterrey Jurídico', type: 'Legal / High-Conversion', img: '/showcase/monterrey.jpg', href: 'https://monterreyjuridico.com/', domain: 'monterreyjuridico.com' },
-  { id: 'elypse', title: 'Edificio Elypse', type: 'Real Estate / Ultra-Luxury', img: '/showcase/elypse.jpg', href: 'https://edificio-elypse.vercel.app/', domain: 'edificio-elypse.vercel.app' },
-  { id: 'renters', title: 'Renters.mx', type: 'Real Estate / Legal', img: '/showcase/renters.jpg', href: 'https://renters.mx/', domain: 'renters.mx' }
+  { id: 'elypse', title: 'Edificio Elypse', type: 'Real Estate / Ultra-Luxury', img: '/showcase/elypse.jpg', pos: 'center', href: 'https://edificio-elypse.vercel.app/', domain: 'edificio-elypse.vercel.app' },
+  { id: 'renters', title: 'Renters.mx', type: 'Real Estate / Legal', img: '/showcase/renters.jpg', pos: 'center', href: 'https://renters.mx/', domain: 'renters.mx' },
+  { id: 'aph', title: 'Grupo APH', type: 'Industrial / Seguridad', img: '/showcase/aph.jpg', pos: 'center', href: 'https://www.grupoaph.com.mx/', domain: 'grupoaph.com.mx' }
 ];
 
 const referenceMetrics = [
@@ -256,7 +257,7 @@ function ShowcaseSection() {
                   className="showcase-bg"
                   style={{
                     position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                    objectFit: 'cover', objectPosition: 'top center',
+                    objectFit: 'cover', objectPosition: proj.pos || 'top center',
                     transform: 'scale(1.08)',
                     filter: 'blur(4px) grayscale(30%)',
                     transition: 'all 0.5s ease', opacity: 0.6
