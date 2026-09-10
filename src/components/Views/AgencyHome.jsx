@@ -188,192 +188,137 @@ function MagneticCard({ item, isPrimary = false, setView }) {
   );
 }
 
-const showcaseData = {
-  ecosistemas: [
-    { id: 'monterrey', title: 'Monterrey Jurídico', type: 'Legal / High-Conversion', img: '/showcase/monterrey.jpg', tags: ['React', 'Framer', 'Human-Centered'], href: 'https://monterreyjuridico.com/' },
-    { id: 'elypse', title: 'Edificio Elypse', type: 'Real Estate / Ultra-Luxury', img: '/showcase/elypse.jpg', tags: ['Next.js', 'WebGL', 'Premium'], href: 'https://edificio-elypse.vercel.app/' },
-    { id: 'renters', title: 'Renters.mx', type: 'Real Estate / Legal', img: '/showcase/renters.jpg', tags: ['React', 'Vite', 'Corporate SaaS'], href: 'https://renters.mx/' },
-    { id: 'onebell', title: 'OneBell AI', type: 'Fitness AI / Native App', img: '/showcase/onebell.jpg', tags: ['IA', 'Apple-Native', 'Mobile'] },
-    { id: 'contratos', title: 'Contratos B2B', type: 'Legal Ecommerce', img: '/showcase/contratos.jpg', tags: ['Ecommerce', 'Stripe API', 'Monopoly'] }
-  ],
-  autoridad: [
-    { id: 'auth1', title: 'Manifiesto de Marca', type: 'Fundación Psicológica', img: '/showcase/auth1.jpg', tags: ['Copywriting', 'Ventas High-Ticket'] },
-    { id: 'auth2', title: 'Arquitectura Visual', type: 'Dominio en Instagram', img: '/showcase/auth2.jpg', tags: ['Grid Industrial', 'Zero Fricción'] },
-    { id: 'auth3', title: 'Sistema de Liderazgo', type: 'Adquisición LinkedIn', img: '/showcase/auth3.jpg', tags: ['Autoridad Niche', 'Métricas'] }
-  ],
-  trafico: [
-    { id: 'ads1', title: 'Motor Inmobiliario', type: 'ROAS Estimado: 12X', img: '/showcase/ads1.jpg', tags: ['Embudos', 'Lead Qualificado'] },
-    { id: 'ads2', title: 'Infraestructura SaaS', type: 'Costos Reducidos: 40%', img: '/showcase/ads2.jpg', tags: ['Retargeting', 'Algoritmo Meta'] },
-    { id: 'ads3', title: 'Escala Clínica', type: 'Volumen: 150 Citas/Mes', img: '/showcase/ads3.jpg', tags: ['Datos Duros', 'Predecibilidad'] }
-  ]
-};
+const verifiedCases = [
+  { id: 'monterrey', title: 'Monterrey Jurídico', type: 'Legal / High-Conversion', img: '/showcase/monterrey.jpg', href: 'https://monterreyjuridico.com/', domain: 'monterreyjuridico.com' },
+  { id: 'elypse', title: 'Edificio Elypse', type: 'Real Estate / Ultra-Luxury', img: '/showcase/elypse.jpg', href: 'https://edificio-elypse.vercel.app/', domain: 'edificio-elypse.vercel.app' },
+  { id: 'renters', title: 'Renters.mx', type: 'Real Estate / Legal', img: '/showcase/renters.jpg', href: 'https://renters.mx/', domain: 'renters.mx' }
+];
 
-function ShowcaseCarousel() {
-  const scrollRef = React.useRef(null);
-  const [activeTab, setActiveTab] = React.useState('ecosistemas');
+const referenceMetrics = [
+  { id: 'ads1', category: 'Meta Ads', title: 'Motor Inmobiliario', type: 'ROAS Estimado: 12X', tags: ['Embudos', 'Lead Qualificado'] },
+  { id: 'ads2', category: 'Meta Ads', title: 'Infraestructura SaaS', type: 'Costos Reducidos: 40%', tags: ['Retargeting', 'Algoritmo Meta'] },
+  { id: 'ads3', category: 'Meta Ads', title: 'Escala Clínica', type: 'Volumen: 150 Citas/Mes', tags: ['Datos Duros', 'Predecibilidad'] },
+  { id: 'auth1', category: 'Redes & Copywriting', title: 'Manifiesto de Marca', type: 'Fundación Psicológica', tags: ['Copywriting', 'Ventas High-Ticket'] },
+  { id: 'auth2', category: 'Redes & Copywriting', title: 'Arquitectura Visual', type: 'Dominio en Instagram', tags: ['Grid Industrial', 'Zero Fricción'] },
+  { id: 'auth3', category: 'Redes & Copywriting', title: 'Sistema de Liderazgo', type: 'Adquisición LinkedIn', tags: ['Autoridad Niche', 'Métricas'] },
+  { id: 'onebell', category: 'Desarrollo Web', title: 'OneBell AI', type: 'Fitness AI / Native App', tags: ['IA', 'Apple-Native', 'Mobile'] },
+  { id: 'contratos', category: 'Desarrollo Web', title: 'Contratos B2B', type: 'Legal Ecommerce', tags: ['Ecommerce', 'Stripe API', 'Monopoly'] }
+];
 
-  const tabs = [
-    { id: 'ecosistemas', label: 'Desarrollo Web' },
-    { id: 'autoridad', label: 'Gestión de Redes' },
-    { id: 'trafico', label: 'Meta Ads' }
-  ];
-
+function ShowcaseSection() {
   return (
-    <section style={{ width: '100%', overflow: 'hidden', padding: '8rem 0', background: '#EDE7D8', borderTop: '1px solid #D9D2C2' }}>
+    <section style={{ width: '100%', padding: '8rem 2rem', background: '#EDE7D8', borderTop: '1px solid #D9D2C2' }}>
       <style>{`
-        .netflix-carousel::-webkit-scrollbar { display: none; }
-        .netflix-carousel { -ms-overflow-style: none; scrollbar-width: none; }
         .showcase-card:hover .showcase-bg { opacity: 0.85 !important; transform: scale(1.05); }
-
-        .carousel-centered {
-          justify-content: center;
-        }
-        @media(max-width: 1200px) {
-          .carousel-centered {
-            justify-content: flex-start;
-          }
-        }
       `}</style>
 
-      <div style={{ padding: '0 2rem', maxWidth: '1200px', margin: '0 auto 1.5rem auto', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600, color: '#1A1815', letterSpacing: '-0.01em', margin: 0 }}>
-          Pruebas Balísticas.
-        </h2>
-        <p style={{ color: '#6B6459', fontSize: '1.2rem', margin: '0.5rem auto 2.5rem auto', maxWidth: '600px' }}>
-          La evidencia matemática de nuestro protocolo. Sin captura de plantillas. Operaciones reales.
-        </p>
-
-        {/* Segmented Control */}
-        <div style={{
-          display: 'inline-flex',
-          background: '#F7F4EC',
-          padding: '0.3rem',
-          borderRadius: '6px',
-          border: '1px solid #D9D2C2',
-          gap: '0.3rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                background: activeTab === tab.id ? '#D6531D' : 'transparent',
-                color: activeTab === tab.id ? '#FBF7ED' : '#6B6459',
-                border: 'none',
-                padding: '0.6rem 1.5rem',
-                borderRadius: '4px',
-                fontSize: '0.85rem',
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontWeight: 600,
-                letterSpacing: '0.5px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textTransform: 'uppercase'
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600, color: '#1A1815', letterSpacing: '-0.01em', margin: 0 }}>
+            Pruebas Balísticas.
+          </h2>
+          <p style={{ color: '#6B6459', fontSize: '1.2rem', margin: '0.5rem auto 0 auto', maxWidth: '620px' }}>
+            La evidencia de nuestro protocolo, sin mezclar lo verificable con lo reportado.
+          </p>
         </div>
-      </div>
 
-      {/* Carousel Container con Animación de entrada al cambiar pestaña */}
-      <motion.div
-        key={activeTab}
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      >
-          <motion.div
-          ref={scrollRef}
-          className={`netflix-carousel ${showcaseData[activeTab].length <= 3 ? 'carousel-centered' : ''}`}
-          style={{
-            display: 'flex',
-            gap: '2rem',
-            padding: '2rem 2rem 0 2rem',
-            overflowX: 'auto',
-            WebkitOverflowScrolling: 'touch',
-            scrollSnapType: 'x mandatory'
-          }}
-        >
-          {showcaseData[activeTab].map((proj) => (
-            <motion.div
-              key={proj.id}
-              className="showcase-card"
-              style={{
-                minWidth: '350px',
-                height: '500px',
-                position: 'relative',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                border: '1px solid #D9D2C2',
-                background: '#1A1815',
-                boxShadow: '4px 4px 0 rgba(26,24,21,0.1)',
-                cursor: proj.href ? 'pointer' : 'default',
-                scrollSnapAlign: 'center'
-              }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              onClick={() => {
-                if (proj.href) window.open(proj.href, '_blank');
-              }}
-            >
-               {/* Imagen de Fondo de Socket */}
-               <img
-                 src={proj.img}
-                 alt={`${proj.title} — ${proj.type}`}
-                 loading="lazy"
-                 decoding="async"
-                 className="showcase-bg"
-                 style={{
-                   position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                   objectFit: 'cover',
-                   objectPosition: 'top center',
-                   transition: 'all 0.5s ease',
-                   opacity: 0.65
-                 }}
-               />
+        {/* CASOS VERIFICABLES */}
+        <div style={{ marginBottom: '5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+            <span style={{ width: '8px', height: '8px', background: '#D6531D', display: 'inline-block' }} />
+            <h3 style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#1A1815', margin: 0 }}>
+              Casos Verificables
+            </h3>
+            <span style={{ color: '#948C78', fontSize: '0.85rem' }}>— entra tú mismo, sin pedirte que nos creas</span>
+          </div>
 
-               {/* Gradiente Oscuro para lectura */}
-               <div style={{
-                 position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                 background: 'linear-gradient(to top, rgba(26,24,21,1) 0%, rgba(26,24,21,0) 60%)'
-               }} />
-
-               {/* Contenido */}
-               <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', zIndex: 10 }}>
-                 <h3 style={{ color: '#FBF7ED', fontFamily: "'Oswald', sans-serif", fontSize: '1.7rem', fontWeight: 600, margin: 0, letterSpacing: '-0.01em', lineHeight: 1.1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                   {proj.title}
-                   {proj.href && (
-                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D6531D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                       <polyline points="15 3 21 3 21 9"></polyline>
-                       <line x1="10" y1="14" x2="21" y2="3"></line>
-                     </svg>
-                   )}
-                 </h3>
-
-                 <p style={{ color: '#D6531D', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.85rem', fontWeight: 600, margin: '0.8rem 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            {verifiedCases.map(proj => (
+              <motion.a
+                key={proj.id}
+                href={proj.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="showcase-card"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                style={{
+                  display: 'block', textDecoration: 'none', cursor: 'pointer',
+                  height: '420px', position: 'relative', borderRadius: '8px', overflow: 'hidden',
+                  border: '1px solid #D9D2C2', background: '#1A1815', boxShadow: '4px 4px 0 rgba(26,24,21,0.1)'
+                }}
+              >
+                <img
+                  src={proj.img}
+                  alt={`${proj.title} — ${proj.type}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="showcase-bg"
+                  style={{
+                    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                    objectFit: 'cover', objectPosition: 'top center',
+                    transform: 'scale(1.08)',
+                    filter: 'blur(4px) grayscale(30%)',
+                    transition: 'all 0.5s ease', opacity: 0.6
+                  }}
+                />
+                {/* Las capturas son de sitios reales con texto propio: blur + velo evitan que compita con el nuestro, sin importar qué imagen sea */}
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(26,24,21,0.35)' }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(26,24,21,1) 0%, rgba(26,24,21,0.15) 65%, rgba(26,24,21,0.15) 100%)' }} />
+                <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', zIndex: 10 }}>
+                  <h4 style={{ color: '#FBF7ED', fontFamily: "'Oswald', sans-serif", fontSize: '1.5rem', fontWeight: 600, margin: 0, letterSpacing: '-0.01em', lineHeight: 1.1 }}>
+                    {proj.title}
+                  </h4>
+                  <p style={{ color: '#D6531D', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', fontWeight: 600, margin: '0.7rem 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                     {proj.type}
-                 </p>
+                  </p>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#FBF7ED', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.78rem', fontWeight: 600, border: '1px solid rgba(247,244,236,0.3)', borderRadius: '4px', padding: '0.4rem 0.8rem', marginTop: '0.4rem' }}>
+                    {proj.domain}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
 
-                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
-                   {proj.tags.map(t => (
-                     <span key={t} style={{ background: 'rgba(247,244,236,0.08)', color: '#D9D2C2', padding: '0.4rem 0.8rem', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, border: '1px solid rgba(247,244,236,0.15)' }}>
-                       {t}
-                     </span>
-                   ))}
-                 </div>
-               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
+        {/* MÉTRICAS DE REFERENCIA */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+            <span style={{ width: '8px', height: '8px', border: '1.5px solid #948C78', display: 'inline-block' }} />
+            <h3 style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#1A1815', margin: 0 }}>
+              Métricas de Referencia
+            </h3>
+            <span style={{ color: '#948C78', fontSize: '0.85rem' }}>— resultados reportados, sin caso público que enlazar todavía</span>
+          </div>
 
-      <div style={{ textAlign: 'center', marginTop: '3rem', color: '#948C78', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
-        &larr; Desliza para explorar pruebas &rarr;
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+            {referenceMetrics.map(item => (
+              <div key={item.id} style={{ background: '#F7F4EC', border: '1px solid #D9D2C2', borderRadius: '8px', padding: '1.5rem' }}>
+                <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#948C78', margin: '0 0 0.8rem 0' }}>
+                  {item.category}
+                </p>
+                <h4 style={{ fontFamily: "'Oswald', sans-serif", fontSize: '1.1rem', fontWeight: 600, color: '#1A1815', margin: '0 0 0.4rem 0' }}>
+                  {item.title}
+                </h4>
+                <p style={{ color: '#D6531D', fontSize: '0.9rem', fontWeight: 600, margin: '0 0 1rem 0' }}>
+                  {item.type}
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                  {item.tags.map(t => (
+                    <span key={t} style={{ background: '#EDE7D8', color: '#6B6459', padding: '0.25rem 0.6rem', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600 }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -544,7 +489,7 @@ export default function AgencyHome({ setView }) {
       </section>
 
       {/* SECTION 2.5: PRUEBAS BALISTICAS (Showcase Carousel) */}
-      <ShowcaseCarousel />
+      <ShowcaseSection />
 
       {/* SECTION 3: THE WHAT (The Object of Desire Showcase) */}
       <section style={{ ...sectionStyle, background: '#EDE7D8' }}>
