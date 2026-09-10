@@ -154,11 +154,11 @@ function MagneticCard({ item, isPrimary = false, setView }) {
              </motion.p>
           </div>
 
-          {/* Deep Navigation CTA */}
+          {/* Deep Navigation CTA — siempre visible y clickeable (el hover es solo un realce, no la condición para poder tocarlo en móvil) */}
           <motion.div
-             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-             transition={{ duration: 0.4, delay: 0.2 }}
-             style={{ marginTop: 'auto', paddingTop: '1rem', pointerEvents: isHovered ? 'auto' : 'none' }}
+             animate={{ y: isHovered ? -2 : 0 }}
+             transition={{ duration: 0.3 }}
+             style={{ marginTop: 'auto', paddingTop: '1rem' }}
           >
              <Link
                to={
