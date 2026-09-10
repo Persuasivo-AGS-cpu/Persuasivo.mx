@@ -48,7 +48,7 @@ export default function ServiceEcosystems({ setView }) {
               background: 'transparent', border: '1.5px solid #1A1815', color: '#1A1815', padding: '0.35rem 0.9rem',
               fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.72rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em'
             }}>
-              Metodología 03
+              Servicio
             </span>
             <span style={{ color: '#6B6459', fontSize: '0.9rem', fontWeight: 500 }}>Infraestructura Web</span>
           </div>

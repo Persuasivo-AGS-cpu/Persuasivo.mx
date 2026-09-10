@@ -397,6 +397,16 @@ export default function AgencyHome({ setView }) {
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
   };
 
+  const protocolSteps = [
+    { title: 'Llamada de Entendimiento', desc: 'Escuchamos antes de recetar. Una conversación directa para entender tu negocio, tu mercado y dónde está la fuga real de dinero — sin diagnósticos genéricos.' },
+    { title: 'Elaboración de Propuesta', desc: 'Construimos el plan de ataque: alcance, inversión y entregables definidos con precisión. Cero letra chica, cero ambigüedad.' },
+    { title: 'Presentación y Cierre', desc: 'Presentamos la propuesta y resolvemos objeciones en el momento. Cerramos los términos de la operación antes de mover un solo píxel.' },
+    { title: 'Diseño de Solución', desc: 'Aquí nace la arquitectura real: estrategia de contenido, estructura de campaña o mapa del sitio. El plano antes de construir.' },
+    { title: 'Diseño de Materiales', desc: 'Ejecutamos la identidad visual y los textos persuasivos que sostienen la solución. Cada pieza con intención de venta, no decoración.' },
+    { title: 'Prototipo', desc: 'Antes de la entrega final, validamos contigo sobre una versión funcional — nunca sobre una idea en papel.' },
+    { title: 'Entrega Final', desc: 'Tu ecosistema queda activo, documentado y en tus manos: listo para generar demanda sin depender de nosotros para operar.' }
+  ];
+
   return (
     <motion.div
       key="agency"
@@ -452,6 +462,43 @@ export default function AgencyHome({ setView }) {
             </svg>
           </motion.div>
 
+        </motion.div>
+      </section>
+
+      {/* SECTION 1.5: EL PROTOCOLO — metodología real de 7 pasos */}
+      <section style={{ width: '100%', padding: '8rem 2rem', display: 'flex', justifyContent: 'center', background: '#EDE7D8', borderTop: '1px solid #D9D2C2', position: 'relative', overflow: 'hidden' }}>
+        <motion.div
+          initial="hidden" whileInView="visible" viewport={{ once: false, margin: "-100px" }}
+          variants={textVariant}
+          style={{ width: '100%', maxWidth: '760px' }}
+        >
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', fontWeight: 600, color: '#1A1815', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '1rem', textAlign: 'center' }}>
+            Siete pasos. <span style={{ color: '#D6531D' }}>Sin atajos.</span>
+          </h2>
+          <p style={{ color: '#6B6459', fontSize: '1.15rem', marginBottom: '4.5rem', textAlign: 'center' }}>
+            Del primer diagnóstico a la entrega final — el mismo protocolo, sin importar cuál de los tres servicios contrates.
+          </p>
+
+          <div style={{ position: 'relative' }}>
+            <div aria-hidden="true" style={{ position: 'absolute', top: '10px', bottom: '58px', left: '23px', width: '1.5px', background: '#D9D2C2' }} />
+            {protocolSteps.map((s, i) => (
+              <div key={i} style={{ position: 'relative', display: 'flex', gap: '1.75rem', paddingBottom: i === protocolSteps.length - 1 ? 0 : '2.5rem' }}>
+                <div style={{
+                  flexShrink: 0, width: '48px', height: '48px', borderRadius: '50%',
+                  background: '#F7F4EC', border: '1.5px solid #1A1815',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700, fontSize: '0.95rem',
+                  color: '#1A1815', zIndex: 1
+                }}>
+                  0{i + 1}
+                </div>
+                <div style={{ paddingTop: '0.4rem' }}>
+                  <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: '1.25rem', fontWeight: 600, color: '#1A1815', margin: '0 0 0.4rem 0' }}>{s.title}</h3>
+                  <p style={{ color: '#6B6459', fontSize: '1rem', lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </section>
 
