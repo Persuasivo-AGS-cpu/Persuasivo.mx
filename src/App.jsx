@@ -1,14 +1,13 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 import GlassNavbar from './components/Navigation/GlassNavbar';
-import LandingHero from './components/Views/LandingHero';
+import AgencyHome from './components/Views/AgencyHome';
 
-// Rutas fuera del landing se cargan on-demand para reducir el bundle inicial
+// Rutas fuera de la home se cargan on-demand para reducir el bundle inicial
 const ArcadeCabinet = lazy(() => import('./components/ArcadeCabinet'));
-const AgencyHome = lazy(() => import('./components/Views/AgencyHome'));
 const ContactFlow = lazy(() => import('./components/Views/ContactFlow'));
 const LegalView = lazy(() => import('./components/Views/LegalView'));
 const ServiceTraffic = lazy(() => import('./components/Views/ServiceTraffic'));
@@ -33,7 +32,7 @@ function AppContent() {
   const setView = (viewName) => {
     const routeMap = {
       landing: '/',
-      agency: '/agencia',
+      agency: '/',
       contact: '/contacto',
       arcade: '/arcade',
       privacy: '/legal/privacidad',
@@ -47,11 +46,9 @@ function AppContent() {
   };
 
   // Reverse mapping for Navbar active state indicator
-  const pathParts = location.pathname.split('/');
   let activeViewId = 'landing';
-  if (location.pathname === '/agencia') activeViewId = 'agency';
-  else if (location.pathname === '/contacto') activeViewId = 'contact';
-  else if (pathParts.includes('servicios') || location.pathname === '/arcade') activeViewId = 'agency'; // Keep agency active when deep in services
+  if (location.pathname === '/contacto') activeViewId = 'contact';
+  else if (location.pathname !== '/') activeViewId = null; // Deep pages (servicios, legal, arcade) show no active tab
 
   return (
     <main style={{ width: '100%', minHeight: '100vh', overflowX: 'hidden', background: '#EDE7D8', color: '#1A1815' }}>
@@ -132,10 +129,11 @@ function AppContent() {
       <AnimatePresence mode='wait'>
         <Suspense fallback={<RouteFallback />}>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<LandingHero setView={setView} />} />
-          
-          <Route path="/agencia" element={<AgencyHome setView={setView} />} />
-          
+          <Route path="/" element={<AgencyHome setView={setView} />} />
+
+          {/* Ruta anterior conservada como redirect por SEO/backlinks ya indexados */}
+          <Route path="/agencia" element={<Navigate to="/" replace />} />
+
           <Route path="/contacto" element={<ContactFlow setView={setView} />} />
 
           {/* Deep Funnel SEO Pages */}

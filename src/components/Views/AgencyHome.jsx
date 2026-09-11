@@ -1,192 +1,8 @@
 import React, { useState } from 'react';
-import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import Hero from './LandingHero';
 import Footer from '../Navigation/Footer';
-
-// Sub-componente Magnético para destruir la objeción de las "plantillas"
-function MagneticCard({ item, isPrimary = false, setView }) {
-  // Posición del ratón relativa a la tarjeta (-0.5 a 0.5)
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Físicas de resorte para suavizar el movimiento del ratón
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
-
-  // Rotación 3D extrema (Efecto Tarjeta Pokémon Holográfica)
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
-
-  // Linterna dinámica que persigue el ratón
-  const spotlightX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
-  const spotlightY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
-
-  // Parallax Inverso para el contenido interior
-  const parallaxX = useTransform(mouseXSpring, [-0.5, 0.5], [15, -15]);
-  const parallaxY = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
-
-  const [isHovered, setIsHovered] = React.useState(false);
-  const accentColor = isPrimary ? '#D6531D' : '#1A1815';
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      style={{
-        perspective: 1500, // Profundidad 3D masiva
-        transformStyle: 'preserve-3d',
-        width: '100%',
-        height: '100%'
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-    >
-      <motion.div
-        style={{
-          rotateX,
-          rotateY,
-          padding: '4rem 2rem 4rem 2rem', // Let Flex determine height without overlapping constraints
-          background: isHovered ? (isPrimary ? 'rgba(214, 83, 29, 0.05)' : 'rgba(26,24,21,0.03)') : '#F7F4EC',
-          border: isHovered ? `1.5px solid ${accentColor}` : '1px solid #D9D2C2',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          height: '100%',
-          boxShadow: isHovered ? `4px 4px 0 rgba(26,24,21,0.12)` : '0 1px 0 rgba(26,24,21,0.04)'
-        }}
-        onClick={() => { if (setView && item.navTarget) setView(item.navTarget); }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      >
-        {/* Spotlight que sigue al ratón */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0, bottom: 0,
-            background: isHovered ? `radial-gradient(circle at center, ${isPrimary ? 'rgba(214, 83, 29, 0.10)' : 'rgba(26,24,21,0.06)'} 0%, transparent 60%)` : 'transparent',
-            left: spotlightX,
-            top: spotlightY,
-            transform: 'translate(-50%, -50%)',
-            width: '200%',
-            height: '200%',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}
-        />
-
-        {/* Contenido en Parallax */}
-        <motion.div
-          style={{
-            x: parallaxX,
-            y: parallaxY,
-            zIndex: 2,
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%'
-          }}
-        >
-          {/* El Foco Magnético (Orbit X-Ray Reactor) */}
-          <motion.div
-            animate={{
-              backgroundColor: isHovered ? (isPrimary ? 'rgba(214, 83, 29, 0.08)' : 'rgba(26,24,21,0.04)') : 'rgba(26,24,21,0.02)',
-              borderColor: isHovered ? accentColor : '#D9D2C2',
-              scale: isHovered ? 1.1 : 1
-            }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            style={{ width: '40px', height: '40px', borderRadius: '50%', margin: '0 auto 2rem', border: '1.5px solid #D9D2C2', position: 'relative' }}
-          >
-            {/* Core Pulsating Ring */}
-            <motion.div
-              animate={{
-                scale: isHovered ? [1, 1.8, 1] : (isPrimary ? [1, 1.2, 1] : 1),
-                opacity: isHovered ? [0.5, 0, 0.5] : (isPrimary ? [0.3, 0.1, 0.3] : 0)
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: `1px solid ${accentColor}`, borderRadius: '50%' }}
-            />
-          </motion.div>
-
-          {/* Dynamic Title Translation */}
-          <h3
-            style={{ color: '#1A1815', fontFamily: "'Oswald', sans-serif", fontSize: '1.4rem', fontWeight: 600, marginBottom: '1rem', letterSpacing: '-0.01em', height: '2.5rem' }}
-          >
-            {item.title}
-          </h3>
-
-          {/* Ambos textos siempre visibles: en touch (mobile) no hay hover, y la traducción a
-              valor de negocio es la copy con más peso persuasivo — no puede depender de mouseover. */}
-          <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-             <p style={{ color: '#6B6459', lineHeight: 1.6, fontWeight: 500, margin: 0 }}>
-               {item.desc}
-             </p>
-             <motion.p
-               animate={{ color: isHovered ? accentColor : '#1A1815' }}
-               style={{ lineHeight: 1.6, fontWeight: 600, margin: 0 }}
-             >
-               {item.businessTrans}
-             </motion.p>
-          </div>
-
-          {/* Deep Navigation CTA — siempre visible y clickeable (el hover es solo un realce, no la condición para poder tocarlo en móvil) */}
-          <motion.div
-             animate={{ y: isHovered ? -2 : 0 }}
-             transition={{ duration: 0.3 }}
-             style={{ marginTop: 'auto', paddingTop: '1rem' }}
-          >
-             <Link
-               to={
-                 item.navTarget === 'service_traffic' ? '/servicios/trafico' :
-                 item.navTarget === 'service_authority' ? '/servicios/autoridad' :
-                 '/servicios/ecosistemas'
-               }
-               style={{
-                 display: 'inline-block',
-                 background: 'transparent',
-                 color: accentColor,
-                 padding: '0.55rem 1.4rem',
-                 borderRadius: '4px',
-                 fontSize: '0.8rem',
-                 fontFamily: "'IBM Plex Mono', monospace",
-                 fontWeight: 600,
-                 textTransform: 'uppercase',
-                 letterSpacing: '1px',
-                 border: `1.5px solid ${accentColor}`,
-                 textDecoration: 'none',
-                 cursor: 'pointer',
-                 transition: 'all 0.2s ease'
-               }}
-               onMouseEnter={(e) => { e.currentTarget.style.background = isPrimary ? 'rgba(214,83,29,0.08)' : 'rgba(26,24,21,0.05)'; }}
-               onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
-             >
-               Profundizar →
-             </Link>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 const verifiedCases = [
   { id: 'monterrey', title: 'Monterrey Jurídico', type: 'Legal / High-Conversion', img: '/showcase/monterrey.jpg', href: 'https://monterreyjuridico.com/', domain: 'monterreyjuridico.com' },
@@ -206,6 +22,72 @@ const referenceMetrics = [
   { id: 'contratos', category: 'Desarrollo Web', title: 'Contratos B2B', type: 'Legal Ecommerce', tags: ['Ecommerce', 'Stripe API', 'Monopoly'] }
 ];
 
+// Tarjeta de caso verificable con recorrido largo al entrar (alterna izquierda/derecha)
+function CaseCard({ proj, i }) {
+  const variant = {
+    hidden: { opacity: 0, x: i % 2 === 0 ? -140 : 140, y: 40 },
+    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
+  };
+  return (
+    <motion.a
+      href={proj.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="showcase-card"
+      variants={variant}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, margin: '-60px' }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      style={{
+        display: 'block', textDecoration: 'none', cursor: 'pointer',
+        height: '420px', position: 'relative', borderRadius: '8px', overflow: 'hidden',
+        border: '1px solid #D9D2C2', background: '#1A1815', boxShadow: '4px 4px 0 rgba(26,24,21,0.1)'
+      }}
+    >
+      <img
+        src={proj.img}
+        alt={`${proj.title} — ${proj.type}`}
+        loading="lazy"
+        decoding="async"
+        className="showcase-bg"
+        style={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          objectFit: 'cover', objectPosition: proj.pos || 'top center',
+          transform: 'scale(1.08)',
+          filter: 'blur(4px) grayscale(30%)',
+          transition: 'all 0.5s ease', opacity: 0.6
+        }}
+      />
+      {/* Las capturas son de sitios/creativos reales con texto propio: blur + velo evitan que compita con el nuestro */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(26,24,21,0.35)' }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(26,24,21,1) 0%, rgba(26,24,21,0.15) 65%, rgba(26,24,21,0.15) 100%)' }} />
+      <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', zIndex: 10 }}>
+        <h4 style={{ color: '#FBF7ED', fontFamily: "'Oswald', sans-serif", fontSize: '1.5rem', fontWeight: 600, margin: 0, letterSpacing: '-0.01em', lineHeight: 1.1 }}>
+          {proj.title}
+        </h4>
+        <p style={{ color: '#D6531D', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', fontWeight: 600, margin: '0.7rem 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          {proj.type}
+        </p>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#FBF7ED', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.78rem', fontWeight: 600, border: '1px solid rgba(247,244,236,0.3)', borderRadius: '4px', padding: '0.4rem 0.8rem', marginTop: '0.4rem' }}>
+          {proj.domain}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+const metricVariant = {
+  hidden: { opacity: 0, y: 90 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+};
+
 function ShowcaseSection() {
   return (
     <section style={{ width: '100%', padding: '8rem 2rem', background: '#EDE7D8', borderTop: '1px solid #D9D2C2' }}>
@@ -214,14 +96,20 @@ function ShowcaseSection() {
       `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ textAlign: 'center', marginBottom: '5rem' }}
+        >
           <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 600, color: '#1A1815', letterSpacing: '-0.01em', margin: 0 }}>
             Pruebas Balísticas.
           </h2>
           <p style={{ color: '#6B6459', fontSize: '1.2rem', margin: '0.5rem auto 0 auto', maxWidth: '620px' }}>
             La evidencia de nuestro protocolo, sin mezclar lo verificable con lo reportado.
           </p>
-        </div>
+        </motion.div>
 
         {/* CASOS VERIFICABLES */}
         <div style={{ marginBottom: '5rem' }}>
@@ -234,56 +122,7 @@ function ShowcaseSection() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            {verifiedCases.map(proj => (
-              <motion.a
-                key={proj.id}
-                href={proj.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="showcase-card"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                style={{
-                  display: 'block', textDecoration: 'none', cursor: 'pointer',
-                  height: '420px', position: 'relative', borderRadius: '8px', overflow: 'hidden',
-                  border: '1px solid #D9D2C2', background: '#1A1815', boxShadow: '4px 4px 0 rgba(26,24,21,0.1)'
-                }}
-              >
-                <img
-                  src={proj.img}
-                  alt={`${proj.title} — ${proj.type}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="showcase-bg"
-                  style={{
-                    position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                    objectFit: 'cover', objectPosition: proj.pos || 'top center',
-                    transform: 'scale(1.08)',
-                    filter: 'blur(4px) grayscale(30%)',
-                    transition: 'all 0.5s ease', opacity: 0.6
-                  }}
-                />
-                {/* Las capturas son de sitios reales con texto propio: blur + velo evitan que compita con el nuestro, sin importar qué imagen sea */}
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(26,24,21,0.35)' }} />
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, rgba(26,24,21,1) 0%, rgba(26,24,21,0.15) 65%, rgba(26,24,21,0.15) 100%)' }} />
-                <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', zIndex: 10 }}>
-                  <h4 style={{ color: '#FBF7ED', fontFamily: "'Oswald', sans-serif", fontSize: '1.5rem', fontWeight: 600, margin: 0, letterSpacing: '-0.01em', lineHeight: 1.1 }}>
-                    {proj.title}
-                  </h4>
-                  <p style={{ color: '#D6531D', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8rem', fontWeight: 600, margin: '0.7rem 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    {proj.type}
-                  </p>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#FBF7ED', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.78rem', fontWeight: 600, border: '1px solid rgba(247,244,236,0.3)', borderRadius: '4px', padding: '0.4rem 0.8rem', marginTop: '0.4rem' }}>
-                    {proj.domain}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
+            {verifiedCases.map((proj, i) => <CaseCard key={proj.id} proj={proj} i={i} />)}
           </div>
         </div>
 
@@ -297,9 +136,15 @@ function ShowcaseSection() {
             <span style={{ color: '#948C78', fontSize: '0.85rem' }}>— resultados reportados, sin caso público que enlazar todavía</span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: '-60px' }}
+            variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}
+          >
             {referenceMetrics.map(item => (
-              <div key={item.id} style={{ background: '#F7F4EC', border: '1px solid #D9D2C2', borderRadius: '8px', padding: '1.5rem' }}>
+              <motion.div key={item.id} variants={metricVariant} style={{ background: '#F7F4EC', border: '1px solid #D9D2C2', borderRadius: '8px', padding: '1.5rem' }}>
                 <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#948C78', margin: '0 0 0.8rem 0' }}>
                   {item.category}
                 </p>
@@ -316,16 +161,100 @@ function ShowcaseSection() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
+// Un servicio expandido a la vez — el título de los colapsados se lee, el contenido persuasivo vive solo en el abierto
+function ServiceAccordionItem({ item, isOpen, onToggle, accentColor }) {
+  return (
+    <div style={{ borderBottom: '1px solid #D9D2C2' }}>
+      <button
+        onClick={onToggle}
+        style={{
+          all: 'unset', boxSizing: 'border-box', cursor: 'pointer', width: '100%',
+          display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem 0'
+        }}
+      >
+        <span style={{ alignSelf: 'stretch', width: '3px', minHeight: '2.5rem', background: isOpen ? accentColor : '#D9D2C2', flexShrink: 0, transition: 'background 0.3s ease' }} />
+        <span style={{
+          fontFamily: "'Oswald', sans-serif", fontWeight: 600, textAlign: 'left', flex: 1,
+          color: isOpen ? '#1A1815' : '#948C78',
+          fontSize: isOpen ? 'clamp(1.5rem, 3vw, 2.1rem)' : '1.2rem',
+          transition: 'font-size 0.3s ease, color 0.3s ease'
+        }}>
+          {item.title}
+        </span>
+        <motion.span
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ fontSize: '1.6rem', fontWeight: 300, color: isOpen ? accentColor : '#948C78', flexShrink: 0, lineHeight: 1 }}
+        >
+          +
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{ paddingLeft: 'calc(3px + 1.5rem)', paddingBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '720px' }}>
+              <p style={{ color: '#6B6459', lineHeight: 1.6, margin: 0, fontSize: '1.05rem' }}>{item.desc}</p>
+              <p style={{ color: accentColor, fontWeight: 600, lineHeight: 1.6, margin: 0, fontSize: '1.05rem' }}>{item.businessTrans}</p>
+              <div style={{ paddingTop: '0.5rem' }}>
+                <Link
+                  to={item.href}
+                  style={{
+                    display: 'inline-block', background: 'transparent', color: accentColor,
+                    padding: '0.55rem 1.4rem', borderRadius: '4px', fontSize: '0.8rem',
+                    fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, textTransform: 'uppercase',
+                    letterSpacing: '1px', border: `1.5px solid ${accentColor}`, textDecoration: 'none', cursor: 'pointer'
+                  }}
+                >
+                  Profundizar →
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+const servicesData = [
+  {
+    title: 'Meta Ads (Pauta Digital)',
+    desc: 'Campañas de adquisición inteligentes de extremo a extremo. En lugar de quemar presupuesto tratando de llegar a todos, analizamos tu mercado y dirigimos tu mensaje al cliente que ya te está buscando.',
+    businessTrans: 'Te acompañamos a sistematizar tus ventas. Dejas de depender de la suerte o recomendaciones para tener un flujo transparente y seguro de clientes nuevos cada mes.',
+    href: '/servicios/trafico'
+  },
+  {
+    title: 'Gestión de Redes & Copywriting',
+    desc: 'Escribimos textos persuasivos y diseñamos una identidad visual que transmite tu verdadera experiencia. Nos aseguramos de que tu marca dé la mejor primera impresión posible.',
+    businessTrans: 'Generamos confianza real sin arrogancia y sin juzgar. Educamos a tu prospecto para que, cuando toque a tu puerta, ya esté convencido del gran valor de lo que ofreces.',
+    href: '/servicios/autoridad'
+  },
+  {
+    title: 'Desarrollo de Sitios Web',
+    desc: 'Creamos plataformas de alto rendimiento visual y tecnológico. Más que una página web, esculpimos tu cuartel general digital con reactJS y estética de Silicon Valley.',
+    businessTrans: 'El componente donde se consolida la venta. Un sitio tan profesional que automáticamente justifica tus precios, blindando tu credibilidad 24/7 sin margen de error.',
+    href: '/servicios/ecosistemas'
+  }
+];
+
 export default function AgencyHome({ setView }) {
+  const [openService, setOpenService] = useState(0); // Meta Ads abierto por default: es el servicio ancla
+
   const sectionStyle = {
     minHeight: '100vh',
     width: '100%',
@@ -339,7 +268,7 @@ export default function AgencyHome({ setView }) {
   };
 
   const textVariant = {
-    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    hidden: { opacity: 0, y: 140, scale: 0.95 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
   };
 
@@ -371,12 +300,10 @@ export default function AgencyHome({ setView }) {
         ::-webkit-scrollbar { width: 0px; }
       `}</style>
 
-      <Helmet>
-        <title>Nuestra Agencia | Diseño Web & Meta Ads - Persuasivo</title>
-        <meta name="description" content="Especialistas en Desarrollo Web, Meta Ads y Gestión de Redes Sociales. Elevamos tu marca con estrategia, copywriting y alta tecnología sin complicaciones." />
-      </Helmet>
+      {/* SECTION 0: HERO */}
+      <Hero />
 
-      {/* SECTION 1: THE WHY (The Tech Magic & Creativity) */}
+      {/* SECTION 1: EL MANIFIESTO */}
       <section style={{ ...sectionStyle, justifyContent: 'center' }}>
         <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: false, margin: "-100px" }}
@@ -448,48 +375,38 @@ export default function AgencyHome({ setView }) {
         </motion.div>
       </section>
 
-      {/* SECTION 2: THE TECH STACK SHOWCASE */}
+      {/* SECTION 2: ARSENAL — acordeón, un servicio a la vez */}
       <section style={{ ...sectionStyle, background: '#F7F4EC', borderTop: '1px solid #D9D2C2' }}>
         <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: false, margin: "-150px" }}
           variants={{
-            hidden: { opacity: 0, y: 100 },
-            visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.2 } }
+            hidden: { opacity: 0, y: 220 },
+            visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
           }}
-          style={{ width: '100%', maxWidth: '1200px', textAlign: 'center' }}
+          style={{ width: '100%', maxWidth: '800px' }}
         >
-          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', fontWeight: 600, color: '#1A1815', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '1rem' }}>
-            Nuestro <span style={{ color: '#D6531D' }}>Arsenal</span> Creativo.
-          </h2>
-          <p style={{ color: '#6B6459', fontSize: '1.15rem', marginBottom: '5rem' }}>Las 3 áreas clave para escalar tu negocio de manera estructurada y predecible.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-            {[
-              {
-                title: 'Meta Ads (Pauta Digital)',
-                desc: 'Campañas de adquisición inteligentes de extremo a extremo. En lugar de quemar presupuesto tratando de llegar a todos, analizamos tu mercado y dirigimos tu mensaje al cliente que ya te está buscando.',
-                businessTrans: 'Te acompañamos a sistematizar tus ventas. Dejas de depender de la suerte o recomendaciones para tener un flujo transparente y seguro de clientes nuevos cada mes.',
-                navTarget: 'service_traffic'
-              },
-              {
-                title: 'Gestión de Redes & Copywriting',
-                desc: 'Escribimos textos persuasivos y diseñamos una identidad visual que transmite tu verdadera experiencia. Nos aseguramos de que tu marca dé la mejor primera impresión posible.',
-                businessTrans: 'Generamos confianza real sin arrogancia y sin juzgar. Educamos a tu prospecto para que, cuando toque a tu puerta, ya esté convencido del gran valor de lo que ofreces.',
-                navTarget: 'service_authority'
-              },
-              {
-                title: 'Desarrollo de Sitios Web',
-                desc: 'Creamos plataformas de alto rendimiento visual y tecnológico. Más que una página web, esculpimos tu cuartel general digital con reactJS y estética de Silicon Valley.',
-                businessTrans: 'El componente donde se consolida la venta. Un sitio tan profesional que automáticamente justifica tus precios, blindando tu credibilidad 24/7 sin margen de error.',
-                navTarget: 'service_ecosystems'
-              }
-            ].map((item, i) => (
-              <MagneticCard key={i} item={item} isPrimary={i === 0} setView={setView} />
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', fontWeight: 600, color: '#1A1815', lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '1rem' }}>
+              Nuestro <span style={{ color: '#D6531D' }}>Arsenal</span> Creativo.
+            </h2>
+            <p style={{ color: '#6B6459', fontSize: '1.15rem' }}>Las 3 áreas clave para escalar tu negocio de manera estructurada y predecible.</p>
+          </div>
+
+          <div style={{ borderTop: '1px solid #D9D2C2' }}>
+            {servicesData.map((item, i) => (
+              <ServiceAccordionItem
+                key={i}
+                item={item}
+                isOpen={openService === i}
+                onToggle={() => setOpenService(i)}
+                accentColor={i === 0 ? '#D6531D' : '#1A1815'}
+              />
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* SECTION 2.5: PRUEBAS BALISTICAS (Showcase Carousel) */}
+      {/* SECTION 2.5: PRUEBAS BALISTICAS (Showcase) */}
       <ShowcaseSection />
 
       {/* SECTION 3: THE WHAT (The Object of Desire Showcase) */}
@@ -497,8 +414,8 @@ export default function AgencyHome({ setView }) {
         <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: false, margin: "-100px" }}
           variants={{
-             hidden: { opacity: 0, scale: 0.9 },
-             visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+             hidden: { opacity: 0, scale: 0.85, y: 100 },
+             visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
           }}
           style={{ width: '100%', maxWidth: '1000px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
@@ -517,10 +434,8 @@ export default function AgencyHome({ setView }) {
           </div>
 
           <motion.div
-             initial={{ opacity: 0, y: 50 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+             animate={{ y: [0, -12, 0] }}
+             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
              style={{
                width: '100%',
                maxWidth: '430px', /* Exactly fits Pacman 420px + border */
@@ -554,7 +469,7 @@ export default function AgencyHome({ setView }) {
         </motion.div>
       </section>
 
-      {/* SECTION 4: THE ULTIMATUM & FOOTER */}
+      {/* SECTION 4: EL CIERRE — negativo (ink) para romper el paper de principio a fin */}
       <section style={{
         position: 'relative',
         display: 'flex',
@@ -562,27 +477,26 @@ export default function AgencyHome({ setView }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '15vh 5vw 0 5vw',
-        background: 'linear-gradient(180deg, #EDE7D8 0%, #F7F4EC 100%)',
-        borderTop: '1px solid #D9D2C2'
+        background: '#1A1815'
       }}>
         {/* Gran CTA Central */}
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
           style={{ textAlign: 'center', maxWidth: '1000px', backgroundColor: 'transparent', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
         >
-          <div style={{ display: 'inline-block', padding: '0.5rem 1rem', border: '1px solid #D9D2C2', marginBottom: '2rem', margin: '0 auto', color: '#6B6459', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
+          <div style={{ display: 'inline-block', padding: '0.5rem 1rem', border: '1px solid rgba(247,244,236,0.25)', marginBottom: '2rem', margin: '0 auto', color: 'rgba(247,244,236,0.65)', fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
             Tu Próximo Nivel
           </div>
 
-          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', fontWeight: 700, color: '#1A1815', marginBottom: '1.2rem', letterSpacing: '-0.01em', lineHeight: 1.08 }}>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', fontWeight: 700, color: '#F7F4EC', marginBottom: '1.2rem', letterSpacing: '-0.01em', lineHeight: 1.08 }}>
             Construyamos algo <br/>
             <span style={{ color: '#D6531D' }}>asombroso.</span>
           </h2>
 
-          <p style={{ fontSize: '1.15rem', color: '#6B6459', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '1.15rem', color: 'rgba(247,244,236,0.6)', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto', lineHeight: 1.6 }}>
             A esto nos dedicamos en Persuasivo: Hacer que la tecnología de punta trabaje para el diseño de tu marca. Deja de competir. Empieza a dominar.
           </p>
 
@@ -595,7 +509,7 @@ export default function AgencyHome({ setView }) {
                 background: '#D6531D', color: '#FBF7ED', border: '1.5px solid #1A1815', padding: '1.35rem 3.6rem',
                 borderRadius: '4px', fontSize: '1.05rem', fontWeight: 700, cursor: 'pointer',
                 textTransform: 'uppercase', letterSpacing: '1.5px',
-                boxShadow: '4px 4px 0 rgba(26,24,21,0.2)'
+                boxShadow: '4px 4px 0 rgba(0,0,0,0.35)'
               }}
             >
               Iniciar Operación
@@ -603,8 +517,8 @@ export default function AgencyHome({ setView }) {
           </div>
         </motion.div>
 
-        {/* Footer Minimalista (Apple-style / Familiar) */}
-        <Footer setView={setView} />
+        {/* Footer en negativo */}
+        <Footer dark />
       </section>
 
     </motion.div>

@@ -2,12 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const routeFor = { landing: '/', agency: '/agencia', contact: '/contacto' };
+const routeFor = { landing: '/', contact: '/contacto' };
 
 export default function GlassNavbar({ currentView }) {
   const navItems = [
-    { id: 'landing', label: 'Bienvenida' },
-    { id: 'agency', label: 'Agencia' },
+    { id: 'landing', label: 'Inicio' },
     { id: 'contact', label: 'Contacto' }
   ];
 
