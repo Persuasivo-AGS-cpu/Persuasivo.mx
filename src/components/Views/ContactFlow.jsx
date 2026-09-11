@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { createClient } from '@supabase/supabase-js';
 import Footer from '../Navigation/Footer';
-
-// Initialize Supabase Client — createClient lanza si faltan las credenciales,
-// lo que tumbaría toda la ruta /contacto (sin CRM el lead sigue llegando por
-// el fetch a formsubmit.co más abajo, que no depende de Supabase).
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null;
 
 export default function ContactFlow({ setView }) {
   const [step, setStep] = useState(1);
@@ -69,34 +61,6 @@ export default function ContactFlow({ setView }) {
             _subject: "NUEVO LEAD CALIFICADO - The Factory Persuasivo"
         })
       });
-      // Inyección NATIVA a Supabase para sonar la campana en cualquier servidor
-      try {
-        await supabase.from('crm_tasks').insert([{
-           title: `${formData.url || formData.email.split('@')[0]} - ${formData.scope.map(s => s === 'meta_ads' ? 'Ads' : s === 'redes' ? 'Social' : s === 'landing' ? 'Landing' : 'Web').join('+')}`,
-           column_state: 'Backlog',
-           priority: 'Alta',
-           description: `**LEAD ENTRANTE (LANDING PAGE)**\n\n- **Nombre:** ${formData.name}\n- **Teléfono:** ${formData.phone}\n- **Email Principal:** ${formData.email}\n- **URL/Empresa:** ${formData.url || 'N/A'}\n- **Inversión:** ${formData.budget}\n- **Servicios:** ${formData.scope.join(', ')}`
-        }]);
-
-        // Inyectar simultáneamente al INBOX de Aterrizajes (onboarding_queue) para que suene la campana de notificaciones de la UI
-        await supabase.from('onboarding_queue').insert([{
-           company_name: formData.url || formData.name || formData.email.split('@')[0] || 'Lead Web',
-           sales_phone: formData.phone || formData.email,
-           project_type: 'Contacto Express',
-           pain_point: `Este prospecto llegó por el formulario rápido. \nPresupuesto asignado: ${formData.budget}`,
-           hook: `Servicios solicitados: ${formData.scope.join(', ')}`,
-           authority: 'N/A',
-           cta: 'Validar y Contactar',
-           status: 'pending',
-           services: {
-              ticket_range: formData.budget,
-              current_website: formData.url || null,
-              traffic_source: 'Landing Page'
-           }
-        }]);
-      } catch (crmError) {
-        // Silently handle CRM injection error to avoid breaking the UX
-      }
       setStatus('success');
     } catch (error) {
       console.error("Error al enviar formulario:", error);

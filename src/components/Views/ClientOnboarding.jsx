@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { createClient } from '@supabase/supabase-js';
 import ABVoiceInput from './ABVoiceInput';
-
-// Initialize Supabase Client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null;
 
 const defaultData = {
   projectType: '',
@@ -115,21 +109,6 @@ export default function ClientOnboarding({ setView }) {
     }
 
     setIsSubmitting(true);
-    let logoUrl = null;
-    
-    // 1. Upload Logo if exists
-    if (logoFile) {
-      const fileExt = logoFile.name.split('.').pop();
-      const fileName = `${Date.now()}_${formData.companyName.replace(/\s+/g, '')}.${fileExt}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('client-logos')
-        .upload(fileName, logoFile);
-        
-      if (!uploadError) {
-         const { data: publicUrlData } = supabase.storage.from('client-logos').getPublicUrl(fileName);
-         logoUrl = publicUrlData.publicUrl;
-      }
-    }
 
     // Join array into string for the database payload
     const leadFieldsStr = Array.isArray(formData.leadFields) ? formData.leadFields.join(', ') : formData.leadFields;
@@ -154,60 +133,31 @@ export default function ClientOnboarding({ setView }) {
       social_media: formData.socialMedia
     };
 
-    // 3. Submit Data
-    const { error } = await supabase
-      .from('onboarding_queue')
-      .insert([
-        {
-          project_type: formData.projectType,
-          company_name: formData.companyName,
-          sales_phone: formData.salesPhone,
-          pain_point: formData.painPoint,
-          hook: formData.hook,
-          authority: formData.authority,
-          services: strategicMatrix,
-          cta: formData.cta,
-          logo_url: logoUrl
-        }
-      ]);
-
-    if (!error) {
-       // --- INYECCIÓN A CRM KANBAN PARA ACTIVAR CAMPANA ---
-       await supabase.from('crm_tasks').insert([{
-          title: `${formData.companyName || 'Lead Anónimo'} - ${formData.projectType || 'Onboarding'}`,
-          column_state: 'Backlog',
-          priority: 'Alta',
-          description: `**NUEVO CLIENTE CERRADO VÍA ONBOARDING**\n\n- **Empresa:** ${formData.companyName}\n- **Contacto:** ${formData.salesPhone}\n- **Servicio:** ${formData.projectType}\n\n*El cliente ha completado la ingesta de datos y está listo para fase de Kickoff.*`
-       }]);
-
-       // --- RESPALDO: ENVIAR POR CORREO (FormSubmit) ---
-       try {
-         await fetch("https://formsubmit.co/ajax/hola@persuasivo.mx", {
-           method: "POST",
-           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-           body: JSON.stringify({
-             Proyecto: formData.projectType,
-             Empresa: formData.companyName,
-             Whatsapp: formData.salesPhone,
-             PuntoDeDolor: formData.painPoint,
-             SalsaSecreta_Hook: formData.hook,
-             Autoridad: formData.authority,
-             Servicios: strategicMatrix,
-             Llamado_Accion: formData.cta,
-             Assets: formData.assetsLink,
-             _subject: `💎 ONBOARDING COMPLETADO - ${formData.companyName}`
-           })
-         });
-       } catch(e) {
-         console.error("Fallo el envio de correo de respaldo");
-       }
-
-       setIsDone(true);
-       setStep(14); // Final Step
-       localStorage.removeItem('persuasivo_onboarding_v2'); // Clean memory
-    } else {
-       alert("Hubo un error de conexión con los bóvedas corporativas, intenta de nuevo.");
+    // Envío por correo (FormSubmit)
+    try {
+      await fetch("https://formsubmit.co/ajax/hola@persuasivo.mx", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          Proyecto: formData.projectType,
+          Empresa: formData.companyName,
+          Whatsapp: formData.salesPhone,
+          PuntoDeDolor: formData.painPoint,
+          SalsaSecreta_Hook: formData.hook,
+          Autoridad: formData.authority,
+          Servicios: strategicMatrix,
+          Llamado_Accion: formData.cta,
+          Assets: formData.assetsLink,
+          _subject: `💎 ONBOARDING COMPLETADO - ${formData.companyName}`
+        })
+      });
+    } catch (e) {
+      console.error("Error al enviar formulario:", e);
     }
+
+    setIsDone(true);
+    setStep(14); // Final Step
+    localStorage.removeItem('persuasivo_onboarding_v2'); // Clean memory
     setIsSubmitting(false);
   };
 
