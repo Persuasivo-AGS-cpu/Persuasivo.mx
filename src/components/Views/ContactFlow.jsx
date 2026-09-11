@@ -4,10 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import { createClient } from '@supabase/supabase-js';
 import Footer from '../Navigation/Footer';
 
-// Initialize Supabase Client
+// Initialize Supabase Client — createClient lanza si faltan las credenciales,
+// lo que tumbaría toda la ruta /contacto (sin CRM el lead sigue llegando por
+// el fetch a formsubmit.co más abajo, que no depende de Supabase).
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null;
 
 export default function ContactFlow({ setView }) {
   const [step, setStep] = useState(1);
