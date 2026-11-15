@@ -93,3 +93,17 @@ Con eso, decidir con el cliente: ¿qué de Conqr es la inspiración real (el pos
 5. **Antes de ejecutar el rebrand completo**, conseguir un solo "sí" del cliente sobre el plan (no otra ronda de rediseño a ciegas — ya pasó una vez este año que "no se le terminaba de gustar la propuesta").
 6. En paralelo o después, no perder de vista los arreglos de UX ya diagnosticados (sección 1, punto 7) — son correcciones necesarias sin importar el posicionamiento final: CTA/WhatsApp visible en todo el scroll, suavizar el gate del formulario, arreglar el footer roto en servicios, corregir la errata, unificar nombres de servicio entre footer y páginas.
 7. Recordar antes de desplegar: verificar en Vercel que el deployment de producción realmente tenga el commit esperado con `target: production` antes de dar por hecho que ya está en vivo (ver gotcha en sección 0).
+
+## 6. Herramienta de auditoría SEO ya investigada e instalada (pendiente de correr de verdad)
+
+El usuario encontró `https://github.com/AgriciDaniel/jev-seo` (un comentario en Instagram linkeaba a este repo) y pidió investigarlo e instalarlo si todo estaba bien. Se hizo una revisión de seguridad completa antes de instalar nada:
+
+- Repo MIT, bien documentado, dependencias estándar (requests, beautifulsoup4, lxml, matplotlib, jinja2, weasyprint, openpyxl) — ningún paquete sospechoso.
+- Revisado el manejo de credenciales (`jevseo/env.py`): solo lee nombres de variables específicas desde ubicaciones acotadas, nunca las imprime ni las exfiltra.
+- Todos los endpoints de red en el código coinciden exactamente con lo documentado: `api.dataforseo.com`, `api.typesafe.ai`, `www.googleapis.com` (PageSpeed) — nada inesperado.
+- 38/38 tests internos (offline, sin red ni gasto) pasaron.
+- Instalado en un venv aislado en `/home/user/agricidaniel/jev-seo` (dentro del contenedor de la sesión en la nube — **no existe en tu Mac**, hay que clonarlo de nuevo ahí).
+- Se corrió una auditoría de prueba contra `pypi.org` (funcionó de punta a punta: crawl, 52 reglas, scoring, PDF/XLSX/MD) para confirmar que la herramienta sí funciona.
+- **No se pudo correr contra `www.persuasivo.mx`** desde la sesión en la nube — el propio guard de seguridad de la herramienta rechazó el dominio porque el proxy de red de ese entorno no lo resuelve a una IP pública. Este es el mismo bloqueo de red que afectó todo el research de Conqr.mx.
+
+**Pendiente para la sesión local:** clonar `https://github.com/AgriciDaniel/jev-seo`, instalar (`python3 -m venv .venv && pip install -r requirements.txt`), y correr `bin/jevseo audit https://www.persuasivo.mx` de verdad — ahí sí debería alcanzar el dominio real y (opcionalmente, si se configura `TYPESAFE_API_KEY` y `PAGESPEED_API_KEY` en un `.env`) dar un diagnóstico técnico de SEO completo y accionable, justo lo que esta sesión no pudo verificar directamente por el bloqueo de red del entorno cloud.
