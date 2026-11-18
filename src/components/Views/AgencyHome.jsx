@@ -1,189 +1,86 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import LandingHero from './LandingHero';
-import { services } from '../../data/servicesData';
+import ServiceList from '../Home/ServiceList';
+import ValuesRibbon from '../Home/ValuesRibbon';
+import PhoneFrame from '../Home/PhoneFrame';
+import MetricsBand from '../Home/MetricsBand';
+import Testimonials from '../Home/Testimonials';
 import { getFeaturedProjects } from '../../data/caseStudiesData';
-import { blogPosts } from '../../data/blogData.jsx';
+import { waLink } from '../../data/contact';
 
-/* ─── Philosophical Scroll Reveal ─── */
+/* ─── Scroll Reveal Text ─── */
 function ScrollRevealText() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-  
-  const color = useTransform(scrollYProgress, [0, 0.8], ["var(--text-ghost)", "var(--text-primary)"]);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start center', 'end center'] });
+  const color = useTransform(scrollYProgress, [0, 0.8], ['var(--text-ghost)', 'var(--text-primary)']);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      style={{
-        padding: '10vw 5vw',
-        background: 'var(--bg-void)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
+      style={{ padding: '10vw 5vw', background: 'var(--bg-void)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <motion.h2 style={{
-        fontSize: 'clamp(2.5rem, 6vw, 6rem)',
-        fontWeight: 500,
-        color,
-        maxWidth: '1200px',
-        lineHeight: 1.1,
-        letterSpacing: '-0.02em',
-        textAlign: 'center',
-        fontFamily: 'var(--font-display)'
-      }}>
+      <motion.h2
+        style={{
+          fontSize: 'clamp(2.5rem, 6vw, 6rem)',
+          fontWeight: 500,
+          color,
+          maxWidth: '1200px',
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          textAlign: 'center',
+          fontFamily: 'var(--font-display)',
+        }}
+      >
         Entendemos tu negocio y a tus clientes. Te damos el poder de impactar a cualquier escala.
       </motion.h2>
     </section>
   );
 }
 
-/* ─── Horizontal Carousel for Work ─── */
+/* ─── Horizontal Work Carousel (phone frames) ─── */
 function WorkCarousel({ projects }) {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
 
   return (
-    <section 
-      ref={containerRef}
-      style={{
-        height: '200vh', // Create scroll space
-        background: 'var(--bg-deep)',
-        position: 'relative'
-      }}
-    >
-      <div style={{
-        position: 'sticky',
-        top: 0,
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden'
-      }}>
-        <motion.div style={{ x, display: 'flex', gap: '4rem', paddingLeft: '5vw' }}>
+    <section ref={containerRef} style={{ height: '200vh', background: 'var(--bg-deep)', position: 'relative' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
+        <h2 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: 'var(--text-secondary)', padding: '0 5vw', marginBottom: '2rem' }}>
+          Portafolio
+        </h2>
+        <motion.div style={{ x, display: 'flex', gap: '3rem', paddingLeft: '5vw' }}>
           {projects.map((p) => (
-            <Link to={`/work/${p.slug}`} key={p.id} style={{ textDecoration: 'none' }}>
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
+            <Link to={`/work/${p.slug}`} key={p.id} style={{ textDecoration: 'none', flex: '0 0 auto' }}>
+              <motion.div
+                whileHover={{ y: -8 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                style={{
-                  width: 'clamp(300px, 40vw, 600px)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                  cursor: 'pointer'
-                }}
+                style={{ width: 'clamp(200px, 24vw, 290px)', display: 'flex', flexDirection: 'column', gap: '1.5rem', cursor: 'pointer' }}
               >
-                <div style={{
-                  borderRadius: 'var(--radius-xl)',
-                  overflow: 'hidden',
-                  aspectRatio: '4/5',
-                  background: 'var(--border-subtle)',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${p.img})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }} />
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '1.8rem', fontWeight: 500, color: 'var(--text-primary)', marginBottom: '0.5rem', fontFamily: 'var(--font-display)' }}>
+                <PhoneFrame src={p.img} alt={p.title} />
+                <div style={{ textAlign: 'center' }}>
+                  <h3 style={{ fontSize: '1.6rem', fontWeight: 400, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
                     {p.title}
                   </h3>
-                  <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
-                    <span style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>{p.industry}</span>
-                    <span style={{ color: 'var(--text-ghost)' }}>/</span>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{p.tags.slice(0,2).join(', ')}</span>
-                  </div>
+                  <p style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+                    {p.industry}
+                  </p>
                 </div>
               </motion.div>
             </Link>
           ))}
-          <div style={{ width: '5vw' }} /> {/* Right padding filler */}
+          <div style={{ flex: '0 0 5vw' }} />
         </motion.div>
       </div>
     </section>
   );
 }
 
-/* ─── Editorial Service List ─── */
-function EditorialServices({ services }) {
-  return (
-    <section id="services" style={{ padding: '8vw 5vw', background: 'var(--bg-void)' }}>
-      <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '4rem' }}>
-          Nuestras Disciplinas
-        </h2>
-        
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {services.map((s, idx) => (
-            <Link to={s.routePath} key={s.id} style={{ textDecoration: 'none' }}>
-              <motion.div 
-                initial="initial"
-                whileHover="hover"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '3rem 0',
-                  borderBottom: '1px solid var(--border-subtle)',
-                  cursor: 'pointer',
-                  position: 'relative'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '2rem' }}>
-                  <span style={{ fontSize: '1rem', color: 'var(--text-ghost)', fontWeight: 500 }}>
-                    0{idx + 1}
-                  </span>
-                  <motion.h3 
-                    variants={{
-                      initial: { x: 0 },
-                      hover: { x: 20 }
-                    }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', fontWeight: 500, color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}
-                  >
-                    {s.title}
-                  </motion.h3>
-                </div>
-                
-                <motion.div
-                  variants={{
-                    initial: { opacity: 0, x: -10 },
-                    hover: { opacity: 1, x: 0 }
-                  }}
-                >
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </motion.div>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-/* ─── Main Home Component ─── */
+/* ─── Home ─── */
 export default function AgencyHome() {
   const location = useLocation();
   const featuredProjects = getFeaturedProjects();
@@ -198,50 +95,56 @@ export default function AgencyHome() {
   }, [location]);
 
   return (
-    <motion.div key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, filter: 'blur(10px)' }} transition={{ duration: 0.8 }}
-      style={{ width: '100%', minHeight: '100vh', background: 'var(--bg-void)' }}>
-
+    <motion.div
+      key="home"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+      style={{ width: '100%', minHeight: '100vh', background: 'var(--bg-void)' }}
+    >
       <Helmet>
-        <title>Persuasivo | Arquitectura Digital para Ecosistemas de Alto Rendimiento</title>
-        <meta name="description" content="Estrategia digital, diseño de experiencias y performance para empresas que piensan diferente." />
+        <title>Agencia de Marketing Digital en Monterrey | Persuasivo</title>
+        <meta name="description" content="Branding, desarrollo web, contenido en video y Meta Ads para empresas en Monterrey. Solicita una cotización por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx" />
-        <meta property="og:title" content="Persuasivo | Arquitectura Digital de Alto Rendimiento" />
+        <meta property="og:title" content="Persuasivo | Agencia de Marketing Digital en Monterrey" />
         <meta property="og:description" content="Para marcas que no tienen miedo de ser recordadas." />
         <meta property="og:url" content="https://persuasivo.com.mx" />
         <meta property="og:type" content="website" />
       </Helmet>
 
-      {/* HERO */}
       <LandingHero />
-
-      {/* PHILOSOPHICAL SCROLL REVEAL */}
       <ScrollRevealText />
-
-      {/* HORIZONTAL CAROUSEL WORK */}
+      <ServiceList />
+      <ValuesRibbon />
       <WorkCarousel projects={featuredProjects} />
-
-      {/* EDITORIAL SERVICES */}
-      <EditorialServices services={services} />
+      <MetricsBand />
+      <Testimonials />
 
       {/* FINAL CTA */}
-      <section style={{ padding: '10vw 5vw', background: 'var(--bg-deep)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-        <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }}>
+      <section style={{ padding: '10vw 5vw', background: 'var(--bg-deep)', textAlign: 'center' }}>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <h2 style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', fontWeight: 400, color: 'var(--text-primary)', letterSpacing: '-0.03em', lineHeight: 1, marginBottom: '2rem', fontFamily: 'var(--font-display)' }}>
             Construyamos algo <br /><span style={{ fontStyle: 'italic' }}>asombroso.</span>
           </h2>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '4rem', maxWidth: '600px', marginInline: 'auto' }}>
+          <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '3rem', maxWidth: '600px', marginInline: 'auto' }}>
             Cada día con un ecosistema digital obsoleto es dinero perdido y terreno cedido a tu competencia.
           </p>
-
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contacto" style={{
-              background: 'var(--text-primary)', color: 'var(--bg-deep)', padding: '1.2rem 3rem', borderRadius: 'var(--radius-full)',
-              fontSize: '1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em',
-              textDecoration: 'none', transition: 'background 0.3s'
-            }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--text-secondary)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--text-primary)' }}
-            >Agendar Consultoría</Link>
+            <a
+              href={waLink('Hola, quiero una cotización')}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ background: 'var(--text-primary)', color: 'var(--bg-deep)', padding: '1.2rem 3rem', borderRadius: 'var(--radius-full)', fontSize: '1rem', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Escríbenos por WhatsApp
+            </a>
+            <Link
+              to="/contacto"
+              style={{ border: '1px solid var(--border-strong)', color: 'var(--text-primary)', padding: '1.2rem 3rem', borderRadius: 'var(--radius-full)', fontSize: '1rem', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Agendar consultoría
+            </Link>
           </div>
         </motion.div>
       </section>
