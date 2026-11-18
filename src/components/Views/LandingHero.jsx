@@ -1,100 +1,86 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { waLink } from '../../data/contact';
+
+const ease = [0.16, 1, 0.3, 1];
 
 export default function LandingHero() {
-  const containerRef = useRef(null);
-  
-  // Track scroll progress within the hero section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
-  // Transform scroll progress into color (Ghost to Primary)
-  const color = useTransform(scrollYProgress, [0, 0.5], ["var(--text-ghost)", "var(--text-primary)"]);
-
   return (
-    <motion.div 
-      ref={containerRef}
+    <section
       id="hero"
-      key="landing"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        width: '100%', 
-        minHeight: '100vh', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        padding: 'var(--section-padding)',
-        position: 'relative',
-        overflow: 'hidden'
+        width: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '16vh 5vw 10vh',
+        background: 'var(--bg-void)',
       }}
     >
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        style={{ zIndex: 1, textAlign: 'center', width: '100%', maxWidth: '1400px' }}
+        transition={{ duration: 0.7, ease }}
+        style={{ width: '100%', maxWidth: 'var(--container-max)', margin: '0 auto' }}
       >
-        <motion.h1 style={{
-          fontSize: 'clamp(4.5rem, 10vw, 11rem)',
-          fontWeight: 400,
-          letterSpacing: '-0.04em',
-          lineHeight: '0.9',
-          marginBottom: '2rem',
-          color: color,
-          fontFamily: 'var(--font-display)'
-        }}>
-          Para marcas que no tienen miedo de ser <span style={{ fontStyle: 'italic' }}>recordadas.</span>
-        </motion.h1>
-        
-        <p style={{ 
-          color: 'var(--text-secondary)', 
-          fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', 
-          marginTop: '2rem', 
-          fontWeight: 500, 
-          letterSpacing: '-0.01em',
-          maxWidth: '600px',
-          marginInline: 'auto',
-          lineHeight: '1.6'
-        }}>
-          Estrategia digital, diseño de experiencias y performance para empresas que piensan diferente.
-        </p>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+        <h1
           style={{
-            position: 'absolute',
-            bottom: '40px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '10px'
+            fontFamily: 'var(--font-display)',
+            fontWeight: 400,
+            fontSize: 'clamp(3rem, 8vw, 7.5rem)',
+            letterSpacing: '-0.03em',
+            lineHeight: 0.95,
+            color: 'var(--text-primary)',
+            marginBottom: '2rem',
+            maxWidth: '1100px',
           }}
         >
-          <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: 'var(--text-secondary)' }}>
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+          Agencia de marketing digital en Monterrey que genera <span style={{ fontStyle: 'italic' }}>resultados reales.</span>
+        </h1>
+
+        <p
+          style={{
+            color: 'var(--text-secondary)',
+            fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)',
+            lineHeight: 1.6,
+            maxWidth: '620px',
+            marginBottom: '2.5rem',
+          }}
+        >
+          Branding, desarrollo web, contenido en video y Meta Ads para empresas que quieren que las recuerden y las contraten.
+        </p>
+
+        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <motion.a
+            href={waLink('Hola, quiero una cotización')}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.03 }}
             style={{
-              width: '1px',
-              height: '40px',
-              background: 'linear-gradient(to bottom, var(--text-secondary), transparent)'
+              background: 'var(--text-primary)',
+              color: 'var(--bg-deep)',
+              padding: '1.1rem 2.5rem',
+              borderRadius: 'var(--radius-full)',
+              fontWeight: 600,
+              fontSize: '1rem',
+              textDecoration: 'none',
             }}
-          />
-        </motion.div>
+          >
+            Quiero una cotización →
+          </motion.a>
+          <Link
+            to="/work"
+            style={{ color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 4 }}
+          >
+            Ver nuestro trabajo
+          </Link>
+        </div>
+
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '2.5rem' }}>
+          +215% leads · 12X ROAS · Renters · Contratos · Monterrey Jurídico
+        </p>
       </motion.div>
-    </motion.div>
+    </section>
   );
 }
