@@ -16,6 +16,7 @@ import ServiceTraffic from './components/Views/ServiceTraffic';
 import ServiceAuthority from './components/Views/ServiceAuthority';
 import ServiceEcosystems from './components/Views/ServiceEcosystems';
 import ServiceContent from './components/Views/ServiceContent';
+import ServiceBranding from './components/Views/ServiceBranding';
 import ClientOnboarding from './components/Views/ClientOnboarding';
 import VerticalLanding from './components/Views/VerticalLanding';
 import BlogIndex from './components/Views/BlogIndex';
@@ -210,6 +211,7 @@ function AppContent() {
           <Route path="/servicios/autoridad" element={<ServiceAuthority setView={setView} />} />
           <Route path="/servicios/ecosistemas" element={<ServiceEcosystems setView={setView} />} />
           <Route path="/contenido" element={<ServiceContent />} />
+          <Route path="/servicios/branding" element={<ServiceBranding />} />
 
           {/* Legal */}
           <Route path="/legal/privacidad" element={<LegalView setView={setView} docType="privacy" />} />

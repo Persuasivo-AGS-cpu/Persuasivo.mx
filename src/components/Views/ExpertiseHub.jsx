@@ -45,7 +45,7 @@ export default function ExpertiseHub() {
             ¿Qué hacemos en Persuasivo?
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', maxWidth: '700px', lineHeight: 1.6 }}>
-            Tres disciplinas complementarias. Un solo objetivo: que tu negocio facture más con menos fricción.
+            Disciplinas complementarias. Un solo objetivo: que tu negocio facture más con menos fricción.
           </p>
         </motion.div>
       </section>

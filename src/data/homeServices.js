@@ -1,10 +1,8 @@
-import { waLink } from './contact';
-
 export const homeServices = [
   {
     word: 'Branding',
     detail: 'Identidad de marca, estrategia, posicionamiento y rediseño',
-    href: waLink('Hola, me interesa branding para mi empresa'),
+    to: '/servicios/branding',
   },
   {
     word: 'Web',

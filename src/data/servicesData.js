@@ -6,6 +6,28 @@
 
 export const services = [
   {
+    id: 'branding',
+    slug: 'branding',
+    title: 'Branding',
+    subtitle: 'Identidad y Narrativa de Marca',
+    icon: '✦',
+    navTarget: 'service_branding',
+    routePath: '/servicios/branding',
+    desc: 'Identidad, posicionamiento y narrativa para que tu empresa cuente quién es con claridad y se distinga de su competencia.',
+    businessTrans: 'Una marca coherente justifica tus precios y hace que te elijan antes de comparar.',
+    longDesc: 'Definimos quién eres, a quién le hablas y cómo suenas y te ves en cada punto de contacto: logo, sistema visual, voz, manual y aplicaciones.',
+    capabilities: [
+      'Diagnóstico y posicionamiento',
+      'Narrativa y manifiesto de marca',
+      'Logotipo y sistema visual',
+      'Voz y tono',
+      'Manual de identidad',
+      'Aplicaciones en papelería, redes y web'
+    ],
+    metrics: [],
+    faq: []
+  },
+  {
     id: 'trafico',
     slug: 'trafico',
     title: 'Meta Ads',
