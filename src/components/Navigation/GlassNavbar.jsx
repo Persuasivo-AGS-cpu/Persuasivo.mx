@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { waLink } from '../../data/contact';
 
 const navItems = [
   { path: '/work', label: 'Work' },
   { path: '/servicios', label: 'Servicios' },
   { path: '/nosotros', label: 'Nosotros' },
   { path: '/blog', label: 'Insights' },
+  { path: '/contacto', label: 'Contacto' },
 ];
 
 export default function GlassNavbar() {
@@ -100,8 +102,10 @@ export default function GlassNavbar() {
             </Link>
           ))}
 
-          <Link
-            to="/contacto"
+          <a
+            href={waLink('Hola, quiero iniciar un proyecto')}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               background: 'var(--text-primary)',
               color: 'var(--bg-void)',
@@ -112,15 +116,12 @@ export default function GlassNavbar() {
               textDecoration: 'none',
               fontFamily: 'var(--font-body)',
               letterSpacing: '0.02em',
-              transition: 'background 0.2s ease, color 0.2s ease',
               whiteSpace: 'nowrap',
               marginLeft: '0.5rem',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--text-secondary)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--text-primary)'; }}
           >
-            Contacto
-          </Link>
+            Comenzar ↗
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -172,7 +173,7 @@ export default function GlassNavbar() {
             transition={{ duration: 0.3 }}
             className="mobile-menu-overlay"
           >
-            {[...navItems, { path: '/contacto', label: 'Contacto' }].map((item, i) => (
+            {navItems.map((item, i) => (
               <motion.div
                 key={item.path}
                 initial={{ opacity: 0, y: 20 }}
