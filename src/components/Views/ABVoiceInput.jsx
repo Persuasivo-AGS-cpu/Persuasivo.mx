@@ -92,18 +92,18 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
             exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
             style={{ 
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', 
-              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', 
+              background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-subtle)', 
               borderRadius: '16px', padding: '3rem 1rem', width: '100%', minHeight: '150px', 
               position: 'relative', overflow: 'hidden' 
             }}
           >
             {stepIndicator && (
-              <span style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#E0FF31', padding: '0.3rem 0.8rem', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '1.5rem', display: 'inline-block' }}>
+              <span style={{ backgroundColor: 'var(--border-subtle)', border: '1px solid var(--border-medium)', color: 'var(--neon)', padding: '0.3rem 0.8rem', borderRadius: '12px', fontSize: '0.8rem', fontWeight: 600, marginBottom: '1.5rem', display: 'inline-block' }}>
                 Paso {stepIndicator}
               </span>
             )}
 
-            <p style={{ color: '#888', marginBottom: '2rem', textAlign: 'center', fontSize: '0.95rem', maxWidth: '80%' }}>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', textAlign: 'center', fontSize: '0.95rem', maxWidth: '80%' }}>
               {placeholder || "Dicta aquí tus ideas en crudo, la IA lo procesará."}
             </p>
             
@@ -116,7 +116,7 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
                     transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
                     style={{
                       position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                      background: '#E0FF31', borderRadius: '50%', zIndex: 0
+                      background: 'var(--neon)', borderRadius: '50%', zIndex: 0
                     }}
                   />
                 )}
@@ -125,13 +125,13 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
               <motion.div
                 animate={{ 
                     scale: isRecording ? 1.05 : 1, 
-                    backgroundColor: isRecording ? '#E0FF31' : 'rgba(255,255,255,0.1)' 
+                    backgroundColor: isRecording ? 'var(--neon)' : 'var(--border-medium)' 
                 }}
                 transition={{ type: "spring", stiffness: 300 }}
                 style={{
                    width: '80px', height: '80px', borderRadius: '50%', display: 'flex', 
                    alignItems: 'center', justifyContent: 'center',
-                   zIndex: 1, position: 'relative', color: isRecording ? '#000' : '#fff', fontSize: '2.5rem',
+                   zIndex: 1, position: 'relative', color: isRecording ? '#000' : 'var(--text-primary)', fontSize: '2.5rem',
                    boxShadow: isRecording ? '0 0 40px rgba(224,255,49,0.5)' : 'none'
                 }}
               >
@@ -140,7 +140,7 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
             </div>
 
             <motion.p 
-              animate={{ opacity: isRecording ? 1 : 0.6, color: isRecording ? '#E0FF31' : '#fff' }}
+              animate={{ opacity: isRecording ? 1 : 0.6, color: isRecording ? 'var(--neon)' : 'var(--text-primary)' }}
               style={{ marginTop: '1.5rem', fontWeight: 600, fontSize: '1.1rem', transition: 'color 0.3s' }}
             >
               {isRecording ? '🔴 Grabando audio... Puedes hablar libremente' : 'Toca el micrófono para hablar'}
@@ -150,11 +150,11 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
               <motion.div 
                  initial={{opacity:0, y:-10}} animate={{opacity:1, y:0}}
                  style={{ 
-                   color: '#aaa', fontSize: '0.85rem', marginTop: '1.5rem', fontStyle: 'italic', 
+                   color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '1.5rem', fontStyle: 'italic', 
                    textAlign: 'center', background: 'rgba(0,0,0,0.4)', padding: '0.5rem 1rem', borderRadius: '8px'
                  }}
               >
-                <span style={{color: '#E0FF31'}}>✓ Datos encriptados capturados</span> ({value.length} caracteres)
+                <span style={{color: 'var(--neon)'}}>✓ Datos encriptados capturados</span> ({value.length} caracteres)
               </motion.div>
             )}
 
@@ -163,7 +163,7 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
                onClick={(e) => { e.preventDefault(); setInteractionMode('text'); }}
                style={{ 
                   marginTop: '1.5rem', background: 'transparent', border: 'none', 
-                  color: '#888', fontSize: '0.9rem', cursor: 'pointer', textDecoration: 'underline'
+                  color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'pointer', textDecoration: 'underline'
                }}
             >
                Preferiría escribirlo a mano ⌨️
@@ -180,7 +180,7 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
             style={{ width: '100%', position: 'relative' }}
           >
             {stepIndicator && (
-              <div style={{ marginBottom: '0.8rem', color: '#E0FF31', fontSize: '0.85rem', fontWeight: 600 }}>
+              <div style={{ marginBottom: '0.8rem', color: 'var(--neon)', fontSize: '0.85rem', fontWeight: 600 }}>
                 Paso {stepIndicator}
               </div>
             )}
@@ -191,8 +191,8 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
               rows={rows}
               placeholder={placeholder}
               style={{ 
-                width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', 
-                borderRadius: '16px', color: '#fff', fontSize: '1.1rem', padding: '1.5rem', 
+                width: '100%', background: 'var(--border-subtle)', border: '1px solid var(--border-medium)', 
+                borderRadius: '16px', color: 'var(--text-primary)', fontSize: '1.1rem', padding: '1.5rem', 
                 outline: 'none', resize: 'none', lineHeight: '1.5'
               }}
             />
@@ -203,7 +203,7 @@ export default function ABVoiceInput({ name, value, onChange, placeholder, rows 
                  onClick={(e) => { e.preventDefault(); setInteractionMode('voice'); }}
                  style={{ 
                     position: 'absolute', top: '-1.5rem', right: '0.5rem', background: 'transparent', 
-                    border: 'none', color: '#E0FF31', fontSize: '0.85rem', cursor: 'pointer', fontWeight: 600
+                    border: 'none', color: 'var(--neon)', fontSize: '0.85rem', cursor: 'pointer', fontWeight: 600
                  }}
               >
                  Volver a dictado por voz 🎙️

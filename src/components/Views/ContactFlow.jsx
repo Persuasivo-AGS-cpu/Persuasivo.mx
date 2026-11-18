@@ -153,13 +153,13 @@ export default function ContactFlow({ setView }) {
           max-width: 600px;
           padding: clamp(1.5rem, 5vw, 3rem);
           background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--border-subtle);
           border-top: 1px solid rgba(255, 255, 255, 0.15);
-          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          border-left: 1px solid var(--border-medium);
           border-radius: 32px;
           backdrop-filter: blur(40px);
           -webkit-backdrop-filter: blur(40px);
-          box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 var(--border-medium);
         }
       `}</style>
       
@@ -193,7 +193,7 @@ export default function ContactFlow({ setView }) {
             {[1, 2, 3, 4].map(i => (
               <div key={i} style={{ 
                 height: '4px', flex: 1, borderRadius: '2px',
-                background: step >= i ? '#E0FF31' : 'rgba(255,255,255,0.1)',
+                background: step >= i ? 'var(--neon)' : 'var(--border-medium)',
                 transition: 'background 0.3s ease',
                 boxShadow: step >= i ? '0 0 10px rgba(224,255,49,0.5)' : 'none'
               }} />
@@ -214,14 +214,14 @@ export default function ContactFlow({ setView }) {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1, rotate: 360 }}
                 transition={{ type: "spring", bounce: 0.6, delay: 0.2 }}
-                style={{ width: '80px', height: '80px', background: 'rgba(224, 255, 49, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}
+                style={{ width: '80px', height: '80px', background: 'var(--neon-glow)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}
               >
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E0FF31" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke='var(--neon)' strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </motion.div>
-              <h2 style={{ fontSize: '2rem', color: '#fff', margin: '0 0 1rem 0' }}>En la mira.</h2>
-              <p style={{ color: '#888', fontSize: '1.1rem', lineHeight: 1.5, margin: 0 }}>Datos cifrados y recibidos. Ejecutaremos auditoría inicial y nuestro equipo cerrará contacto.</p>
+              <h2 style={{ fontSize: '2rem', color: 'var(--text-primary)', margin: '0 0 1rem 0' }}>En la mira.</h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.5, margin: 0 }}>Datos cifrados y recibidos. Ejecutaremos auditoría inicial y nuestro equipo cerrará contacto.</p>
             </motion.div>
           ) : status === 'loading' ? (
              <motion.div 
@@ -229,8 +229,8 @@ export default function ContactFlow({ setView }) {
                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '4rem 0' }}
              >
-               <div style={{ width: '40px', height: '40px', border: '3px solid rgba(255,255,255,0.1)', borderTop: '3px solid #E0FF31', borderRadius: '50%', animation: 'spin 1s linear infinite', marginBottom: '1.5rem' }} />
-               <p style={{ color: '#E0FF31', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>Asegurando Ecosistema...</p>
+               <div style={{ width: '40px', height: '40px', border: '3px solid var(--border-medium)', borderTop: '3px solid #E0FF31', borderRadius: '50%', animation: 'spin 1s linear infinite', marginBottom: '1.5rem' }} />
+               <p style={{ color: 'var(--neon)', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>Asegurando Ecosistema...</p>
              </motion.div>
           ) : (
             <motion.form 
@@ -244,13 +244,13 @@ export default function ContactFlow({ setView }) {
             >
               {/* HEADER DINÁMICO */}
               <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <h1 style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
+                <h1 style={{ margin: 0, fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
                   {step === 1 && "Identidad Quirúrgica"}
                   {step === 2 && "Trazar el Blanco"}
                   {step === 3 && "Vector de Ataque"}
                   {step === 4 && "Filtro de Inversión"}
                 </h1>
-                <p style={{ marginTop: '1rem', color: '#888', fontSize: 'clamp(0.9rem, 3vw, 1.05rem)', lineHeight: 1.5 }}>
+                <p style={{ marginTop: '1rem', color: 'var(--text-secondary)', fontSize: 'clamp(0.9rem, 3vw, 1.05rem)', lineHeight: 1.5 }}>
                   {step === 1 && "Solo tratamos con tomadores de decisiones. Ingresa tus datos de contacto directo."}
                   {step === 2 && "Ingresa la URL de tu corporativo (si existe). Si vienes a construir desde cero, sáltate este paso."}
                   {step === 3 && "¿En qué vectores necesitas fuerza operativa bruta? Puedes seleccionar múltiples opciones."}
@@ -265,19 +265,19 @@ export default function ContactFlow({ setView }) {
                     animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
                     style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
                   >
-                    <input type="text" placeholder="Tu Nombre Completo" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required autoFocus />
+                    <input type="text" placeholder="Tu Nombre Completo" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: 'var(--text-primary)', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required autoFocus />
                   </motion.div>
                   <motion.div 
                     animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
                     style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
                   >
-                    <input type="tel" placeholder="WhatsApp Comercial" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
+                    <input type="tel" placeholder="WhatsApp Comercial" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: 'var(--text-primary)', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
                   </motion.div>
                   <motion.div 
                     animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
                     style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
                   >
-                    <input type="email" placeholder="Correo Corporativo (ej. ceo@apple.com)" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
+                    <input type="email" placeholder="Correo Corporativo (ej. ceo@apple.com)" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: 'var(--text-primary)', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} required />
                   </motion.div>
                 </div>
               )}
@@ -288,14 +288,14 @@ export default function ContactFlow({ setView }) {
                     animate={{ borderColor: isFocused ? 'rgba(224, 255, 49, 0.6)' : 'rgba(255,255,255,0.08)' }}
                     style={{ position: 'relative', display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.6)', borderRadius: '9999px', border: '1px solid', boxShadow: isFocused ? '0 0 20px rgba(224, 255, 49, 0.2), inset 0 5px 15px rgba(0,0,0,0.8)' : 'inset 0 5px 15px rgba(0,0,0,0.8)', transition: 'box-shadow 0.3s ease' }}
                   >
-                    <input type="text" placeholder="ej. miempresa.com" value={formData.url} onChange={(e) => setFormData({...formData, url: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} autoFocus />
+                    <input type="text" placeholder="ej. miempresa.com" value={formData.url} onChange={(e) => setFormData({...formData, url: e.target.value})} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} style={{ width: '100%', background: 'transparent', border: 'none', color: 'var(--text-primary)', fontSize: '1.1rem', padding: '1.2rem 2rem', outline: 'none', fontFamily: 'inherit' }} autoFocus />
                   </motion.div>
                   <div style={{ textAlign: 'center', marginTop: '-0.5rem' }}>
                     <motion.button 
                       type="button"
-                      whileHover={{ borderColor: 'rgba(224, 255, 49, 0.3)', color: '#fff' }}
+                      whileHover={{ borderColor: 'rgba(224, 255, 49, 0.3)', color: 'var(--text-primary)' }}
                       onClick={() => { setFormData({...formData, url: 'Proyecto desde cero'}); setStep(3); }}
-                      style={{ background: 'transparent', color: '#888', border: '1px solid rgba(255,255,255,0.1)', padding: '0.5rem 1rem', borderRadius: '50px', cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s' }}
+                      style={{ background: 'transparent', color: 'var(--text-secondary)', border: '1px solid var(--border-medium)', padding: '0.5rem 1rem', borderRadius: '50px', cursor: 'pointer', fontSize: '0.8rem', transition: 'all 0.2s' }}
                     >
                       Aún no tengo un activo digital
                     </motion.button>
@@ -315,14 +315,14 @@ export default function ContactFlow({ setView }) {
                         padding: '1.2rem 1.5rem',
                         borderRadius: '16px',
                         cursor: 'pointer',
-                        background: formData.scope.includes(s.id) ? 'rgba(224, 255, 49, 0.1)' : 'rgba(255,255,255,0.03)',
-                        border: formData.scope.includes(s.id) ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid rgba(255,255,255,0.1)',
+                        background: formData.scope.includes(s.id) ? 'var(--neon-glow)' : 'rgba(255,255,255,0.03)',
+                        border: formData.scope.includes(s.id) ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid var(--border-medium)',
                         boxShadow: formData.scope.includes(s.id) ? '0 0 20px rgba(224, 255, 49, 0.15)' : 'none',
                         transition: 'all 0.2s ease',
                         display: 'flex', flexDirection: 'column'
                       }}
                     >
-                      <h4 style={{ margin: 0, color: formData.scope.includes(s.id) ? '#E0FF31' : '#fff', fontSize: '1.1rem', fontWeight: 800 }}>{s.label}</h4>
+                      <h4 style={{ margin: 0, color: formData.scope.includes(s.id) ? 'var(--neon)' : 'var(--text-primary)', fontSize: '1.1rem', fontWeight: 800 }}>{s.label}</h4>
                       <p style={{ margin: '0.3rem 0 0 0', color: formData.scope.includes(s.id) ? '#ddd' : '#888', fontSize: '0.9rem' }}>{s.desc}</p>
                     </motion.div>
                   ))}
@@ -341,14 +341,14 @@ export default function ContactFlow({ setView }) {
                         padding: '1.2rem 1.5rem',
                         borderRadius: '16px',
                         cursor: 'pointer',
-                        background: formData.budget === b.id ? 'rgba(224, 255, 49, 0.1)' : 'rgba(255,255,255,0.03)',
-                        border: formData.budget === b.id ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid rgba(255,255,255,0.1)',
+                        background: formData.budget === b.id ? 'var(--neon-glow)' : 'rgba(255,255,255,0.03)',
+                        border: formData.budget === b.id ? '1px solid rgba(224, 255, 49, 0.6)' : '1px solid var(--border-medium)',
                         boxShadow: formData.budget === b.id ? '0 0 20px rgba(224, 255, 49, 0.15)' : 'none',
                         transition: 'all 0.2s ease',
                         display: 'flex', flexDirection: 'column'
                       }}
                     >
-                      <h4 style={{ margin: 0, color: formData.budget === b.id ? '#E0FF31' : '#fff', fontSize: '1.1rem', fontWeight: 800 }}>{b.label}</h4>
+                      <h4 style={{ margin: 0, color: formData.budget === b.id ? 'var(--neon)' : 'var(--text-primary)', fontSize: '1.1rem', fontWeight: 800 }}>{b.label}</h4>
                       <p style={{ margin: '0.3rem 0 0 0', color: formData.budget === b.id ? '#ddd' : '#888', fontSize: '0.9rem' }}>{b.desc}</p>
                     </motion.div>
                   ))}
@@ -359,7 +359,7 @@ export default function ContactFlow({ setView }) {
               {/* BOTONES */}
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                 {step > 1 && (
-                   <motion.button type="button" onClick={() => setStep(step - 1)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', padding: '1.2rem', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '60px', height: '60px' }}>
+                   <motion.button type="button" onClick={() => setStep(step - 1)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={{ background: 'var(--border-subtle)', color: 'var(--text-primary)', border: '1px solid var(--border-medium)', padding: '1.2rem', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '60px', height: '60px' }}>
                      ←
                    </motion.button>
                 )}

@@ -236,7 +236,7 @@ export default function ClientOnboarding({ setView }) {
         .onboarding-safe-wrapper {
           width: 100%;
           height: 100vh;
-          background: #000;
+          background: var(--bg-void);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -269,7 +269,7 @@ export default function ClientOnboarding({ setView }) {
                  key={i} 
                  animate={{ 
                    width: step === i ? '40px' : '10px', 
-                   background: step >= i ? '#E0FF31' : 'rgba(255,255,255,0.1)' 
+                   background: step >= i ? 'var(--neon)' : 'var(--border-medium)' 
                  }}
                  style={{ height: '4px', borderRadius: '10px' }}
                />
@@ -292,22 +292,22 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 1 && (
             <motion.div key="step1" {...stepAnimations} style={{ textAlign: 'center' }}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 ¡Bienvenido a Persuasivo!
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>¿Qué tipo de ecosistema vas a forjar con nosotros hoy?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>¿Qué tipo de ecosistema vas a forjar con nosotros hoy?</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <button 
                   onClick={() => handleSingularSelection('projectType', 'Landing')}
-                  style={{ background: formData.projectType === 'Landing' ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.projectType === 'Landing' ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.projectType === 'Landing' ? '0 0 20px rgba(224,255,49,0.4)' : 'none', padding: '2rem', borderRadius: '24px', color: '#fff', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ background: formData.projectType === 'Landing' ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.projectType === 'Landing' ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.projectType === 'Landing' ? '0 0 20px rgba(224,255,49,0.4)' : 'none', padding: '2rem', borderRadius: '24px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.3s' }}
                 >
                   <span style={{ fontSize: '2rem', display: 'block', marginBottom: '1rem' }}>⚡️</span>
                   Landing Page
                 </button>
                 <button 
                   onClick={() => handleSingularSelection('projectType', 'Website')}
-                  style={{ background: formData.projectType === 'Website' ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.projectType === 'Website' ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.projectType === 'Website' ? '0 0 20px rgba(224,255,49,0.4)' : 'none', padding: '2rem', borderRadius: '24px', color: '#fff', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ background: formData.projectType === 'Website' ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.projectType === 'Website' ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.projectType === 'Website' ? '0 0 20px rgba(224,255,49,0.4)' : 'none', padding: '2rem', borderRadius: '24px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.3s' }}
                 >
                   <span style={{ fontSize: '2rem', display: 'block', marginBottom: '1rem' }}>🏢</span>
                   Sitio Web Empresa
@@ -318,43 +318,43 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 2 && (
             <motion.div key="step2" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Sobre tu Negocio
               </h2>
-              <p style={{ color: '#888', marginBottom: '2rem' }}>Queremos conocerte para generar confianza en tus prospectos.</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Queremos conocerte para generar confianza en tus prospectos.</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div>
-                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Nombre de Empresa o Proyecto</p>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Nombre de Empresa o Proyecto</p>
                   <input 
                     autoFocus
                     name="companyName" value={formData.companyName} onChange={handleTextChange}
                     placeholder="Ej. Tacos El Paisa" 
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.8rem', padding: '0.5rem 0', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.8rem', padding: '0.5rem 0', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu WhatsApp (Para contactarte rápido)</p>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu WhatsApp (Para contactarte rápido)</p>
                   <input 
                     name="salesPhone" value={formData.salesPhone} onChange={handleTextChange}
                     placeholder="+52..." 
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '0.5rem 0', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.5rem', padding: '0.5rem 0', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu Página Web Actual <span style={{opacity:0.5}}>(Opcional)</span></p>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tu Página Web Actual <span style={{opacity:0.5}}>(Opcional)</span></p>
                   <input 
                     name="currentWebsite" value={formData.currentWebsite} onChange={handleTextChange}
                     placeholder="www.tusitio.com" 
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <p style={{ color: '#888', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tus Redes Sociales <span style={{opacity:0.5}}>(Opcional)</span></p>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600 }}>Tus Redes Sociales <span style={{opacity:0.5}}>(Opcional)</span></p>
                   <input 
                     name="socialMedia" value={formData.socialMedia} onChange={handleTextChange}
                     placeholder="Instagram / Facebook link" 
-                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
+                    style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.2rem', padding: '0.5rem 0', outline: 'none' }}
                   />
                 </div>
               </div>
@@ -363,18 +363,18 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 3 && (
             <motion.div key="step3" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 ¿Es un Negocio Físico?
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>¿Recibes clientes en un local o clínica (Google Maps)?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>¿Recibes clientes en un local o clínica (Google Maps)?</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2rem' }}>
                 <button
                   onClick={() => handleSingularSelection('isPhysical', true, false)} // No auto-advance because they need to type address now
-                  style={{ background: formData.isPhysical === true ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.isPhysical === true ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.isPhysical === true ? '0 0 20px rgba(224,255,49,0.4)' : 'none', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ background: formData.isPhysical === true ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.isPhysical === true ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.isPhysical === true ? '0 0 20px rgba(224,255,49,0.4)' : 'none', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }}
                 >
                   <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.5rem' }}>📍</span>
-                  <div style={{ color: '#fff', fontWeight: 600 }}>Sí, tenemos local</div>
+                  <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Sí, tenemos local</div>
                 </button>
                 <button
                   onClick={() => { 
@@ -382,10 +382,10 @@ export default function ClientOnboarding({ setView }) {
                     if (autoAdvanceTimeout.current) clearTimeout(autoAdvanceTimeout.current);
                     autoAdvanceTimeout.current = setTimeout(() => nextStep(), 1500); 
                   }}
-                  style={{ background: formData.isPhysical === false ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.isPhysical === false ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.isPhysical === false ? '0 0 20px rgba(224,255,49,0.4)' : 'none', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ background: formData.isPhysical === false ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.isPhysical === false ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.isPhysical === false ? '0 0 20px rgba(224,255,49,0.4)' : 'none', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }}
                 >
                   <span style={{ fontSize: '2rem', display: 'block', marginBottom: '0.5rem' }}>🌐</span>
-                  <div style={{ color: '#fff', fontWeight: 600 }}>No, soy 100% Digital</div>
+                  <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>No, soy 100% Digital</div>
                 </button>
               </div>
 
@@ -396,7 +396,7 @@ export default function ClientOnboarding({ setView }) {
                       autoFocus
                       name="address" value={formData.address} onChange={handleTextChange}
                       placeholder="Dirección completa o Link de Google Maps" 
-                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
+                      style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
                       onKeyDown={e => e.key === 'Enter' && nextStep()}
                     />
                   </motion.div>
@@ -407,28 +407,28 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 4 && (
             <motion.div key="step4" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Vigílando a la Competencia
               </h2>
-              <p style={{ color: '#888', marginBottom: '1rem' }}>¿Quién es tu mayor competencia o a qué empresa admiras profundamente?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>¿Quién es tu mayor competencia o a qué empresa admiras profundamente?</p>
               <p style={{ color: '#555', fontSize: '0.9rem', marginBottom: '3rem' }}>Esta información nos sirve de brújula visual para saber a qué nivel corporativo vamos a competir (y superar).</p>
               
               <input 
                 autoFocus
                 name="competitors" value={formData.competitors} onChange={handleTextChange}
                 placeholder="Ej. Apple, Tesla, La clínica de enfrente..." 
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
+                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
               />
             </motion.div>
           )}
 
           {step === 5 && (
             <motion.div key="step5" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Tu Comprador Ideal
               </h2>
-              <p style={{ color: '#888', marginBottom: '1rem' }}>¿Quién es la persona que suele comprarte más o pagarte mejor?</p>
-              <p style={{ color: '#E0FF31', opacity: 0.8, fontSize: '0.8rem', fontWeight: 600, marginBottom: '2rem' }}>*Puedes seleccionar más de una opción</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>¿Quién es la persona que suele comprarte más o pagarte mejor?</p>
+              <p style={{ color: 'var(--neon)', opacity: 0.8, fontSize: '0.8rem', fontWeight: 600, marginBottom: '2rem' }}>*Puedes seleccionar más de una opción</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 {[
@@ -442,11 +442,11 @@ export default function ClientOnboarding({ setView }) {
                     <button
                       key={opt.id}
                       onClick={() => handleMultipleSelection('buyerPersona', opt.label)}
-                      style={{ background: isSelected ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${isSelected ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
+                      style={{ background: isSelected ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${isSelected ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
                     >
                       <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{opt.icon}</span>
-                      <div style={{ color: '#fff', fontWeight: 600 }}>{opt.label}</div>
-                      <div style={{ color: '#888', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
+                      <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{opt.label}</div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
                     </button>
                   )
                 })}
@@ -456,10 +456,10 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 6 && (
             <motion.div key="step6" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 El Dolor de Tus Clientes
               </h2>
-              <p style={{ color: '#888', marginBottom: '1rem' }}>¿Qué problema tienen las personas que los obliga a buscar tu negocio?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>¿Qué problema tienen las personas que los obliga a buscar tu negocio?</p>
               <p style={{ color: '#555', fontSize: '0.9rem', marginBottom: '3rem' }}>No te preocupes si no suena perfecto, nuestros Copywriters expertos lo pulirán en la redacción final.</p>
               
               <ABVoiceInput 
@@ -471,10 +471,10 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 7 && (
             <motion.div key="step7" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Tu Oferta Irresistible
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>¿Por qué tus clientes deberían comprarte a ti y no a tu competencia?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>¿Por qué tus clientes deberían comprarte a ti y no a tu competencia?</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <ABVoiceInput 
@@ -493,14 +493,14 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 8 && (
             <motion.div key="step8" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Precio y Percepción
               </h2>
-              <p style={{ color: '#888', marginBottom: '1rem' }}>¿En qué rango de precio ofreces tus servicios?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>¿En qué rango de precio ofreces tus servicios?</p>
               
               {/* Strategic Disclaimer */}
-              <div style={{ background: 'rgba(224,255,49,0.03)', borderLeft: '3px solid rgba(224,255,49,0.5)', padding: '1rem', marginBottom: '2rem' }}>
-                 <p style={{ color: '#ccc', fontSize: '0.85rem', margin: 0, lineHeight: 1.5 }}>
+              <div style={{ background: 'var(--neon-subtle)', borderLeft: '3px solid rgba(224,255,49,0.5)', padding: '1rem', marginBottom: '2rem' }}>
+                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0, lineHeight: 1.5 }}>
                    <strong>¿Por qué preguntamos esto?</strong> Una marca "High-Ticket" requiere un diseño que transmita escasez, autoridad radical y flujos de evaluación (agendar llamadas). Si tu producto es económico, usamos metodologías de impulso rápido directo a carrito de compras.
                  </p>
               </div>
@@ -514,9 +514,9 @@ export default function ClientOnboarding({ setView }) {
                   <button
                     key={opt.id}
                     onClick={() => handleSingularSelection('ticket', opt.label)}
-                    style={{ background: formData.ticket === opt.label ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.ticket === opt.label ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.ticket === opt.label ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
+                    style={{ background: formData.ticket === opt.label ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.ticket === opt.label ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.ticket === opt.label ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
                   >
-                    <div style={{ color: '#fff', fontWeight: 600 }}>{opt.label}</div>
+                    <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{opt.label}</div>
                   </button>
                 ))}
               </div>
@@ -525,10 +525,10 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 9 && (
             <motion.div key="step9" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 La Voz de tu Marca
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>Si tu negocio fuera una persona atendiendome en persona, ¿cómo me hablaría?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>Si tu negocio fuera una persona atendiendome en persona, ¿cómo me hablaría?</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 {[
@@ -540,11 +540,11 @@ export default function ClientOnboarding({ setView }) {
                   <button
                     key={opt.id}
                     onClick={() => handleSingularSelection('brandVoice', opt.label)}
-                    style={{ background: formData.brandVoice === opt.label ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${formData.brandVoice === opt.label ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: formData.brandVoice === opt.label ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
+                    style={{ background: formData.brandVoice === opt.label ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${formData.brandVoice === opt.label ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: formData.brandVoice === opt.label ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
                   >
                     <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{opt.icon}</span>
-                    <div style={{ color: '#fff', fontWeight: 600 }}>{opt.label}</div>
-                    <div style={{ color: '#888', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
+                    <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{opt.label}</div>
+                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
                   </button>
                 ))}
               </div>
@@ -553,10 +553,10 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 10 && (
             <motion.div key="step10" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 El Objetivo Principal
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>Lista tus productos y elige qué quieres que hagan en tu página.</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>Lista tus productos y elige qué quieres que hagan en tu página.</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <ABVoiceInput 
@@ -564,7 +564,7 @@ export default function ClientOnboarding({ setView }) {
                   placeholder="Lista o dicta tus servicios estrella..." 
                 />
                 
-                <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginTop: '1rem' }}>Acción de Conversión experta que detonaremos:</h3>
+                <h3 style={{ color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 600, marginTop: '1rem' }}>Acción de Conversión experta que detonaremos:</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   {[
                     { id: 'whatsapp', icon: '💬', label: 'Escribirme por WhatsApp', desc: 'Rápido y directo' },
@@ -576,15 +576,15 @@ export default function ClientOnboarding({ setView }) {
                       key={option.id}
                       onClick={() => handleSingularSelection('cta', option.label)}
                       style={{ 
-                        background: formData.cta === option.label ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', 
-                        border: `1px solid ${formData.cta === option.label ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, 
+                        background: formData.cta === option.label ? 'var(--neon-glow)' : 'var(--border-subtle)', 
+                        border: `1px solid ${formData.cta === option.label ? 'var(--neon)' : 'var(--border-medium)'}`, 
                         boxShadow: formData.cta === option.label ? '0 0 20px rgba(224,255,49,0.3)' : 'none',
                         borderRadius: '16px', padding: '1rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' 
                       }}
                     >
                       <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{option.icon}</div>
-                      <div style={{ color: '#fff', fontWeight: 600, fontSize: '1rem' }}>{option.label}</div>
-                      <div style={{ color: '#888', fontSize: '0.8rem', marginTop: '0.2rem' }}>{option.desc}</div>
+                      <div style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1rem' }}>{option.label}</div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.2rem' }}>{option.desc}</div>
                     </button>
                   ))}
                 </div>
@@ -594,20 +594,20 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 11 && (
             <motion.div key="step11" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Captura de Prospectos
               </h2>
-              <p style={{ color: '#888', marginBottom: '3rem' }}>Si integramos formularios de alta conversión, ¿a dónde mandamos a tu prospecto y qué le preguntamos?</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem' }}>Si integramos formularios de alta conversión, ¿a dónde mandamos a tu prospecto y qué le preguntamos?</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <input 
                   autoFocus
                   name="leadEmail" value={formData.leadEmail} onChange={handleTextChange}
                   placeholder="El correo exacto donde recibirás los avisos de ventas" 
-                  style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
+                  style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '2px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: '1.5rem', padding: '1rem 0', outline: 'none' }}
                 />
                 
-                <h3 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginTop: '1rem' }}>Datos que el prospecto te debe dejar:</h3>
+                <h3 style={{ color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 600, marginTop: '1rem' }}>Datos que el prospecto te debe dejar:</h3>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', marginBottom: '1rem' }}>
                   {['Nombre Completo', 'WhatsApp', 'Correo Electrónico', 'Ciudad / País', 'Presupuesto'].map(field => {
                     const isSelected = Array.isArray(formData.leadFields) && formData.leadFields.includes(field);
@@ -615,7 +615,7 @@ export default function ClientOnboarding({ setView }) {
                       <button
                         key={field}
                         onClick={() => toggleLeadField(field)}
-                        style={{ padding: '0.6rem 1.2rem', borderRadius: '100px', border: `1px solid ${isSelected ? '#E0FF31' : 'rgba(255,255,255,0.2)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', background: isSelected ? 'rgba(224,255,49,0.1)' : 'transparent', color: isSelected ? '#E0FF31' : '#fff', cursor: 'pointer', fontWeight: 600, transition: 'all 0.2s' }}
+                        style={{ padding: '0.6rem 1.2rem', borderRadius: '100px', border: `1px solid ${isSelected ? 'var(--neon)' : 'var(--border-strong)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', background: isSelected ? 'var(--neon-glow)' : 'transparent', color: isSelected ? 'var(--neon)' : 'var(--text-primary)', cursor: 'pointer', fontWeight: 600, transition: 'all 0.2s' }}
                       >
                         {isSelected ? '✓ ' : '+ '} {field}
                       </button>
@@ -626,7 +626,7 @@ export default function ClientOnboarding({ setView }) {
                 <input 
                   name="customLeadField" value={formData.customLeadField} onChange={handleTextChange}
                   placeholder="¿Requieres un dato muy especial? (Ej. Tipo de Vehículo, Fecha de Boda...)" 
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', fontSize: '1.2rem', padding: '1.5rem', outline: 'none' }}
+                  style={{ width: '100%', background: 'var(--border-subtle)', border: '1px solid var(--border-medium)', borderRadius: '16px', color: 'var(--text-primary)', fontSize: '1.2rem', padding: '1.5rem', outline: 'none' }}
                 />
               </div>
             </motion.div>
@@ -634,11 +634,11 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 12 && (
             <motion.div key="step12" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Estrategia de Tráfico
               </h2>
-              <p style={{ color: '#888', marginBottom: '1rem' }}>¿De dónde vendrán las personas que visitarán esta página?</p>
-              <p style={{ color: '#E0FF31', opacity: 0.8, fontSize: '0.8rem', fontWeight: 600, marginBottom: '2rem' }}>*Puedes seleccionar más de una opción</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>¿De dónde vendrán las personas que visitarán esta página?</p>
+              <p style={{ color: 'var(--neon)', opacity: 0.8, fontSize: '0.8rem', fontWeight: 600, marginBottom: '2rem' }}>*Puedes seleccionar más de una opción</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 {[
@@ -652,11 +652,11 @@ export default function ClientOnboarding({ setView }) {
                     <button
                       key={opt.id}
                       onClick={() => handleMultipleSelection('trafficSource', opt.label)}
-                      style={{ background: isSelected ? 'rgba(224,255,49,0.1)' : 'rgba(255,255,255,0.05)', border: `1px solid ${isSelected ? '#E0FF31' : 'rgba(255,255,255,0.1)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
+                      style={{ background: isSelected ? 'var(--neon-glow)' : 'var(--border-subtle)', border: `1px solid ${isSelected ? 'var(--neon)' : 'var(--border-medium)'}`, boxShadow: isSelected ? '0 0 20px rgba(224,255,49,0.3)' : 'none', borderRadius: '16px', padding: '1.2rem', textAlign: 'left', cursor: 'pointer', transition: 'all 0.3s' }}
                     >
                       <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>{opt.icon}</span>
-                      <div style={{ color: '#fff', fontWeight: 600 }}>{opt.label}</div>
-                      <div style={{ color: '#888', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
+                      <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{opt.label}</div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.3rem' }}>{opt.desc}</div>
                     </button>
                   )
                 })}
@@ -666,14 +666,14 @@ export default function ClientOnboarding({ setView }) {
 
           {step === 13 && (
             <motion.div key="step13" {...stepAnimations}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 Tu Material Visual
               </h2>
               
-              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '24px', padding: '3rem 2rem', textAlign: 'center', marginTop: '2rem' }}>
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-subtle)', borderRadius: '24px', padding: '3rem 2rem', textAlign: 'center', marginTop: '2rem' }}>
                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📸</div>
-                 <h3 style={{ color: '#E0FF31', fontSize: '1.3rem', fontWeight: 600, marginBottom: '1rem' }}>Compártenos todo por WhatsApp</h3>
-                 <p style={{ color: '#bbb', fontSize: '1rem', lineHeight: '1.6', margin: 0, maxWidth: '100%' }}>
+                 <h3 style={{ color: 'var(--neon)', fontSize: '1.3rem', fontWeight: 600, marginBottom: '1rem' }}>Compártenos todo por WhatsApp</h3>
+                 <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', margin: 0, maxWidth: '100%' }}>
                    Sabemos que no tienes tu logo y fotos a la mano en este momento. 
                    <br /><br />
                    Para no detener tu progreso, avanza y finaliza. En el siguiente paso te indicaremos cómo enviar todo tu material directo a nuestro canal de WhatsApp Business o por correo. Así mantenemos un flujo impecable.
@@ -681,7 +681,7 @@ export default function ClientOnboarding({ setView }) {
               </div>
 
               <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-                <button onClick={submitForm} disabled={isSubmitting} style={{ background: '#E0FF31', border: 'none', color: '#000', padding: '1rem 4rem', borderRadius: '100px', fontWeight: 800, fontSize: '1.2rem', cursor: 'pointer', opacity: isSubmitting ? 0.5 : 1 }}>
+                <button onClick={submitForm} disabled={isSubmitting} style={{ background: 'var(--neon)', border: 'none', color: '#000', padding: '1rem 4rem', borderRadius: '100px', fontWeight: 800, fontSize: '1.2rem', cursor: 'pointer', opacity: isSubmitting ? 0.5 : 1 }}>
                   {isSubmitting ? 'Ensamblando...' : 'Finalizar y Procesar'}
                 </button>
               </div>
@@ -691,11 +691,11 @@ export default function ClientOnboarding({ setView }) {
           {step === 14 && (
             <motion.div key="step14" {...stepAnimations} style={{ textAlign: 'center', paddingTop: '2rem' }}>
               <span style={{ fontSize: '5rem', display: 'block', marginBottom: '1rem' }}>🚀</span>
-              <h2 style={{ fontSize: '4rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
                 ¡Información Recibida!
               </h2>
-              <p style={{ color: '#aaa', fontSize: '1.2rem', marginBottom: '3rem' }}>Tu información ha sido enviada de manera encriptada y segura directamente al equipo de Consultoría y Diseño de Persuasivo. Comenzaremos a forjar tu proyecto de inmediato.</p>
-              <button onClick={() => setView('agency')} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '1rem 3rem', borderRadius: '100px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', marginBottom: '3rem' }}>Tu información ha sido enviada de manera encriptada y segura directamente al equipo de Consultoría y Diseño de Persuasivo. Comenzaremos a forjar tu proyecto de inmediato.</p>
+              <button onClick={() => setView('agency')} style={{ background: 'var(--border-subtle)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', padding: '1rem 3rem', borderRadius: '100px', fontWeight: 600, fontSize: '1rem', cursor: 'pointer' }}>
                 Volver a Persuasivo
               </button>
             </motion.div>
@@ -707,11 +707,11 @@ export default function ClientOnboarding({ setView }) {
         {!isDone && (
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4rem', zIndex: 10, position: 'relative' }}>
             {step > 1 ? (
-               <button onClick={prevStep} style={{ background: 'transparent', color: '#888', border: 'none', fontSize: '1rem', cursor: 'pointer', fontWeight: 600 }}>← Atrás</button>
+               <button onClick={prevStep} style={{ background: 'transparent', color: 'var(--text-secondary)', border: 'none', fontSize: '1rem', cursor: 'pointer', fontWeight: 600 }}>← Atrás</button>
             ) : <div />}
             
             {step > 1 && step < TOTAL_STEPS && (
-               <button onClick={nextStep} style={{ background: '#E0FF31', border: 'none', color: '#000', padding: '0.8rem 2rem', borderRadius: '100px', fontWeight: 800, fontSize: '1rem', cursor: 'pointer' }}>Continuar →</button>
+               <button onClick={nextStep} style={{ background: 'var(--neon)', border: 'none', color: '#000', padding: '0.8rem 2rem', borderRadius: '100px', fontWeight: 800, fontSize: '1rem', cursor: 'pointer' }}>Continuar →</button>
             )}
           </div>
         )}

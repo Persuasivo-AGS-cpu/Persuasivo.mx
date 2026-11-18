@@ -41,7 +41,7 @@ export default function ArcadeCabinet() {
 
           {/* El CRT y el Juego */}
           <div className="table-crt-casing">
-            <div className="crt-ignite" style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: '#000' }}>
+            <div className="crt-ignite" style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', background: 'var(--bg-void)' }}>
               <div className="scanlines"></div>
               <iframe 
                 src="/pacman/index.html?v=2" 
@@ -91,8 +91,8 @@ export default function ArcadeCabinet() {
 
           {/* Firma Central (Signature Plate) */}
           <div className="signature-plate">
-            <div style={{ color: '#888', fontSize: '0.6rem', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2px' }}>Engineered By</div>
-            <div style={{ color: '#fff', fontFamily: 'monospace', fontWeight: 900, fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '8px' }}>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.6rem', letterSpacing: '4px', textTransform: 'uppercase', marginBottom: '2px' }}>Engineered By</div>
+            <div style={{ color: 'var(--text-primary)', fontFamily: 'monospace', fontWeight: 900, fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '8px' }}>
               PERSUASIVO
             </div>
           </div>

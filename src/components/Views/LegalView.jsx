@@ -79,14 +79,14 @@ export default function LegalView({ setView, docType }) {
       <style>{`
         ::-webkit-scrollbar { width: 0px; } 
         .legal-content h3 {
-          color: #fff;
+          color: var(--text-primary);
           font-size: 1.4rem;
           font-weight: 800;
           margin: 3rem 0 1rem 0;
           letter-spacing: -0.02em;
         }
         .legal-content p {
-          color: #888;
+          color: var(--text-secondary);
           font-size: 1.1rem;
           line-height: 1.8;
           margin-bottom: 1.5rem;
@@ -101,11 +101,11 @@ export default function LegalView({ setView, docType }) {
           style={{ width: '100%', maxWidth: '800px' }}
         >
           {/* Header del Documento */}
-          <div style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '2rem', marginBottom: '3rem' }}>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', margin: 0 }}>
+          <div style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '2rem', marginBottom: '3rem' }}>
+            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.04em', margin: 0 }}>
               {doc.title}
             </h1>
-            <p style={{ color: '#E0FF31', marginTop: '1rem', fontWeight: 600, fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            <p style={{ color: 'var(--neon)', marginTop: '1rem', fontWeight: 600, fontSize: '0.9rem', letterSpacing: '1px', textTransform: 'uppercase' }}>
               {doc.lastUpdated}
             </p>
           </div>
