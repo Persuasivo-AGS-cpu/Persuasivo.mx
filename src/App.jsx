@@ -177,7 +177,7 @@ function AppContent() {
   };
 
   return (
-    <main style={{ width: '100%', minHeight: '100vh', overflowX: 'hidden', background: 'var(--bg-void)', color: 'var(--text-primary)' }}>
+    <main style={{ width: '100%', minHeight: '100vh', overflowX: 'clip', background: 'var(--bg-void)', color: 'var(--text-primary)' }}>
       <Helmet>
         <title>Persuasivo | Agencia Creativa — Desarrollo Web, Meta Ads & Copywriting</title>
         <meta name="description" content="Agencia creativa en Monterrey especializada en desarrollo web con React, Meta Ads de alto rendimiento y copywriting de conversión." />
