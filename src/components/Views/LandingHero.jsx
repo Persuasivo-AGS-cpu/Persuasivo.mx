@@ -79,10 +79,10 @@ export default function LandingHero() {
             Quiero una cotización →
           </motion.a>
           <Link
-            to="/work"
+            to="/servicios"
             style={{ color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 4 }}
           >
-            Ver nuestro trabajo
+            Ver nuestros servicios
           </Link>
         </div>
 

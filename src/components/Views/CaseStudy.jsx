@@ -11,7 +11,7 @@ export default function CaseStudy() {
 
   React.useEffect(() => { window.scrollTo({ top: 0 }); }, [slug]);
 
-  if (!project) return <Navigate to="/work" replace />;
+  if (!project) return <Navigate to="/servicios" replace />;
 
   const relatedProjects = caseStudies.filter(p => p.category === project.category && p.id !== project.id).slice(0, 2);
 
@@ -47,8 +47,8 @@ export default function CaseStudy() {
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundImage: `url(${project.img})`, backgroundSize: 'cover', backgroundPosition: 'top center', opacity: 0.5 }} />
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to top, var(--bg-void) 0%, transparent 50%)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '3rem 2rem', maxWidth: 'var(--container-max)', margin: '0 auto' }}>
-          <Link to="/work" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-            ← Volver a portafolio
+          <Link to="/servicios" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+            ← Volver a servicios
           </Link>
           <span style={{ display: 'inline-block', padding: '0.2rem 0.75rem', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-full)', color: 'var(--text-secondary)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>{project.categoryLabel}</span>
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.04em', lineHeight: 1.05, margin: '1rem 0' }}>

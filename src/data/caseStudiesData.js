@@ -1,7 +1,7 @@
 /**
  * CENTRALIZED CASE STUDIES DATA
  * Source of truth for all project/portfolio data across the site.
- * Used by: WorkPage, CaseStudy, Home showcase, Schema.org
+ * Used by: CaseStudy, Home showcase, Schema.org
  */
 
 export const caseStudies = [
@@ -301,9 +301,4 @@ export const caseStudies = [
 export const getFeaturedProjects = () => caseStudies.filter(p => p.featured);
 export const getProjectsByCategory = (cat) => caseStudies.filter(p => p.category === cat);
 export const getProjectBySlug = (slug) => caseStudies.find(p => p.slug === slug);
-export const getAllCategories = () => [
-  { id: 'all', label: 'Todos' },
-  { id: 'ecosistemas', label: 'Desarrollo Web' },
-  { id: 'autoridad', label: 'Copywriting & Redes' },
-  { id: 'trafico', label: 'Meta Ads' }
-];
+

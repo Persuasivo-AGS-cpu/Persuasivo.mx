@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { waLink } from '../../data/contact';
 
 const navItems = [
-  { path: '/work', label: 'Work' },
   { path: '/servicios', label: 'Servicios' },
   { path: '/nosotros', label: 'Nosotros' },
   { path: '/blog', label: 'Insights' },

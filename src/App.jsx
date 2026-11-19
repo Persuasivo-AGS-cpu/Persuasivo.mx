@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 import GlassNavbar from './components/Navigation/GlassNavbar';
 import WhatsAppButton from './components/WhatsAppButton';
 import AgencyHome from './components/Views/AgencyHome';
-import WorkPage from './components/Views/WorkPage';
 import CaseStudy from './components/Views/CaseStudy';
 import ExpertiseHub from './components/Views/ExpertiseHub';
 import AboutPage from './components/Views/AboutPage';
@@ -35,7 +34,6 @@ function AppContent() {
       landing: '/',
       agency: '/',
       home: '/',
-      work: '/work',
       contact: '/contacto',
       contacto: '/contacto',
       servicios: '/servicios',
@@ -195,7 +193,7 @@ function AppContent() {
         <Routes location={location} key={location.pathname}>
           {/* Core Pages */}
           <Route path="/" element={<AgencyHome />} />
-          <Route path="/work" element={<WorkPage />} />
+          <Route path="/work" element={<Navigate to="/servicios" replace />} />
           <Route path="/work/:slug" element={<CaseStudy />} />
           <Route path="/servicios" element={<ExpertiseHub />} />
           <Route path="/nosotros" element={<AboutPage />} />

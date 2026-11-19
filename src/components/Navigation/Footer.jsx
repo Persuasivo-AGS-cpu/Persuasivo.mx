@@ -82,7 +82,6 @@ export default function Footer() {
           <h4 style={columnTitle}>Navegación</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <Link to="/" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Inicio</Link>
-            <Link to="/work" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Work</Link>
             <Link to="/servicios" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Servicios</Link>
             <Link to="/nosotros" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Nosotros</Link>
             <Link to="/blog" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Insights</Link>

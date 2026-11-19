@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import WfRow from './WfRow';
 import SketchBox from '../Sketch/SketchBox';
 import SketchButton from '../Sketch/SketchButton';
@@ -16,7 +15,6 @@ export default function WfHero() {
             <p className="sk-body">{webHero.sub}</p>
             <div className="sk-actions">
               <SketchButton href={WEB_WA} seed={22} large>{webHero.cta}</SketchButton>
-              <Link to="/work" className="sk-link">Ver casos →</Link>
             </div>
           </div>
           <SketchBox seed={23} cross className="sk-imgph"><span className="sk-caption">aquí va tu producto</span></SketchBox>
