@@ -2,14 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
-import FpProfile from '../FeedPage/FpProfile';
-import FpHero from '../FeedPage/FpHero';
-import FpCarousel from '../FeedPage/FpCarousel';
-import FpPoll from '../FeedPage/FpPoll';
-import FpStories from '../FeedPage/FpStories';
-import FpCalendar from '../FeedPage/FpCalendar';
-import FpComments from '../FeedPage/FpComments';
-import FpCta from '../FeedPage/FpCta';
+import FpProfileHeader from '../FeedPage/FpProfileHeader';
+import FpGrid from '../FeedPage/FpGrid';
 import '../FeedPage/feedPage.css';
 
 export default function ServiceAuthority({ setView }) {
@@ -23,15 +17,9 @@ export default function ServiceAuthority({ setView }) {
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/autoridad" />
       </Helmet>
       <main className="fp-page">
-        <FpProfile />
-        <div className="fp-feed">
-          <FpHero />
-          <FpCarousel />
-          <FpPoll />
-          <FpStories />
-          <FpCalendar />
-          <FpComments />
-          <FpCta />
+        <div className="fp-wrap">
+          <FpProfileHeader />
+          <FpGrid />
         </div>
       </main>
       <Footer setView={setView} />
