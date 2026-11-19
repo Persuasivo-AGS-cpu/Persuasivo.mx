@@ -6,6 +6,8 @@ import FpProfile from '../FeedPage/FpProfile';
 import FpHero from '../FeedPage/FpHero';
 import FpCarousel from '../FeedPage/FpCarousel';
 import FpPoll from '../FeedPage/FpPoll';
+import FpStories from '../FeedPage/FpStories';
+import FpCalendar from '../FeedPage/FpCalendar';
 import '../FeedPage/feedPage.css';
 
 export default function ServiceAuthority({ setView }) {
@@ -24,6 +26,8 @@ export default function ServiceAuthority({ setView }) {
           <FpHero />
           <FpCarousel />
           <FpPoll />
+          <FpStories />
+          <FpCalendar />
         </div>
       </main>
       <Footer setView={setView} />
