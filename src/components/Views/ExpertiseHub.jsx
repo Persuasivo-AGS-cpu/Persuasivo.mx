@@ -5,6 +5,7 @@ import Footer from '../Navigation/Footer';
 import { services } from '../../data/servicesData';
 import { hubIntro } from '../../data/hub';
 import HubCards from '../ServicesHub/HubCards';
+import HubGoals from '../ServicesHub/HubGoals';
 import '../ServicesHub/hub.css';
 
 export default function ExpertiseHub() {
@@ -44,6 +45,7 @@ export default function ExpertiseHub() {
             <span className="hub-kicker">{hubIntro.kicker}</span>
             <h1 className="hub-h1">{hubIntro.title}</h1>
             <p className="hub-lead">{hubIntro.sub}</p>
+            <HubGoals goalId={goalId} onChange={setGoalId} />
           </header>
           <HubCards goalId={goalId} />
         </div>
