@@ -7,6 +7,8 @@ import PpTicker from '../Paper/PpTicker';
 import PpHeadline from '../Paper/PpHeadline';
 import PpIndex from '../Paper/PpIndex';
 import PpFounder from '../Paper/PpFounder';
+import PpInside from '../Paper/PpInside';
+import PpClassified from '../Paper/PpClassified';
 import '../Paper/paper.css';
 
 export default function AboutPage() {
@@ -40,6 +42,8 @@ export default function AboutPage() {
             <PpIndex />
             <PpFounder />
           </div>
+          <PpInside />
+          <PpClassified />
         </div>
       </div>
 
