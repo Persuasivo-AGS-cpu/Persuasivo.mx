@@ -1,13 +1,6 @@
 .fp-page { --fp-lime: #E0FF31; --fp-ink: #111; --fp-line: rgba(0, 0, 0, 0.1); background: var(--bg-void); color: var(--fp-ink); min-height: 100vh; padding: 64px 4vw 8vw; font-family: var(--font-body); }
-.fp-feed { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
 .fp-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* perfil fijo */
-.fp-profile { position: sticky; top: 64px; z-index: 5; display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; margin: 0 -4vw 1.5rem; background: rgba(242, 242, 242, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--fp-line); }
-@media (min-width: 640px) { .fp-profile { margin: 0 0 1.5rem; border-radius: 0 0 14px 14px; border: 1px solid var(--fp-line); border-top: 0; } }
-.fp-profile-id { flex: 1; min-width: 0; line-height: 1.2; }
-.fp-profile-id strong { display: block; }
-.fp-profile-id span { color: var(--text-secondary); font-size: 0.85rem; }
 .fp-follow { display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.25rem; border-radius: var(--radius-full); background: var(--fp-ink); color: #fff; font-weight: 600; text-decoration: none; }
 .fp-avatar { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--fp-lime); color: var(--fp-ink); font-weight: 800; }
 
@@ -77,3 +70,54 @@
 .fp-reply .fp-bubble { background: #f6fbd0; }
 
 @media (prefers-reduced-motion: reduce) { .fp-btn, .fp-like svg { transition: none; } .fp-slides { scroll-behavior: auto; } }
+
+/* ===== parrilla estilo perfil ===== */
+.fp-wrap { max-width: 640px; margin: 0 auto; }
+
+.fp-ph { display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.25rem; align-items: center; padding: 1.5rem 0 0.5rem; }
+.fp-ph .fp-avatar { width: 84px; height: 84px; font-size: 2.2rem; }
+@media (min-width: 640px) { .fp-ph .fp-avatar { width: 120px; height: 120px; font-size: 3rem; } }
+.fp-ph-name { font-weight: 700; font-size: 1.15rem; margin: 0 0 0.6rem; }
+.fp-ph-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.fp-follow--ghost { background: transparent; color: var(--fp-ink); border: 1.5px solid var(--fp-ink); }
+.fp-ph-bio { grid-column: 1 / -1; }
+.fp-ph-role { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.25rem; }
+.fp-ph-bio .fp-h1 { margin: 0 0 0.75rem; }
+
+.fp-grid { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.fp-tile { position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; overflow: hidden; border-radius: 4px; cursor: pointer; text-decoration: none; color: var(--fp-ink); background: #fff; font: inherit; text-align: left; }
+.fp-tile-cover { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 0.35rem; padding: 0.6rem 0.6rem 1.9rem; transition: filter 0.2s; }
+.fp-tile-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fp-tile:hover .fp-tile-cover, .fp-tile:focus-visible .fp-tile-cover { filter: brightness(0.92); }
+.fp-tile:focus-visible { outline: 3px solid var(--fp-ink); outline-offset: 2px; }
+.fp-tile-label { position: absolute; left: 6px; bottom: 6px; z-index: 1; max-width: calc(100% - 12px); padding: 0.15rem 0.55rem; border-radius: var(--radius-full); background: rgba(255, 255, 255, 0.94); color: var(--fp-ink); font-size: 0.68rem; font-weight: 700; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (min-width: 640px) { .fp-tile-label { font-size: 0.8rem; } }
+.fp-tile--lime .fp-tile-cover { background: var(--fp-lime); }
+.fp-tile--dark .fp-tile-cover { background: #111; color: #fff; }
+.fp-tile--gray .fp-tile-cover { background: #e5e7eb; }
+.fp-tile--white .fp-tile-cover { background: #fff; border: 1px solid var(--fp-line); }
+.fp-tile-text { font-family: var(--font-display); font-size: clamp(0.85rem, 3.2vw, 1.3rem); line-height: 1.05; }
+.fp-tile-big { font-family: var(--font-display); font-size: clamp(1.8rem, 8vw, 3.2rem); line-height: 1; }
+.fp-pills i { display: block; height: 14px; border: 1.5px solid var(--fp-ink); border-radius: 8px; }
+.fp-mini { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; align-content: center; }
+.fp-mini i { display: block; aspect-ratio: 1; border-radius: 2px; }
+
+/* ventana */
+body:has(dialog.fp-modal[open]) { overflow: hidden !important; }
+.fp-modal { border: 0; padding: 0; width: min(560px, 94vw); max-height: 90vh; overflow: auto; border-radius: 18px; background: #fff; color: var(--fp-ink); }
+.fp-modal::backdrop { background: rgba(17, 17, 17, 0.6); backdrop-filter: blur(3px); }
+.fp-modal[open] { animation: fp-pop 0.25s ease-out; }
+@keyframes fp-pop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+.fp-modal .fp-post { border: 0; border-radius: 0; box-shadow: none; }
+.fp-modal-bar { position: sticky; top: 0; z-index: 2; display: flex; justify-content: flex-end; padding: 0.25rem 0.5rem 0; background: #fff; }
+.fp-modal-x { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; font-size: 1.8rem; line-height: 1; cursor: pointer; color: var(--fp-ink); }
+.fp-modal-x:focus-visible { outline: 3px solid var(--fp-ink); outline-offset: 2px; }
+
+/* pasos de "Cómo contratar" */
+.fp-steps { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.75rem; }
+.fp-steps li { display: flex; gap: 0.75rem; align-items: flex-start; }
+.fp-steps b { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--fp-lime); font-size: 0.9rem; }
+.fp-steps strong { display: block; }
+.fp-steps span { color: var(--text-secondary); font-size: 0.95rem; }
+
+@media (prefers-reduced-motion: reduce) { .fp-modal[open] { animation: none; } .fp-tile-cover { transition: none; } }
