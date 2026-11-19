@@ -10,7 +10,7 @@ export const homeServices = [
     to: '/servicios/ecosistemas',
   },
   {
-    word: 'Contenido',
+    word: 'Contenido en video',
     detail: 'Campañas de video mensuales para explicar tu producto y posicionar a tus líderes',
     to: '/contenido',
   },

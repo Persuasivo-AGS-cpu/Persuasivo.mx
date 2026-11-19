@@ -147,7 +147,7 @@ export const services = [
   {
     id: 'contenido',
     slug: 'contenido',
-    title: 'Video para Empresas',
+    title: 'Contenido en video',
     subtitle: 'CEO Content Studio',
     icon: '🎬',
     navTarget: 'service_content',

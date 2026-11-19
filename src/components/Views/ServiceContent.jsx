@@ -69,7 +69,7 @@ export default function ServiceContent() {
       <section style={{ ...section, paddingTop: '18vh', paddingBottom: '8vw' }}>
         <div style={wrap}>
           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, color: 'var(--text-secondary)' }}>
-            Persuasivo · CEO Content Studio
+            Persuasivo · Contenido en video
           </span>
           <h1 style={{ ...h2, fontSize: 'clamp(2.8rem, 7vw, 6.5rem)', lineHeight: 0.98, margin: '1.5rem 0', maxWidth: '1000px' }}>
             Videos para que tus clientes entiendan qué vendes y <em>por qué elegirte.</em>
