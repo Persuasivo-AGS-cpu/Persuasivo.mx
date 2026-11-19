@@ -11,6 +11,7 @@ export default function SrPanel() {
           <li key={m.label}><strong>{m.value}</strong><span>{m.label}</span></li>
         ))}
       </ul>
+      {searchPanel.metricsNote && <p className="sr-metrics-note">{searchPanel.metricsNote}</p>}
       <dl className="sr-rows">
         {searchPanel.rows.map(([k, v]) => (
           <div key={k}><dt>{k}: </dt><dd>{v}</dd></div>

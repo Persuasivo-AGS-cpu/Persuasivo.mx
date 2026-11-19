@@ -35,8 +35,8 @@ export default function ExpertiseHub() {
     <motion.div key="expertise" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}
       style={{ width: '100%', minHeight: '100vh', background: 'var(--bg-void)' }}>
       <Helmet>
-        <title>Servicios — Branding, Web, Video, Redes y Meta Ads | Persuasivo</title>
-        <meta name="description" content="Branding, desarrollo web con React desde $35,000 MXN, contenido en video, redes sociales y Meta Ads con ROI 12X. Elige el servicio que tu negocio necesita." />
+        <title>Servicios — Branding, Web, Video, Redes, Google Ads y Meta Ads | Persuasivo</title>
+        <meta name="description" content="Branding, desarrollo web con React desde $35,000 MXN, contenido en video, redes sociales, Google Ads y Meta Ads (ROI 12X documentado en Meta). Elige el servicio que tu negocio necesita." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios" />
         <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
       </Helmet>

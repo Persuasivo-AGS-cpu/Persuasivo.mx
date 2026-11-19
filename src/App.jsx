@@ -61,10 +61,10 @@ function AppContent() {
         "url": "https://persuasivo.com.mx",
         "logo": "https://persuasivo.com.mx/favicon.svg",
         "image": "https://persuasivo.com.mx/og-image.jpg",
-        "description": "Agencia creativa en Monterrey especializada en desarrollo web con React, Meta Ads de alto rendimiento y copywriting de conversión. Generamos +215% más leads calificados para nuestros clientes.",
+        "description": "Agencia creativa en Monterrey especializada en desarrollo web con React, Google Ads y Meta Ads de alto rendimiento y copywriting de conversión. Generamos +215% más leads calificados para nuestros clientes.",
         "priceRange": "$$-$$$",
         "telephone": "+528110802911",
-        "email": "hola@persuasivo.com.mx",
+        "email": "hola@persuasivo.mx",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Monterrey",
@@ -83,6 +83,7 @@ function AppContent() {
         "knowsAbout": [
           "Desarrollo Web con React",
           "Next.js",
+          "Google Ads",
           "Meta Ads",
           "Copywriting de Conversión",
           "SEO Técnico",
@@ -108,8 +109,8 @@ function AppContent() {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Meta Ads — Pauta Digital",
-                "description": "Campañas de adquisición con ROI documentado de 12X. Desde $15,000 MXN/mes.",
+                "name": "Google Ads y Meta Ads — Pauta Digital",
+                "description": "Campañas de adquisición en Google Ads y Meta Ads (ROI documentado de 12X en Meta). Meta Ads desde $15,000 MXN/mes.",
                 "url": "https://persuasivo.com.mx/servicios/trafico"
               }
             },
@@ -143,7 +144,7 @@ function AppContent() {
             "name": "¿Qué servicios ofrece la agencia Persuasivo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Persuasivo ofrece tres servicios principales: 1) Desarrollo de Sitios Web de alto rendimiento con React y Next.js (desde $35,000 MXN). 2) Meta Ads para pauta publicitaria con ROI documentado de 12X (desde $15,000 MXN/mes). 3) Copywriting y Gestión de Redes Sociales para construir autoridad de marca (desde $12,000 MXN/mes)."
+              "text": "Persuasivo ofrece tres servicios principales: 1) Desarrollo de Sitios Web de alto rendimiento con React y Next.js (desde $35,000 MXN). 2) Google Ads y Meta Ads para pauta publicitaria (ROI documentado de 12X en Meta; Meta Ads desde $15,000 MXN/mes). 3) Copywriting y Gestión de Redes Sociales para construir autoridad de marca (desde $12,000 MXN/mes)."
             }
           },
           {
@@ -178,8 +179,8 @@ function AppContent() {
   return (
     <main style={{ width: '100%', minHeight: '100vh', overflowX: 'clip', background: 'var(--bg-void)', color: 'var(--text-primary)' }}>
       <Helmet>
-        <title>Persuasivo | Agencia Creativa — Desarrollo Web, Meta Ads & Copywriting</title>
-        <meta name="description" content="Agencia creativa en Monterrey especializada en desarrollo web con React, Meta Ads de alto rendimiento y copywriting de conversión." />
+        <title>Persuasivo | Agencia Creativa — Desarrollo Web, Google Ads, Meta Ads & Copywriting</title>
+        <meta name="description" content="Agencia creativa en Monterrey especializada en desarrollo web con React, Google Ads y Meta Ads de alto rendimiento y copywriting de conversión." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <html lang="es" />

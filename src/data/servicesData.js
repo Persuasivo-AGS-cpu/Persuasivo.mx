@@ -30,15 +30,16 @@ export const services = [
   {
     id: 'trafico',
     slug: 'trafico',
-    title: 'Meta Ads',
+    title: 'Google Ads y Meta Ads',
     subtitle: 'Pauta Digital Quirúrgica',
     icon: '📡',
     navTarget: 'service_traffic',
     routePath: '/servicios/trafico',
-    desc: 'Campañas de adquisición inteligentes de extremo a extremo. Analizamos tu mercado y dirigimos tu mensaje al cliente que ya te está buscando.',
+    desc: 'Campañas de adquisición en Google Ads y Meta Ads, de extremo a extremo. Analizamos tu mercado y dirigimos tu mensaje al cliente que ya te está buscando y al que todavía no.',
     businessTrans: 'Sistematizamos tus ventas. Dejas de depender de la suerte para tener un flujo predecible de clientes nuevos cada mes.',
     longDesc: 'Mientras tu competencia sube videos bailando, nosotros entrenamos el algoritmo de Meta con conversiones de alto nivel. Usamos píxeles maduros y datos demográficos cerrados para mostrar tus ofertas únicamente a quienes ya tienen la tarjeta de crédito en la mano.',
     capabilities: [
+      'Campañas de búsqueda en Google Ads: palabras clave, anuncios y páginas de destino',
       'Arquitectura de campañas por etapa de awareness',
       'Embudos de calificación de leads',
       'Retargeting inteligente y lookalike audiences',
@@ -54,7 +55,7 @@ export const services = [
     faq: [
       {
         question: '¿Cuánto cuesta contratar Meta Ads con Persuasivo?',
-        answer: 'La inversión en gestión de pauta comienza desde $15,000 MXN mensuales más el presupuesto publicitario. El monto del presupuesto depende de tus objetivos de volumen y se define en conjunto durante el diagnóstico inicial.'
+        answer: 'La inversión en gestión de pauta comienza desde $15,000 MXN mensuales más el presupuesto publicitario. El monto del presupuesto depende de tus objetivos de volumen y se define en conjunto durante el diagnóstico inicial. Google Ads se cotiza en el diagnóstico, según el mercado y las palabras clave.'
       },
       {
         question: '¿En cuánto tiempo veo resultados con Meta Ads?',
@@ -63,6 +64,10 @@ export const services = [
       {
         question: '¿Qué diferencia a Persuasivo de otras agencias de Meta Ads?',
         answer: 'No optimizamos por likes ni alcance. Entrenamos el algoritmo para conversiones reales: citas, demos, ventas. Además, construimos embudos de calificación que filtran prospectos antes de que lleguen a tu equipo comercial.'
+      },
+      {
+        question: '¿También manejan Google Ads?',
+        answer: 'Sí. Armamos campañas de búsqueda en Google para aparecer cuando alguien ya busca lo que vendes, y las combinamos con Meta Ads para llegar también a quien todavía no te busca. La inversión de Google Ads se define en el diagnóstico.'
       }
     ]
   },

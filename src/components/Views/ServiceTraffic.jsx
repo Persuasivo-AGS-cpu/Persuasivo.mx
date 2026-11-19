@@ -17,8 +17,8 @@ export default function ServiceTraffic({ setView }) {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
       style={{ width: '100%', minHeight: '100vh', background: 'var(--bg-void)' }}>
       <Helmet>
-        <title>Meta Ads en Monterrey: campañas que traen clientes | Persuasivo</title>
-        <meta name="description" content="Campañas de Meta Ads en Facebook e Instagram para empresas en Monterrey: optimizadas por conversiones reales, con embudos de calificación. Solicita una auditoría por WhatsApp." />
+        <title>Google Ads y Meta Ads en Monterrey: campañas que traen clientes | Persuasivo</title>
+        <meta name="description" content="Campañas de Google Ads y Meta Ads para empresas en Monterrey: aparece cuando te buscan y llega al cliente antes de que te busque. Optimizamos por conversiones reales. Solicita una auditoría por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/trafico" />
       </Helmet>
       <div className="sr-page">

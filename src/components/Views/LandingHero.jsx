@@ -57,7 +57,7 @@ export default function LandingHero() {
             marginBottom: '2.5rem',
           }}
         >
-          Branding, desarrollo web, contenido en video y Meta Ads para empresas que quieren que las recuerden y las contraten.
+          Branding, desarrollo web, contenido en video, Google Ads y Meta Ads para empresas que quieren que las recuerden y las contraten.
         </p>
 
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexWrap: 'wrap' }}>

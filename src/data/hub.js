@@ -13,7 +13,7 @@ export const hubServices = [
   { id: 'ecosistemas', mini: 'web', price: 'Desde $35,000 MXN', role: 'Tu casa digital, donde se cierra la venta' },
   { id: 'contenido', mini: 'video', price: 'Según diagnóstico', role: 'Explicas qué vendes' },
   { id: 'autoridad', mini: 'feed', price: 'Desde $12,000 MXN al mes', role: 'Construyes autoridad' },
-  { id: 'trafico', mini: 'search', price: 'Desde $15,000 MXN al mes, más presupuesto publicitario', role: 'Llegas a más clientes' },
+  { id: 'trafico', mini: 'search', price: 'Meta Ads desde $15,000 MXN al mes, más presupuesto publicitario. Google Ads según diagnóstico', role: 'Llegas a más clientes' },
 ].map((s) => {
   const d = getServiceById(s.id);
   return { ...s, slug: d.slug, title: d.title, subtitle: d.subtitle, desc: d.desc, why: d.businessTrans, to: d.routePath };

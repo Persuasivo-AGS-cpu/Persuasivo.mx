@@ -163,7 +163,7 @@ export default function BookConsultation() {
                     <div className="form-group" style={{ marginBottom: '2rem' }}>
                       <label style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 600 }}>¿Qué necesitas resolver? (Múltiple) *</label>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                        {['Página Web', 'Meta Ads', 'Branding', 'SEO', 'Embudos', 'Todo el sistema'].map(need => (
+                        {['Página Web', 'Meta Ads', 'Google Ads', 'Branding', 'SEO', 'Embudos', 'Todo el sistema'].map(need => (
                           <label key={need} style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', padding: '1rem', border: `1px solid ${formData.needs.includes(need) ? 'var(--text-primary)' : 'var(--border-subtle)'}`, borderRadius: 'var(--radius-sm)', background: formData.needs.includes(need) ? 'var(--bg-card)' : 'transparent', transition: 'all 0.2s' }}>
                             <input type="checkbox" value={need} checked={formData.needs.includes(need)} onChange={handleCheckboxChange} style={{ accentColor: 'var(--text-primary)' }} />
                             <span style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 600 }}>{need}</span>

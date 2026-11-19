@@ -105,7 +105,7 @@ export default function AgencyHome() {
     >
       <Helmet>
         <title>Agencia de Marketing Digital en Monterrey | Persuasivo</title>
-        <meta name="description" content="Branding, desarrollo web, contenido en video y Meta Ads para empresas en Monterrey. Solicita una cotización por WhatsApp." />
+        <meta name="description" content="Branding, desarrollo web, contenido en video, Google Ads y Meta Ads para empresas en Monterrey. Solicita una cotización por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx" />
         <meta property="og:title" content="Persuasivo | Agencia de Marketing Digital en Monterrey" />
         <meta property="og:description" content="Para marcas que no tienen miedo de ser recordadas." />

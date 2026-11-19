@@ -9,14 +9,15 @@ export const searchQuery = 'cómo conseguir clientes nuevos en Monterrey';
 
 export const searchAd = {
   label: 'Anuncio',
-  url: 'persuasivo.com.mx › meta-ads',
-  title: 'Meta Ads en Monterrey: llega al cliente antes de que te busque',
+  url: 'persuasivo.com.mx › ads',
+  title: 'Google Ads y Meta Ads en Monterrey: aparece cuando te buscan y antes de que te busquen',
   desc: svc.desc,
   extra: 'Empezamos con una auditoría de tu infraestructura publicitaria actual para detectar dónde se te va el dinero.',
   cta: 'Solicitar auditoría',
   sitelinks: [
     ['Qué incluye', 'sr-incluye'],
-    ['Cómo funciona', 'sr-algoritmo'],
+    ['Google Ads', 'sr-google'],
+    ['Meta Ads', 'sr-algoritmo'],
     ['Casos', 'sr-casos'],
     ['Precio', 'sr-panel'],
   ],
@@ -25,31 +26,37 @@ export const searchAd = {
 // Resultados orgánicos. `more` es texto; `list` es una lista opcional.
 export const searchResults = [
   {
-    id: 'sr-contraste', url: 'persuasivo.com.mx › meta-ads › diferencia',
-    title: 'Google espera a que te busquen. Meta Ads te lleva al cliente.',
-    snippet: 'En una búsqueda, la persona ya sabe qué quiere. En Meta llegas a quien todavía no te busca pero tiene el perfil para comprarte.',
-    more: svc.businessTrans,
+    id: 'sr-contraste', url: 'persuasivo.com.mx › ads › diferencia',
+    title: 'Google Ads capta a quien ya te busca. Meta Ads llega a quien aún no.',
+    snippet: 'En Google apareces cuando alguien ya busca lo que vendes. En Meta llegas a quien todavía no te busca pero tiene el perfil para comprarte.',
+    more: 'Por eso las combinamos: Google para captar la demanda que ya existe y Meta para crearla. ' + svc.businessTrans,
   },
   {
-    id: 'sr-incluye', url: 'persuasivo.com.mx › meta-ads › que-incluye',
-    title: 'Qué incluye la gestión de Meta Ads',
-    snippet: 'Arquitectura de campañas por etapa, embudos de calificación, retargeting, optimización por conversiones y más.',
+    id: 'sr-google', url: 'persuasivo.com.mx › ads › google-ads',
+    title: 'Google Ads: aparece justo cuando buscan lo que vendes',
+    snippet: 'Campañas de búsqueda con palabras clave, anuncios y páginas de destino pensadas para convertir.',
+    more: 'Definimos qué buscan tus clientes, armamos grupos de palabras clave y anuncios, y los enviamos a una página pensada para convertir. Medimos por conversiones (llamadas, cotizaciones, citas) y no por clics.',
+  },
+  {
+    id: 'sr-incluye', url: 'persuasivo.com.mx › ads › que-incluye',
+    title: 'Qué incluye la gestión de Google Ads y Meta Ads',
+    snippet: 'Campañas de búsqueda, arquitectura de campañas, embudos de calificación, retargeting y optimización por conversiones.',
     list: svc.capabilities,
   },
   {
-    id: 'sr-algoritmo', url: 'persuasivo.com.mx › meta-ads › algoritmo',
-    title: 'Entrenamos el algoritmo con conversiones reales',
+    id: 'sr-algoritmo', url: 'persuasivo.com.mx › ads › meta-ads',
+    title: 'Entrenamos el algoritmo de Meta con conversiones reales',
     snippet: 'No optimizamos por likes ni alcance vacío: optimizamos por citas, demos y ventas.',
     more: 'Mientras tu competencia sube videos bailando, nosotros entrenamos el algoritmo de Meta con conversiones de alto nivel. Usamos píxeles maduros y datos demográficos cerrados para mostrar tus ofertas únicamente a quienes ya tienen la tarjeta de crédito en la mano.',
   },
   {
-    id: 'sr-escala', url: 'persuasivo.com.mx › meta-ads › escalamiento',
+    id: 'sr-escala', url: 'persuasivo.com.mx › ads › escalamiento',
     title: 'Duplicar la inversión sin romper tu margen',
     snippet: 'Una arquitectura publicitaria que aguanta facturar el doble sin que el sistema se rompa.',
     more: 'El problema de la mayoría es que no soportan facturar el doble sin que su sistema se rompa. Nuestra arquitectura publicitaria permite duplicar la inversión (ROAS) sin perder margen de beneficio, estabilizando tu adquisición de clientes a largo plazo.',
   },
   {
-    id: 'sr-filtro', url: 'persuasivo.com.mx › meta-ads › embudos',
+    id: 'sr-filtro', url: 'persuasivo.com.mx › ads › embudos',
     title: 'Embudos que filtran antes de llegar a ventas',
     snippet: 'Menos conversaciones con curiosos, más con prospectos cualificados.',
     more: 'No queremos que hables con 100 curiosos. Queremos que hables con 5 personas cualificadas. Implementamos embudos (Funnels) posteriores al anuncio que filtran a los prospectos por presupuesto y dolor antes de que lleguen a tu equipo comercial.',
@@ -69,14 +76,15 @@ export const searchPaa = {
 
 export const searchPanel = {
   id: 'sr-panel',
-  name: 'Persuasivo · Meta Ads',
+  name: 'Persuasivo · Google Ads y Meta Ads',
   kind: 'Agencia de publicidad digital',
   place: 'Monterrey, N.L.',
   metrics: svc.metrics, // [{ value, label }]
+  metricsNote: 'Resultados documentados en campañas de Meta Ads.',
   rows: [
-    ['Inversión', 'Gestión desde $15,000 MXN al mes, más el presupuesto publicitario.'],
-    ['Primeros leads', 'Suelen llegar entre la semana 2 y 3.'],
-    ['Optimización completa', 'Entre 30 y 60 días.'],
+    ['Inversión', 'Meta Ads desde $15,000 MXN al mes, más el presupuesto publicitario. Google Ads se cotiza en el diagnóstico.'],
+    ['Primeros leads', 'En Meta Ads suelen llegar entre la semana 2 y 3.'],
+    ['Optimización completa', 'En Meta Ads, entre 30 y 60 días.'],
   ],
   cta: 'Solicitar auditoría',
 };

@@ -93,7 +93,7 @@ export default function Footer() {
           <h4 style={columnTitle}>Servicios</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <Link to="/servicios/ecosistemas" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Desarrollo Web</Link>
-            <Link to="/servicios/trafico" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Meta Ads</Link>
+            <Link to="/servicios/trafico" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Google Ads y Meta Ads</Link>
             <Link to="/servicios/autoridad" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Copywriting & Redes</Link>
             <Link to="/servicios/branding" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Branding</Link>
             <Link to="/contenido" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Contenido en video</Link>
@@ -105,7 +105,7 @@ export default function Footer() {
           <h4 style={columnTitle}>Contacto</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <Link to="/consulta-gratis" style={{ ...linkStyle, color: 'var(--neon)', fontWeight: 700 }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--neon)'}>Agendar Consultoría →</Link>
-            <a href="mailto:hola@persuasivo.com.mx" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>hola@persuasivo.com.mx</a>
+            <a href="mailto:hola@persuasivo.mx" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>hola@persuasivo.mx</a>
             <a href="https://wa.me/528110802911" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>+52 811 080 2911</a>
             <span style={{ ...linkStyle, cursor: 'default' }}>Monterrey, N.L. México</span>
           </div>

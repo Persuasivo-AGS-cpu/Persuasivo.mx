@@ -21,7 +21,7 @@ export const homeServices = [
   },
   {
     word: 'Ads',
-    detail: 'Meta Ads, audiencias, embudos y optimización por conversión',
+    detail: 'Google Ads y Meta Ads, audiencias, embudos y optimización por conversión',
     to: '/servicios/trafico',
   },
 ];
