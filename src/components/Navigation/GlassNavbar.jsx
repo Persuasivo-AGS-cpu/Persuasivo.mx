@@ -15,6 +15,8 @@ export default function GlassNavbar() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // /contenido tiene fondo oscuro: la barra necesita su fondo claro desde el inicio.
+  const solid = scrolled || location.pathname === '/contenido';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -53,11 +55,11 @@ export default function GlassNavbar() {
           justifyContent: 'space-between',
           padding: '0 clamp(1.5rem, 4vw, 3rem)',
           height: '64px',
-          background: scrolled ? 'rgba(242, 242, 242, 0.92)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px) saturate(180%)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px) saturate(180%)' : 'none',
-          borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
-          boxShadow: scrolled ? '0 1px 20px rgba(0,0,0,0.06)' : 'none',
+          background: solid ? 'rgba(242, 242, 242, 0.92)' : 'transparent',
+          backdropFilter: solid ? 'blur(12px) saturate(180%)' : 'none',
+          WebkitBackdropFilter: solid ? 'blur(12px) saturate(180%)' : 'none',
+          borderBottom: solid ? '1px solid var(--border-subtle)' : '1px solid transparent',
+          boxShadow: solid ? '0 1px 20px rgba(0,0,0,0.06)' : 'none',
           transition: 'background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease',
         }}
       >
