@@ -6,6 +6,8 @@ import VsHero from '../VideoStudio/VsHero';
 import VsTimeline from '../VideoStudio/VsTimeline';
 import VsProcess from '../VideoStudio/VsProcess';
 import VsPlans from '../VideoStudio/VsPlans';
+import VsFaq from '../VideoStudio/VsFaq';
+import VsCta from '../VideoStudio/VsCta';
 import '../VideoStudio/videoStudio.css';
 
 export default function ServiceContent() {
@@ -24,6 +26,8 @@ export default function ServiceContent() {
           <VsTimeline />
           <VsProcess />
           <VsPlans />
+          <VsFaq />
+          <VsCta />
         </div>
       </main>
       <Footer />
