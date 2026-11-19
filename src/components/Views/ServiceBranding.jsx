@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import BbHero from '../BrandBoard/BbHero';
+import BbIncluded from '../BrandBoard/BbIncluded';
 import '../BrandBoard/brandBoard.css';
 
 export default function ServiceBranding() {
@@ -18,6 +19,7 @@ export default function ServiceBranding() {
       <main className="bb-page">
         <div className="bb-wrap">
           <BbHero />
+          <BbIncluded />
         </div>
       </main>
       <Footer />
