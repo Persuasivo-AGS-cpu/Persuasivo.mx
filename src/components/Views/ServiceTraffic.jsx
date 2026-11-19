@@ -21,7 +21,7 @@ export default function ServiceTraffic({ setView }) {
         <meta name="description" content="Campañas de Meta Ads en Facebook e Instagram para empresas en Monterrey: optimizadas por conversiones reales, con embudos de calificación. Solicita una auditoría por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/trafico" />
       </Helmet>
-      <main className="sr-page">
+      <div className="sr-page">
         <SrWindow>
           <div className="sr-body">
             <div className="sr-main">
@@ -34,7 +34,7 @@ export default function ServiceTraffic({ setView }) {
             <SrPanel />
           </div>
         </SrWindow>
-      </main>
+      </div>
       <Footer setView={setView} />
     </motion.div>
   );

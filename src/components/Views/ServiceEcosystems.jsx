@@ -23,7 +23,7 @@ export default function ServiceEcosystems({ setView }) {
         <meta name="description" content="Sitios y landing pages en React que cargan en menos de 1 segundo y convierten visitas en cotizaciones. Desde $35,000 MXN. Cotiza por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/ecosistemas" />
       </Helmet>
-      <main className="sk-page">
+      <div className="sk-page">
         <p className="sk-kicker">{webKicker}</p>
         <div className="sk-canvas">
           <WfHeader />
@@ -35,7 +35,7 @@ export default function ServiceEcosystems({ setView }) {
           <WfFaq />
           <WfFinalCta />
         </div>
-      </main>
+      </div>
       <Footer setView={setView} />
     </motion.div>
   );

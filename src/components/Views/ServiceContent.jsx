@@ -20,7 +20,7 @@ export default function ServiceContent() {
         <meta name="description" content="Diseñamos y producimos campañas de video para empresas B2B en Monterrey: explican tu producto, muestran cómo trabajas y posicionan a tus líderes." />
         <link rel="canonical" href="https://persuasivo.com.mx/contenido" />
       </Helmet>
-      <main className="vs-page">
+      <div className="vs-page">
         <div className="vs-wrap">
           <VsHero />
           <VsTimeline />
@@ -29,7 +29,7 @@ export default function ServiceContent() {
           <VsFaq />
           <VsCta />
         </div>
-      </main>
+      </div>
       <Footer />
     </motion.div>
   );

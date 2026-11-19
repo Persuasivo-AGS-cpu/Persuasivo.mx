@@ -16,12 +16,12 @@ export default function ServiceAuthority({ setView }) {
         <meta name="description" content="Copywriting, identidad visual y gestión de redes sociales para empresas en Monterrey. Contenido que posiciona tu marca y educa a tu prospecto. Solicita un diagnóstico por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/autoridad" />
       </Helmet>
-      <main className="fp-page">
+      <div className="fp-page">
         <div className="fp-wrap">
           <FpProfileHeader />
           <FpGrid />
         </div>
-      </main>
+      </div>
       <Footer setView={setView} />
     </motion.div>
   );

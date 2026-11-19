@@ -12,7 +12,7 @@ export default function FpPoll() {
           <button key={o.label} type="button" className="fp-opt" aria-pressed={sel === i} onClick={() => setSel(i)}>{o.label}</button>
         ))}
       </div>
-      <p className="fp-answer" aria-live="polite" hidden={sel === null}>
+      <p className="fp-answer" aria-live="polite">
         {sel !== null ? feedPoll.options[sel].answer : ''}
       </p>
     </Post>

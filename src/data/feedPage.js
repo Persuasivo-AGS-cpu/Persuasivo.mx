@@ -41,8 +41,6 @@ export const feedPoll = {
 };
 
 export const feedStories = {
-  meta: 'Casos',
-  title: 'Marcas que ya publican con criterio',
   slugs: ['manifiesto-marca', 'arquitectura-visual', 'sistema-liderazgo'],
 };
 

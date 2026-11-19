@@ -20,7 +20,7 @@ export default function ServiceBranding() {
         <meta name="description" content="Identidad de marca, posicionamiento y narrativa para empresas en Monterrey. Una marca que se recuerda y se elige. Solicita un diagnóstico por WhatsApp." />
         <link rel="canonical" href="https://persuasivo.com.mx/servicios/branding" />
       </Helmet>
-      <main className="bb-page">
+      <div className="bb-page">
         <div className="bb-wrap">
           <BbHero />
           <BbIncluded />
@@ -29,7 +29,7 @@ export default function ServiceBranding() {
           <BbFaq />
           <BbCta />
         </div>
-      </main>
+      </div>
       <Footer />
     </motion.div>
   );

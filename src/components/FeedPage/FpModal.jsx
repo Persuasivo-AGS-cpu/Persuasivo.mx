@@ -5,6 +5,7 @@ import { InstantContext } from './Post';
 // El contenido siempre está montado (cerrado no se ve) para que el texto siga en el DOM.
 export default function FpModal({ open, onClose, label, children }) {
   const ref = useRef(null);
+  const downOnBackdrop = useRef(false);
 
   useEffect(() => {
     const d = ref.current;
@@ -15,7 +16,8 @@ export default function FpModal({ open, onClose, label, children }) {
 
   return (
     <dialog ref={ref} className="fp-modal" aria-label={label} onClose={onClose}
-      onClick={(e) => { if (e.target === ref.current) onClose(); }}>
+      onPointerDown={(e) => { downOnBackdrop.current = e.target === ref.current; }}
+      onClick={(e) => { if (downOnBackdrop.current && e.target === ref.current) onClose(); }}>
       <div>
         <div className="fp-modal-bar">
           <button type="button" className="fp-modal-x" aria-label="Cerrar" onClick={onClose}>×</button>

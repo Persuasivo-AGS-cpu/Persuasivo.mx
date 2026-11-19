@@ -41,7 +41,6 @@ export const videoClips = [
 export const videoExample = {
   title: 'Ejemplo: fabricante de puertas de emergencia.',
   text: 'Escenario ilustrativo con el paquete Starter: 12 piezas en tres meses para que arquitectos, especificadores y compradores industriales entiendan la solución y sepan cómo cotizar.',
-  tracksTitle: 'Tres líneas de contenido, una sola campaña.',
 };
 
 export const videoSteps = [
