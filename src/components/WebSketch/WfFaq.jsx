@@ -9,9 +9,11 @@ export default function WfFaq() {
       <h2 className="sk-h2">Lo que <span className="sk-mark">todos preguntan</span></h2>
       <div style={{ display: 'grid', gap: '1rem' }}>
         {webFaq.map((f, i) => (
-          <SketchBox key={f.question} as="details" seed={71 + i} passes={1} className="sk-faq">
-            <summary>{f.question}</summary>
-            <p>{f.answer}</p>
+          <SketchBox key={f.question} seed={71 + i} passes={1} className="sk-faq">
+            <details>
+              <summary>{f.question}</summary>
+              <p>{f.answer}</p>
+            </details>
           </SketchBox>
         ))}
       </div>
