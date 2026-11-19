@@ -6,6 +6,9 @@ import SrWindow from '../SearchPage/SrWindow';
 import SrAd from '../SearchPage/SrAd';
 import SrOrganic from '../SearchPage/SrOrganic';
 import SrCases from '../SearchPage/SrCases';
+import SrPaa from '../SearchPage/SrPaa';
+import SrMore from '../SearchPage/SrMore';
+import SrPanel from '../SearchPage/SrPanel';
 import '../SearchPage/searchPage.css';
 
 export default function ServiceTraffic({ setView }) {
@@ -25,7 +28,10 @@ export default function ServiceTraffic({ setView }) {
               <SrAd />
               <SrOrganic />
               <SrCases />
+              <SrPaa />
+              <SrMore />
             </div>
+            <SrPanel />
           </div>
         </SrWindow>
       </main>
