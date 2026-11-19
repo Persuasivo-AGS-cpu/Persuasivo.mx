@@ -27,9 +27,9 @@
 
 /* tarjetas */
 .hub-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.hub-card { display: flex; flex-direction: column; padding: 1.25rem; border-radius: 20px; background: #fff; border: 1px solid var(--hub-line); transition: opacity 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.hub-card { display: flex; flex-direction: column; padding: 1.25rem; border-radius: 20px; background: #fff; border: 1px solid var(--hub-line); transition: filter 0.3s, box-shadow 0.3s, border-color 0.3s; }
 .hub-card[data-rec='true'] { border-color: var(--hub-ink); box-shadow: 0 0 0 3px var(--hub-lime); }
-.hub-card[data-dim='true'] { opacity: 0.5; }
+.hub-card[data-dim='true'] { filter: opacity(0.5) saturate(0.6); }
 .hub-card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .hub-badge { padding: 0.2rem 0.65rem; border-radius: var(--radius-full); background: var(--hub-lime); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
 .hub-price { margin: auto 0 1rem; font-weight: 700; }
