@@ -5,11 +5,15 @@ const svc = getServiceBySlug('autoridad');
 
 export const FEED_WA = waLink('Hola, me interesa la gestión de redes para mi empresa');
 
+export const FEED_WA_MSG = waLink('Hola, quiero un diagnóstico de mis redes sociales');
+
 export const feedProfile = {
   name: 'persuasivo.mx',
   role: 'Copywriting & Redes',
   follow: 'Seguir',
-  followLabel: 'Escribir por WhatsApp',
+  followLabel: 'Seguir: escribir por WhatsApp',
+  message: 'Mensaje',
+  messageLabel: 'Enviar mensaje por WhatsApp',
 };
 
 export const feedHero = {
@@ -65,9 +69,27 @@ export const feedComments = {
 };
 
 export const feedCta = {
-  meta: 'Link en bio ↓',
-  title: '¿Hablamos de tus redes?',
+  meta: 'Cómo contratar ↓',
+  title: '¿Cómo empezamos?',
+  steps: [
+    ['Escríbenos por WhatsApp', 'Pides tu diagnóstico de redes.'],
+    ['Sesión de onboarding', 'Entendemos tu negocio, tu voz y tus objetivos.'],
+    ['Nosotros producimos', 'Copy, diseño y estrategia editorial. Tú recibes tu calendario del mes.'],
+  ],
   text: 'En el diagnóstico revisamos tu narrativa y tus plataformas, y te proponemos un calendario con el contenido que sí vende.',
   price: 'Gestión de redes desde $12,000 MXN al mes. El alcance se define según plataformas y frecuencia.',
   button: 'Solicitar diagnóstico',
 };
+
+// Orden de la parrilla 3×3. kind 'modal' abre una ventana; 'case' enlaza al caso.
+export const feedTiles = [
+  { id: 'hero', kind: 'modal', label: 'Diagnóstico', tone: 'lime' },
+  { id: 'case0', kind: 'case', slug: feedStories.slugs[0] },
+  { id: 'carousel', kind: 'modal', label: 'Qué incluye', tone: 'dark' },
+  { id: 'poll', kind: 'modal', label: 'Encuesta', tone: 'white' },
+  { id: 'calendar', kind: 'modal', label: 'Cómo funciona', tone: 'white' },
+  { id: 'case1', kind: 'case', slug: feedStories.slugs[1] },
+  { id: 'case2', kind: 'case', slug: feedStories.slugs[2] },
+  { id: 'faq', kind: 'modal', label: 'Preguntas', tone: 'gray' },
+  { id: 'cta', kind: 'modal', label: 'Cómo contratar', tone: 'dark' },
+];
