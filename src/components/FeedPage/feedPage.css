@@ -90,7 +90,7 @@
 .fp-tile-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .fp-tile:hover .fp-tile-cover, .fp-tile:focus-visible .fp-tile-cover { filter: brightness(0.92); }
 .fp-tile:focus-visible { outline: 3px solid var(--fp-ink); outline-offset: 2px; }
-.fp-tile-label { position: absolute; left: 6px; bottom: 6px; z-index: 1; max-width: calc(100% - 12px); padding: 0.15rem 0.55rem; border-radius: var(--radius-full); background: rgba(255, 255, 255, 0.94); color: var(--fp-ink); font-size: 0.68rem; font-weight: 700; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fp-tile-label { position: absolute; left: 6px; bottom: 6px; z-index: 1; max-width: calc(100% - 12px); padding: 0.15rem 0.55rem; border-radius: 10px; background: rgba(255, 255, 255, 0.94); color: var(--fp-ink); font-size: 0.68rem; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 @media (min-width: 640px) { .fp-tile-label { font-size: 0.8rem; } }
 .fp-tile--lime .fp-tile-cover { background: var(--fp-lime); }
 .fp-tile--dark .fp-tile-cover { background: #111; color: #fff; }
@@ -104,7 +104,7 @@
 
 /* ventana */
 body:has(dialog.fp-modal[open]) { overflow: hidden !important; }
-.fp-modal { border: 0; padding: 0; width: min(560px, 94vw); max-height: 90vh; overflow: auto; border-radius: 18px; background: #fff; color: var(--fp-ink); }
+.fp-modal { margin: auto; border: 0; padding: 0; width: min(560px, 94vw); max-height: 90vh; overflow: auto; border-radius: 18px; background: #fff; color: var(--fp-ink); }
 .fp-modal::backdrop { background: rgba(17, 17, 17, 0.6); backdrop-filter: blur(3px); }
 .fp-modal[open] { animation: fp-pop 0.25s ease-out; }
 @keyframes fp-pop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
