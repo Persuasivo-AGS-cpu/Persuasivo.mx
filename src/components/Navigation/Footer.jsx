@@ -96,6 +96,8 @@ export default function Footer() {
             <Link to="/servicios/ecosistemas" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Desarrollo Web</Link>
             <Link to="/servicios/trafico" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Meta Ads</Link>
             <Link to="/servicios/autoridad" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Copywriting & Redes</Link>
+            <Link to="/servicios/branding" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Branding</Link>
+            <Link to="/contenido" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>Contenido en video</Link>
           </div>
         </div>
 
