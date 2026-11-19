@@ -8,6 +8,8 @@ import WfProof from '../WebSketch/WfProof';
 import WfBenefits from '../WebSketch/WfBenefits';
 import WfProcess from '../WebSketch/WfProcess';
 import WfPricing from '../WebSketch/WfPricing';
+import WfFaq from '../WebSketch/WfFaq';
+import WfFinalCta from '../WebSketch/WfFinalCta';
 import { webKicker } from '../../data/webSketch';
 import '../WebSketch/webSketch.css';
 
@@ -30,6 +32,8 @@ export default function ServiceEcosystems({ setView }) {
           <WfBenefits />
           <WfProcess />
           <WfPricing />
+          <WfFaq />
+          <WfFinalCta />
         </div>
       </main>
       <Footer setView={setView} />
