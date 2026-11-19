@@ -4,13 +4,41 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Footer from '../Navigation/Footer';
 import ComandaForm from '../Comanda/ComandaForm';
-import { comandaCopy, initialForm } from '../../data/comanda';
+import ComandaTicket from '../Comanda/ComandaTicket';
+import { submitLead } from '../Comanda/submitLead';
+import { waLink } from '../../data/contact';
+import {
+  comandaCopy, initialForm, canSend, canContact, buildOrderText, makeFolio, formatTicketDate,
+} from '../../data/comanda';
 import '../Comanda/comanda.css';
 
 export default function ContactFlow({ setView }) {
   const [form, setForm] = useState(initialForm);
+  const [status, setStatus] = useState('idle'); // idle | sending | sent
+  const [via, setVia] = useState('');
+  const [folio] = useState(() => makeFolio());
+  const [dateStr] = useState(() => formatTicketDate());
 
   React.useEffect(() => { window.scrollTo({ top: 0 }); }, []);
+
+  const okSend = canSend(form);
+  const okContact = canContact(form);
+
+  // WhatsApp es un <a> real: aquí solo se registra el pedido y se bloquea el clic si falta algo.
+  const onWhatsApp = (e) => {
+    if (!okSend) { e.preventDefault(); return; }
+    submitLead(form, 'WhatsApp');
+    setVia('WhatsApp');
+    setStatus('sent');
+  };
+
+  const onContact = async () => {
+    if (!okContact || status === 'sending') return;
+    setStatus('sending');
+    await submitLead(form, 'Correo');
+    setVia('Correo');
+    setStatus('sent');
+  };
 
   return (
     <motion.div key="contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}
@@ -29,10 +57,16 @@ export default function ContactFlow({ setView }) {
             <p className="cm-lead">{comandaCopy.sub}</p>
           </header>
           <div className="cm-layout">
-            <div style={{ display: 'grid', gap: '1rem' }}>
+            <div style={{ display: 'grid', gap: '1rem', alignContent: 'start' }}>
               <ComandaForm form={form} setForm={setForm} />
               <p className="cm-alt">{comandaCopy.alt} <Link to="/consulta-gratis">{comandaCopy.altLink}</Link></p>
             </div>
+            <ComandaTicket
+              form={form} folio={folio} dateStr={dateStr} status={status} via={via}
+              canSend={okSend} canContact={okContact}
+              waHref={waLink(buildOrderText(form, folio))}
+              onWhatsApp={onWhatsApp} onContact={onContact}
+            />
           </div>
         </div>
       </div>
