@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-// Publicación del feed. El "me gusta" es solo un gesto: no hay contadores ni datos inventados.
+// true dentro de la ventana: el post aparece ya puesto, sin animación de entrada.
+export const InstantContext = createContext(false);
+
+// Publicación. El "me gusta" es solo un gesto: no hay contadores ni datos inventados.
 export default function Post({ meta, children, tags }) {
   const reduce = useReducedMotion();
+  const instant = useContext(InstantContext);
   const [liked, setLiked] = useState(false);
   return (
     <motion.article className="fp-post"
-      initial={reduce ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
+      initial={reduce || instant ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8% 0px' }} transition={{ duration: 0.5 }}>
       <header className="fp-post-head">
         <span className="fp-avatar" aria-hidden="true">P</span>
