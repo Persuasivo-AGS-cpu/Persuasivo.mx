@@ -65,7 +65,7 @@ export default function Footer() {
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
               </svg>
             </a>
-            <a href="https://wa.me/528110731510" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+            <a href="https://wa.me/528110802911" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
                style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
                onMouseEnter={(e) => e.currentTarget.style.color = '#25D366'}
                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
@@ -106,7 +106,7 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <Link to="/consulta-gratis" style={{ ...linkStyle, color: 'var(--neon)', fontWeight: 700 }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--neon)'}>Agendar Consultoría →</Link>
             <a href="mailto:hola@persuasivo.com.mx" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>hola@persuasivo.com.mx</a>
-            <a href="https://wa.me/528110731510" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>+52 811 073 1510</a>
+            <a href="https://wa.me/528110802911" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>+52 811 080 2911</a>
             <span style={{ ...linkStyle, cursor: 'default' }}>Monterrey, N.L. México</span>
           </div>
         </div>

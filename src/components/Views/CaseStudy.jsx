@@ -162,7 +162,7 @@ export default function CaseStudy() {
           onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
           >Agendar Consultoría →</Link>
-          <a href="https://wa.me/528110731510" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://wa.me/528110802911" target="_blank" rel="noopener noreferrer" style={{
             color: 'var(--text-primary)', padding: '1rem 2.5rem', borderRadius: 'var(--radius-full)',
             fontWeight: 700, textDecoration: 'none', border: '1px solid var(--border-strong)', transition: 'background 0.2s'
           }}

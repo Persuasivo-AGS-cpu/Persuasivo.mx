@@ -63,7 +63,7 @@ function AppContent() {
         "image": "https://persuasivo.com.mx/og-image.jpg",
         "description": "Agencia creativa en Monterrey especializada en desarrollo web con React, Meta Ads de alto rendimiento y copywriting de conversión. Generamos +215% más leads calificados para nuestros clientes.",
         "priceRange": "$$-$$$",
-        "telephone": "+528110731510",
+        "telephone": "+528110802911",
         "email": "hola@persuasivo.com.mx",
         "address": {
           "@type": "PostalAddress",

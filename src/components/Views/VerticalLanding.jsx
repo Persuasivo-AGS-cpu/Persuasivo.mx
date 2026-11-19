@@ -39,7 +39,7 @@ export default function VerticalLanding({ type, setView }) {
     "name": `Persuasivo - ${data.title || data.city}`,
     "url": `https://persuasivo.com.mx/${type === 'local' ? 'agencia-marketing' : 'soluciones'}/${id}`,
     "description": data.subtitle,
-    "telephone": "+528100000000", // Replace with real phone
+    "telephone": "+528110802911",
     "priceRange": "$$$",
     "address": {
       "@type": "PostalAddress",
