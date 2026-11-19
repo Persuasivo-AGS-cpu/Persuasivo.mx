@@ -6,6 +6,8 @@ import BbHero from '../BrandBoard/BbHero';
 import BbIncluded from '../BrandBoard/BbIncluded';
 import BbProcess from '../BrandBoard/BbProcess';
 import BbCases from '../BrandBoard/BbCases';
+import BbFaq from '../BrandBoard/BbFaq';
+import BbCta from '../BrandBoard/BbCta';
 import '../BrandBoard/brandBoard.css';
 
 export default function ServiceBranding() {
@@ -24,6 +26,8 @@ export default function ServiceBranding() {
           <BbIncluded />
           <BbProcess />
           <BbCases />
+          <BbFaq />
+          <BbCta />
         </div>
       </main>
       <Footer />
