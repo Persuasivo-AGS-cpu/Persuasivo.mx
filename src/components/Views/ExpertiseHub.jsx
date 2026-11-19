@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import { services } from '../../data/servicesData';
-import { hubIntro } from '../../data/hub';
+import { hubIntro, hubCta } from '../../data/hub';
 import HubCards from '../ServicesHub/HubCards';
 import HubGoals from '../ServicesHub/HubGoals';
+import HubJourney from '../ServicesHub/HubJourney';
 import '../ServicesHub/hub.css';
 
 export default function ExpertiseHub() {
@@ -48,6 +50,12 @@ export default function ExpertiseHub() {
             <HubGoals goalId={goalId} onChange={setGoalId} />
           </header>
           <HubCards goalId={goalId} />
+          <HubJourney />
+          <section className="hub-cta">
+            <h2 className="hub-h2">{hubCta.title}</h2>
+            <p className="hub-lead">{hubCta.text}</p>
+            <Link to="/contacto" className="hub-btn hub-btn--dark">{hubCta.button}</Link>
+          </section>
         </div>
       </div>
 
