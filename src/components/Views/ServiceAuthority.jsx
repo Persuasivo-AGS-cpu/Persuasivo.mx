@@ -8,6 +8,8 @@ import FpCarousel from '../FeedPage/FpCarousel';
 import FpPoll from '../FeedPage/FpPoll';
 import FpStories from '../FeedPage/FpStories';
 import FpCalendar from '../FeedPage/FpCalendar';
+import FpComments from '../FeedPage/FpComments';
+import FpCta from '../FeedPage/FpCta';
 import '../FeedPage/feedPage.css';
 
 export default function ServiceAuthority({ setView }) {
@@ -28,6 +30,8 @@ export default function ServiceAuthority({ setView }) {
           <FpPoll />
           <FpStories />
           <FpCalendar />
+          <FpComments />
+          <FpCta />
         </div>
       </main>
       <Footer setView={setView} />
