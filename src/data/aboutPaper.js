@@ -30,14 +30,18 @@ export const paperTicker = {
 };
 
 export const paperHead = {
-  kicker: 'Portada · Agencia digital',
-  title: ['Hacemos que tu negocio ', 'crezca en internet.'],
+  kicker: 'Quiénes somos',
+  title: ['Somos Persuasivo. ', 'Hacemos que tu negocio crezca en internet.'],
   deck: 'Meta Ads, Google Ads, desarrollo web y redes sociales con estrategia real y resultados documentados.',
   byline: 'Por Abraham Garza, fundador · Monterrey, N.L.',
-  photoSlug: 'monterrey-juridico',
+  photo: {
+    src: '/nosotros/abraham-garza.webp',
+    alt: 'Abraham Garza, fundador de Persuasivo',
+    caption: 'Abraham Garza, fundador de Persuasivo, en Monterrey.',
+  },
   body: [
-    'Cada peso que inviertes en marketing debería tener una razón y un destino claro. No creamos campañas para verse bien en un reporte.',
-    'Construimos ecosistemas digitales que generan clientes reales, ventas reales, crecimiento real. Ese es el único estándar que nos importa.',
+    'Persuasivo es una agencia digital en Monterrey. Llevo 3 años construyendo sistemas de crecimiento digital para negocios en México y Estados Unidos.',
+    'Trabajas directamente con quien hace el trabajo. Sin cuentas que solo coordinan y facturan.',
   ],
 };
 
@@ -50,19 +54,18 @@ export const paperStats = [
 
 // Índice de la edición: los 5 servicios, con "página" ficticia.
 export const paperIndex = {
-  title: 'Dentro de esta edición',
+  title: 'Qué hacemos',
   items: homeServices.map((s, i) => ({ ...s, page: i + 2 })),
 };
 
-export const paperFounder = {
-  label: 'Quién está detrás de Persuasivo',
-  name: 'Abraham Garza',
+export const paperWhy = {
+  label: 'Por qué lo hacemos',
+  title: 'Cada peso debería tener una razón y un destino claro.',
   paragraphs: [
-    'Llevo 3 años construyendo sistemas de crecimiento digital para negocios en México y Estados Unidos.',
+    'No creamos campañas para verse bien en un reporte. Construimos ecosistemas digitales que generan clientes reales, ventas reales, crecimiento real. Ese es el único estándar que nos importa.',
     'Empecé Persuasivo porque vi demasiadas agencias vendiendo humo: promesas grandes, reportes bonitos y resultados que nadie podía explicar.',
   ],
   quote: 'Mi apuesta es diferente: menos clientes, más atención, resultados que puedas ver en tu banco.',
-  creds: 'Meta Certified · Google Ads · Desarrollo Web React',
 };
 
 export const paperPrinciples = {

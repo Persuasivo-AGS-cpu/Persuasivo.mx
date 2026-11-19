@@ -6,7 +6,7 @@ import PpMasthead from '../Paper/PpMasthead';
 import PpTicker from '../Paper/PpTicker';
 import PpHeadline from '../Paper/PpHeadline';
 import PpIndex from '../Paper/PpIndex';
-import PpFounder from '../Paper/PpFounder';
+import PpWhy from '../Paper/PpWhy';
 import PpInside from '../Paper/PpInside';
 import PpClassified from '../Paper/PpClassified';
 import '../Paper/paper.css';
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="pp-front">
             <PpHeadline />
             <PpIndex />
-            <PpFounder />
+            <PpWhy />
           </div>
           <PpInside />
           <PpClassified />
