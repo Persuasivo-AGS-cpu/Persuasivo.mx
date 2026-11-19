@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import WfHeader from '../WebSketch/WfHeader';
 import WfHero from '../WebSketch/WfHero';
+import WfProof from '../WebSketch/WfProof';
+import WfBenefits from '../WebSketch/WfBenefits';
 import { webKicker } from '../../data/webSketch';
 import '../WebSketch/webSketch.css';
 
@@ -22,6 +24,8 @@ export default function ServiceEcosystems({ setView }) {
         <div className="sk-canvas">
           <WfHeader />
           <WfHero />
+          <WfProof />
+          <WfBenefits />
         </div>
       </main>
       <Footer setView={setView} />
