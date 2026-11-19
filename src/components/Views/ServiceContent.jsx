@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import VsHero from '../VideoStudio/VsHero';
 import VsTimeline from '../VideoStudio/VsTimeline';
+import VsProcess from '../VideoStudio/VsProcess';
+import VsPlans from '../VideoStudio/VsPlans';
 import '../VideoStudio/videoStudio.css';
 
 export default function ServiceContent() {
@@ -20,6 +22,8 @@ export default function ServiceContent() {
         <div className="vs-wrap">
           <VsHero />
           <VsTimeline />
+          <VsProcess />
+          <VsPlans />
         </div>
       </main>
       <Footer />
