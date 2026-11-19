@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import FpProfile from '../FeedPage/FpProfile';
 import FpHero from '../FeedPage/FpHero';
+import FpCarousel from '../FeedPage/FpCarousel';
+import FpPoll from '../FeedPage/FpPoll';
 import '../FeedPage/feedPage.css';
 
 export default function ServiceAuthority({ setView }) {
@@ -20,6 +22,8 @@ export default function ServiceAuthority({ setView }) {
         <FpProfile />
         <div className="fp-feed">
           <FpHero />
+          <FpCarousel />
+          <FpPoll />
         </div>
       </main>
       <Footer setView={setView} />
