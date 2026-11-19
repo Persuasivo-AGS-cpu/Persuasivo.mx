@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import PpMasthead from '../Paper/PpMasthead';
 import PpTicker from '../Paper/PpTicker';
+import PpHeadline from '../Paper/PpHeadline';
+import PpIndex from '../Paper/PpIndex';
+import PpFounder from '../Paper/PpFounder';
 import '../Paper/paper.css';
 
 export default function AboutPage() {
@@ -32,6 +35,11 @@ export default function AboutPage() {
         <div className="pp-sheet">
           <PpMasthead />
           <PpTicker />
+          <div className="pp-front">
+            <PpHeadline />
+            <PpIndex />
+            <PpFounder />
+          </div>
         </div>
       </div>
 
