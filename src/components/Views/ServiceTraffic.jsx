@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../Navigation/Footer';
 import SrWindow from '../SearchPage/SrWindow';
 import SrAd from '../SearchPage/SrAd';
+import SrOrganic from '../SearchPage/SrOrganic';
+import SrCases from '../SearchPage/SrCases';
 import '../SearchPage/searchPage.css';
 
 export default function ServiceTraffic({ setView }) {
@@ -21,6 +23,8 @@ export default function ServiceTraffic({ setView }) {
           <div className="sr-body">
             <div className="sr-main">
               <SrAd />
+              <SrOrganic />
+              <SrCases />
             </div>
           </div>
         </SrWindow>
